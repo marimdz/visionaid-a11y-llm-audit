@@ -1,0 +1,16 @@
+You are an expert in web accessibility (WCAG 2.1). Audit the following source code for accessibility issues.
+
+First, state your verdict on a single line:
+- Write "ACCESSIBLE" if the code meets WCAG best practices for this type of content (e.g. data tables with proper scope/headers, semantics).
+- Write "HAS_ISSUES" if there are one or more accessibility problems.
+
+Then, if you chose HAS_ISSUES, list each issue briefly (WCAG criterion if applicable and what is wrong). If ACCESSIBLE, you can add one short sentence explaining why.
+
+Code (filename: {{file_name}}):
+```{{language}}
+{{code}}
+```
+
+Respond in this format:
+VERDICT: ACCESSIBLE | HAS_ISSUES
+[Optional details below]

@@ -1,0 +1,1067 @@
+{
+  "run": {
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "prompt_name": "audit_binary",
+    "timestamp": "20260212_161613"
+  },
+  "summary": {
+    "total_samples": 105,
+    "correct": 52,
+    "accuracy": 0.49523809523809526,
+    "total_input_tokens": 85893,
+    "total_output_tokens": 630
+  },
+  "samples": [
+    {
+      "file_name": "angular-table-accessible.js",
+      "slice": "dynamic",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 528,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "angular-table-invalid.js",
+      "slice": "dynamic",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 419,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "php-table-accessible.php",
+      "slice": "dynamic",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 508,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "php-table-invalid.php",
+      "slice": "dynamic",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 334,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "react-table-accessible.js",
+      "slice": "dynamic",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 523,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "react-table-invalid.js",
+      "slice": "dynamic",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 422,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "vue-table-accessible-llm.vue",
+      "slice": "dynamic",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 640,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "vue-table-accessible.vue",
+      "slice": "dynamic",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 493,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "vue-table-invalid.vue",
+      "slice": "dynamic",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 394,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-01_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1375,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-01_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1421,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-01_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 1088,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-01_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 1124,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-02_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 839,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-02_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 868,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-02_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 616,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-02_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 664,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-03_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 671,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-03_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 666,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-03_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 518,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-03_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 515,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-04_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1682,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-04_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1698,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-04_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 557,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-04_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 604,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-05_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 786,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-05_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 864,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-05_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 628,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-05_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 722,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-06_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1737,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-06_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 2366,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-06_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 1487,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-06_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 1562,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-07_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 562,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-07_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 585,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-07_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 425,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-07_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 464,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-08_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 826,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-08_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 842,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-08_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 593,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-08_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 601,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-09_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1210,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-09_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1174,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-09_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 865,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-09_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 987,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-10_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 885,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-10_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 882,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-10_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 696,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-10_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 672,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-11_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 752,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-11_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 863,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-11_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 355,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-11_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 409,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-12_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1540,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-12_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1620,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-12_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 628,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-12_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 610,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-13_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 600,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-13_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 591,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-13_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 493,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-13_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 460,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-14_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 733,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-14_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 741,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-14_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 593,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-14_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 605,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-16_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 897,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-16_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 954,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-16_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 483,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-16_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 541,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-17_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 478,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-17_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 505,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-17_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 359,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-17_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 394,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-18_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 595,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-18_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 577,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-18_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 479,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-18_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 460,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-19_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 915,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-19_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 941,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-19_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 521,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-19_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 536,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-20_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 991,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-20_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1004,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-20_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 816,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-20_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 841,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-21_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1013,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-21_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1060,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-21_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 890,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-21_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 936,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-22_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1288,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-22_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1349,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-22_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 908,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-22_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 956,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-23_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1227,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-23_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1380,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-23_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 749,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-23_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 764,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-24_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1455,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-24_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 1342,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-24_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 903,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-24_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 833,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-25_accessible-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 735,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-25_accessible-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": false,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": false,
+      "input_tokens": 789,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-25_minimal-composition-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 419,
+      "output_tokens": 6
+    },
+    {
+      "file_name": "delivery-25_minimal-options-api",
+      "slice": "vue",
+      "has_issues_ground_truth": true,
+      "model_response": "HAS_ISSUES",
+      "parsed_verdict": "has_issues",
+      "correct": true,
+      "input_tokens": 429,
+      "output_tokens": 6
+    }
+  ]
+}

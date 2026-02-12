@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Benchmark dataset (download with scripts/download_benchmark.py)
+data/*.zip
+data/manuandru-LLM-WebAccessibility-*/
+# AccessGuru (download with scripts/download_accessguru.py)
+data/accessguru/

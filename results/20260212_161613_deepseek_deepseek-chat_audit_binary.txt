@@ -1,0 +1,635 @@
+Provider: deepseek  Model: deepseek-chat  Prompt: audit_binary
+Accuracy: 49.52%  Correct: 52/105
+Tokens: input=85,893  output=630
+
+--------------------------------------------------------------------------------
+File: angular-table-accessible.js  slice=dynamic
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=528 out=6
+
+File: angular-table-invalid.js  slice=dynamic
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=419 out=6
+
+File: php-table-accessible.php  slice=dynamic
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=508 out=6
+
+File: php-table-invalid.php  slice=dynamic
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=334 out=6
+
+File: react-table-accessible.js  slice=dynamic
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=523 out=6
+
+File: react-table-invalid.js  slice=dynamic
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=422 out=6
+
+File: vue-table-accessible-llm.vue  slice=dynamic
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=640 out=6
+
+File: vue-table-accessible.vue  slice=dynamic
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=493 out=6
+
+File: vue-table-invalid.vue  slice=dynamic
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=394 out=6
+
+File: delivery-01_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1375 out=6
+
+File: delivery-01_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1421 out=6
+
+File: delivery-01_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=1088 out=6
+
+File: delivery-01_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=1124 out=6
+
+File: delivery-02_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=839 out=6
+
+File: delivery-02_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=868 out=6
+
+File: delivery-02_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=616 out=6
+
+File: delivery-02_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=664 out=6
+
+File: delivery-03_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=671 out=6
+
+File: delivery-03_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=666 out=6
+
+File: delivery-03_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=518 out=6
+
+File: delivery-03_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=515 out=6
+
+File: delivery-04_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1682 out=6
+
+File: delivery-04_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1698 out=6
+
+File: delivery-04_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=557 out=6
+
+File: delivery-04_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=604 out=6
+
+File: delivery-05_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=786 out=6
+
+File: delivery-05_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=864 out=6
+
+File: delivery-05_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=628 out=6
+
+File: delivery-05_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=722 out=6
+
+File: delivery-06_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1737 out=6
+
+File: delivery-06_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=2366 out=6
+
+File: delivery-06_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=1487 out=6
+
+File: delivery-06_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=1562 out=6
+
+File: delivery-07_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=562 out=6
+
+File: delivery-07_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=585 out=6
+
+File: delivery-07_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=425 out=6
+
+File: delivery-07_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=464 out=6
+
+File: delivery-08_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=826 out=6
+
+File: delivery-08_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=842 out=6
+
+File: delivery-08_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=593 out=6
+
+File: delivery-08_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=601 out=6
+
+File: delivery-09_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1210 out=6
+
+File: delivery-09_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1174 out=6
+
+File: delivery-09_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=865 out=6
+
+File: delivery-09_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=987 out=6
+
+File: delivery-10_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=885 out=6
+
+File: delivery-10_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=882 out=6
+
+File: delivery-10_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=696 out=6
+
+File: delivery-10_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=672 out=6
+
+File: delivery-11_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=752 out=6
+
+File: delivery-11_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=863 out=6
+
+File: delivery-11_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=355 out=6
+
+File: delivery-11_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=409 out=6
+
+File: delivery-12_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1540 out=6
+
+File: delivery-12_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1620 out=6
+
+File: delivery-12_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=628 out=6
+
+File: delivery-12_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=610 out=6
+
+File: delivery-13_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=600 out=6
+
+File: delivery-13_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=591 out=6
+
+File: delivery-13_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=493 out=6
+
+File: delivery-13_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=460 out=6
+
+File: delivery-14_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=733 out=6
+
+File: delivery-14_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=741 out=6
+
+File: delivery-14_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=593 out=6
+
+File: delivery-14_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=605 out=6
+
+File: delivery-16_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=897 out=6
+
+File: delivery-16_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=954 out=6
+
+File: delivery-16_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=483 out=6
+
+File: delivery-16_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=541 out=6
+
+File: delivery-17_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=478 out=6
+
+File: delivery-17_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=505 out=6
+
+File: delivery-17_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=359 out=6
+
+File: delivery-17_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=394 out=6
+
+File: delivery-18_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=595 out=6
+
+File: delivery-18_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=577 out=6
+
+File: delivery-18_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=479 out=6
+
+File: delivery-18_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=460 out=6
+
+File: delivery-19_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=915 out=6
+
+File: delivery-19_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=941 out=6
+
+File: delivery-19_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=521 out=6
+
+File: delivery-19_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=536 out=6
+
+File: delivery-20_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=991 out=6
+
+File: delivery-20_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1004 out=6
+
+File: delivery-20_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=816 out=6
+
+File: delivery-20_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=841 out=6
+
+File: delivery-21_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1013 out=6
+
+File: delivery-21_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1060 out=6
+
+File: delivery-21_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=890 out=6
+
+File: delivery-21_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=936 out=6
+
+File: delivery-22_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1288 out=6
+
+File: delivery-22_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1349 out=6
+
+File: delivery-22_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=908 out=6
+
+File: delivery-22_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=956 out=6
+
+File: delivery-23_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1227 out=6
+
+File: delivery-23_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1380 out=6
+
+File: delivery-23_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=749 out=6
+
+File: delivery-23_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=764 out=6
+
+File: delivery-24_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1455 out=6
+
+File: delivery-24_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=1342 out=6
+
+File: delivery-24_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=903 out=6
+
+File: delivery-24_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=833 out=6
+
+File: delivery-25_accessible-composition-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=735 out=6
+
+File: delivery-25_accessible-options-api  slice=vue
+  Ground truth: has_issues=False
+  Parsed: has_issues  correct=False
+  Response: HAS_ISSUES
+  Tokens: in=789 out=6
+
+File: delivery-25_minimal-composition-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=419 out=6
+
+File: delivery-25_minimal-options-api  slice=vue
+  Ground truth: has_issues=True
+  Parsed: has_issues  correct=True
+  Response: HAS_ISSUES
+  Tokens: in=429 out=6
+

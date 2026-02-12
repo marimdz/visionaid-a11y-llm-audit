@@ -1,0 +1,9 @@
+# LLM providers (default: Gemini, DeepSeek, Kimi)
+openai>=1.0.0
+google-genai>=1.0.0
+
+# Optional: anthropic (for --provider anthropic)
+anthropic>=0.39.0
+
+# Utilities
+python-dotenv>=1.0.0

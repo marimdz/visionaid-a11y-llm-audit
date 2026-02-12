@@ -1,0 +1,12 @@
+You are an expert in web accessibility (WCAG). Your task is to audit the following source code for accessibility issues.
+
+Answer with exactly one of these two lines (nothing else):
+ACCESSIBLE - if the code follows WCAG best practices for the content (e.g. tables use proper semantics, headers, scope).
+HAS_ISSUES - if the code has one or more accessibility problems (e.g. missing table header associations, poor semantics, missing ARIA or labels).
+
+Code (filename: {{file_name}}):
+```{{language}}
+{{code}}
+```
+
+Your one-line verdict:
