@@ -1,0 +1,118 @@
+ACCESSIBILITY LLM PROMPT LIBRARY
+
+Recommended Settings: - Temperature: 0.1 - Use JSON mode if available -
+Always enforce strict JSON responses
+
+  ---------------------------------
+  1) PAGE TITLE EVALUATION PROMPT
+  ---------------------------------
+
+You are an accessibility auditor.
+
+Evaluate the page title.
+
+Check: - Is it descriptive? - Does it align with the H1? - Is it vague
+or generic? - Does it clearly describe page purpose without relying on
+context?
+
+Return JSON: { “is_descriptive”: true/false, “matches_h1”: true/false,
+“issues”: [], “improved_example”: “string” }
+
+Data: {payload}
+
+  ----------------------------------------
+  2) HEADING STRUCTURE EVALUATION PROMPT
+  ----------------------------------------
+
+You are an accessibility auditor.
+
+Evaluate whether the heading structure forms a logical and clear content
+outline.
+
+Check: - Logical progression of sections - Whether headings describe
+their sections meaningfully - Whether any headings appear vague or
+unclear
+
+Do NOT check skipped levels (handled programmatically).
+
+Return JSON: { “structure_clear”: true/false, “vague_headings”: [],
+“issues”: [] }
+
+Data: {payload}
+
+  -----------------------------------
+  3) LINK CLARITY EVALUATION PROMPT
+  -----------------------------------
+
+You are an accessibility auditor.
+
+Determine whether each link text clearly describes its purpose when read
+alone.
+
+If the link relies on surrounding context to make sense, it is NOT
+clear.
+
+Return JSON array: [ { “text”: “…”, “is_clear”: true/false, “reason”:
+“short explanation”, “suggested_improvement”: “string or null” }]
+
+Data: {payload}
+
+  -------------------------------------
+  4) TABLE SEMANTIC EVALUATION PROMPT
+  -------------------------------------
+
+You are an accessibility auditor.
+
+Evaluate whether this table represents real tabular data.
+
+Check: - Is the caption meaningful and descriptive? - Do headers clearly
+describe the data? - Does this appear to be layout rather than data?
+
+Return JSON: { “is_data_table”: true/false, “caption_clear”: true/false,
+“header_clarity_issues”: [], “issues”: [] }
+
+Data: {payload}
+
+  -----------------------------------
+  5) IFRAME TITLE EVALUATION PROMPT
+  -----------------------------------
+
+You are an accessibility auditor.
+
+Evaluate whether each iframe title clearly describes the iframe’s
+purpose.
+
+Return JSON array: [ { “title”: “…”, “is_descriptive”: true/false,
+“reason”: “short explanation”, “suggested_improvement”: “string or null”
+}]
+
+Data: {payload}
+
+  ----------------------------------------------------
+  6) LANDMARK STRUCTURE EVALUATION PROMPT (OPTIONAL)
+  ----------------------------------------------------
+
+You are an accessibility auditor.
+
+Evaluate whether the landmark structure appears appropriate.
+
+Check: - Excessive landmark count - Missing main content landmark -
+Structural imbalance
+
+Return JSON: { “structure_appropriate”: true/false, “issues”: [] }
+
+Data: {payload}
+
+  ---------------------------------------------------------
+  7) COMBINED SEMANTIC SUMMARY PROMPT (OPTIONAL ADVANCED)
+  ---------------------------------------------------------
+
+You are an accessibility auditor.
+
+Based on the semantic findings provided, summarize the key accessibility
+risks.
+
+Return JSON: { “high_priority_issues”: [], “moderate_issues”: [],
+“low_priority_issues”: [], “overall_semantic_quality_score”: 0-100 }
+
+Data: {payload}
