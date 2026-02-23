@@ -1,0 +1,297 @@
+NON-TEXT CONTENT ACCESSIBILITY LLM PROMPT LIBRARY
+Checklist 03 — Images, SVG, Icon Fonts, and Media
+
+Recommended Settings: Temperature: 0.1 | JSON mode on | Strict JSON responses
+
+  ------------------------------------------
+  1) INFORMATIVE IMAGE ALT TEXT QUALITY PROMPT
+  ------------------------------------------
+
+You are an accessibility auditor evaluating image alt text for WCAG criterion
+1.1.1 (Non-text Content, Level A).
+
+The images below all have alt text (non-empty). Your job is to evaluate the
+QUALITY of each alt text — not whether it exists. Specifically:
+
+Check whether alt text:
+- Accurately describes the content or purpose of the image
+- Uses concise but sufficient language (aim for under 150 characters)
+- Does NOT start with redundant phrases like "image of", "photo of",
+  "picture of" — screen readers already announce it as an image
+- Does NOT appear to be a filename (e.g. "hero-banner-2024.jpg")
+- Is meaningful rather than vague (e.g. "person" vs "volunteer sorting
+  donations at the food bank")
+
+Use alt_flags to guide you: "looks_like_filename", "redundant_phrase",
+and "too_long" are pre-detected quality issues you should address.
+
+Return a JSON array:
+[
+  {
+    "src": "string",
+    "alt": "string",
+    "alt_flags": [],
+    "quality": "good" | "acceptable" | "poor",
+    "issues": [],
+    "suggested_improvement": "string or null"
+  }
+]
+
+Data: {payload}
+
+  ------------------------------------------
+  2) DECORATIVE IMAGE VERIFICATION PROMPT
+  ------------------------------------------
+
+You are an accessibility auditor.
+
+The images below have empty alt text (alt=""), indicating they are intended
+to be decorative — meaning they add no informational content and should be
+skipped by screen readers.
+
+Evaluate whether each image is genuinely decorative based on:
+- The image filename (src) — does it suggest informational content?
+- The surrounding text context (surrounding_text) — does the image appear
+  to illustrate or supplement adjacent content in a meaningful way?
+
+Decorative images are CORRECT to have empty alt. Flag images that appear
+to carry informational content despite their empty alt as potential issues.
+
+Return a JSON array:
+[
+  {
+    "src": "string",
+    "surrounding_text": "string or null",
+    "likely_decorative": true/false,
+    "confidence": "high" | "medium" | "low",
+    "reason": "string",
+    "recommendation": "string or null"
+  }
+]
+
+Data: {payload}
+
+  ------------------------------------------
+  3) ACTIONABLE IMAGE ALT TEXT PROMPT
+  ------------------------------------------
+
+You are an accessibility auditor evaluating images that are inside links or
+buttons, for WCAG criteria 1.1.1 (Non-text Content) and 2.4.4 (Link Purpose).
+
+When an image is the only content inside a link or button, its alt text MUST
+describe the DESTINATION or ACTION — not the visual appearance of the image.
+
+For example:
+- A logo inside a Home link: alt should be "Vision-Aid home page" not "logo"
+- A magnifying glass icon in a search button: alt should be "Search" not "magnifier"
+- A map thumbnail inside a link: alt should be "View our India locations map"
+
+For each image, use the provided context (link_aria_label, link_text,
+link_href, button_text, button_aria_label) to determine:
+1. Is the alt text describing the action/destination rather than the image itself?
+2. Is the full accessible name (alt + any link/button text) sufficient and clear?
+
+Note: if the link or button already has other visible text, the image may use
+empty alt="" — flag cases where both the image alt and surrounding text are empty.
+
+Return a JSON array:
+[
+  {
+    "src": "string",
+    "alt": "string or null",
+    "context": "in_link" | "in_button",
+    "link_href": "string or null",
+    "full_accessible_name": "string",
+    "describes_action_not_appearance": true/false,
+    "issues": [],
+    "suggested_improvement": "string or null"
+  }
+]
+
+Data: {payload}
+
+  ------------------------------------------
+  4) COMPLEX IMAGE DESCRIPTION PROMPT
+  ------------------------------------------
+
+You are an accessibility auditor.
+
+The images below have been identified as potentially complex (charts, graphs,
+diagrams, maps, or infographics) based on their filename or class name.
+Complex images require more than a short alt text — they need a long description
+that conveys the data or relationships shown in the image.
+
+For each image, evaluate:
+- Is the current alt text sufficient to understand the image's informational value?
+  (For a bar chart, alt="Sales chart" is NOT sufficient)
+- Is a long description provided via aria-describedby or longdesc?
+- If a long description exists, is it comprehensive?
+- What would a meaningful description need to include?
+
+Return a JSON array:
+[
+  {
+    "src": "string",
+    "alt": "string or null",
+    "aria_describedby_text": "string or null",
+    "longdesc": "string or null",
+    "alt_is_sufficient": true/false,
+    "long_description_needed": true/false,
+    "long_description_adequate": true/false/null,
+    "issues": [],
+    "recommended_description_outline": "string or null"
+  }
+]
+
+Data: {payload}
+
+  ------------------------------------------
+  5) SVG ACCESSIBILITY EVALUATION PROMPT
+  ------------------------------------------
+
+You are an accessibility auditor evaluating inline SVG elements for WCAG
+criterion 1.1.1 (Non-text Content, Level A).
+
+Only non-decorative SVGs (those without aria-hidden="true") are included.
+For informative SVGs, the WCAG-compliant pattern is:
+
+  svg role="img" aria-labelledby="svg-title-id"
+    title id="svg-title-id" Descriptive title /title
+    desc Optional longer description /desc
+
+For each SVG, evaluate:
+- Is role="img" set?
+- Is a title element present?
+- Is aria-labelledby linking to the title?
+- If a title exists, is the title text meaningful and descriptive?
+- Is an aria-label used as an alternative — is it sufficient?
+
+Return a JSON array:
+[
+  {
+    "role": "string or null",
+    "aria_label": "string or null",
+    "aria_labelledby": "string or null",
+    "title": "string or null",
+    "desc": "string or null",
+    "has_accessible_name": true/false,
+    "title_is_meaningful": true/false/null,
+    "issues": [],
+    "recommendation": "string or null"
+  }
+]
+
+Data: {payload}
+
+  ------------------------------------------
+  6) ICON FONT ACCESSIBILITY EVALUATION PROMPT
+  ------------------------------------------
+
+You are an accessibility auditor evaluating icon font elements (Font Awesome,
+Elementor icons, Dashicons, etc.) for WCAG criterion 1.1.1 (Non-text Content).
+
+Icon fonts present in two valid patterns:
+1. Decorative (aria-hidden="true") — skipped by screen readers, correct when
+   the icon supplements adjacent visible text
+2. Informative (has aria-label or visible text) — announced by screen readers,
+   correct when the icon is the sole conveyor of information
+
+Problematic patterns:
+- aria-hidden="true" when the icon is the ONLY content of a link or button
+  (sole_content: true) — this makes the control completely unlabeled
+- No aria-hidden AND no accessible label — screen reader reads nothing useful
+
+For each icon, use sibling_text and sole_content to determine:
+- Is the icon purely supplementary to existing text? (aria-hidden is correct)
+- Is the icon the only content of a link/button? (needs a label — aria-hidden is WRONG here)
+- Is the icon informative in isolation? (needs aria-label)
+
+Assign one of these patterns:
+- decorative_correct: aria-hidden=true, icon supplements visible text
+- informative_correct: has aria-label or visible text
+- unlabeled_control: sole_content=true AND aria-hidden=true (critical — control has no name)
+- missing_label: no aria-hidden, no aria-label, no visible text
+
+Return a JSON array:
+[
+  {
+    "classes": "string",
+    "aria_hidden": true/false,
+    "aria_label": "string or null",
+    "sibling_text": "string or null",
+    "sole_content": true/false,
+    "pattern": "decorative_correct" | "informative_correct" | "unlabeled_control" | "missing_label",
+    "issues": [],
+    "recommendation": "string or null"
+  }
+]
+
+Data: {payload}
+
+  ------------------------------------------
+  7) MEDIA ACCESSIBILITY EVALUATION PROMPT
+  ------------------------------------------
+
+You are an accessibility auditor evaluating video and audio elements for
+WCAG success criteria:
+- 1.2.1 Audio-only and Video-only (Prerecorded) — Level A
+- 1.2.2 Captions (Prerecorded) — Level A
+- 1.2.3 Audio Description or Media Alternative — Level A
+
+For each media element, evaluate:
+- Videos MUST have captions (a track element with kind="captions" or "subtitles")
+- Audio MUST have a text transcript
+- Videos with autoplay are a potential distraction and confusion issue
+- Check whether tracks are labeled (label attribute) and have srclang set
+
+Return a JSON array:
+[
+  {
+    "type": "video" | "audio",
+    "src": "string or null",
+    "has_controls": true/false,
+    "autoplay": true/false,
+    "has_captions_track": true/false,
+    "tracks": [],
+    "issues": [],
+    "recommendation": "string or null"
+  }
+]
+
+Data: {payload}
+
+  ------------------------------------------
+  8) NON-TEXT CONTENT SUMMARY PROMPT
+  ------------------------------------------
+
+You are an accessibility auditor.
+
+Based on the complete non-text content data provided, produce a summary
+assessment against WCAG 2.1 checklist 03 (Images, SVG, Icon Fonts, Media).
+
+Consider all categories together to identify patterns. For example:
+- "60% of informative images have vague one-word alt text"
+- "All icon fonts inside social media links are aria-hidden with no
+   alternative — links have no accessible name"
+
+Return JSON:
+{
+  "total_images": 0,
+  "informative_images": 0,
+  "decorative_images": 0,
+  "actionable_images": 0,
+  "images_with_quality_issues": 0,
+  "total_svgs": 0,
+  "svgs_with_issues": 0,
+  "total_icon_fonts": 0,
+  "icon_fonts_with_issues": 0,
+  "high_priority_issues": [],
+  "moderate_issues": [],
+  "low_priority_issues": [],
+  "patterns_observed": [],
+  "overall_nontext_accessibility_score": 0
+}
+
+Score 0-100 where 100 = fully accessible.
+
+Data: {payload}

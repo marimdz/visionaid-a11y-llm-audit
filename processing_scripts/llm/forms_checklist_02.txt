@@ -1,0 +1,199 @@
+FORMS ACCESSIBILITY LLM PROMPT LIBRARY
+Checklist 02 — Form Labels, Instructions, and Validation
+
+Recommended Settings: Temperature: 0.1 | JSON mode on | Strict JSON responses
+
+  -----------------------------------
+  1) LABEL QUALITY EVALUATION PROMPT
+  -----------------------------------
+
+You are an accessibility auditor evaluating form field labels for WCAG 2.1
+compliance (criterion 1.3.1 Info and Relationships, 2.4.6 Headings and Labels).
+
+For each field provided, evaluate whether its effective label is:
+- Descriptive: does it clearly tell the user what to enter?
+- Meaningful: does it use plain language rather than technical terms?
+- Sufficient: does it stand alone without requiring surrounding context?
+
+Do NOT evaluate whether the label is programmatically associated — that is
+handled by the programmatic checker. Focus only on label content quality.
+
+For fields with label_source of "none" or "placeholder_only", note these
+but focus your evaluation on fields that have an effective_label value.
+
+Return a JSON array, one entry per field:
+[
+  {
+    "field_id": "string or null",
+    "field_type": "string",
+    "effective_label": "string or null",
+    "label_source": "string",
+    "is_descriptive": true/false,
+    "issues": [],
+    "suggested_improvement": "string or null"
+  }
+]
+
+Data: {payload}
+
+  -----------------------------------------
+  2) PLACEHOLDER-AS-LABEL EVALUATION PROMPT
+  -----------------------------------------
+
+You are an accessibility auditor.
+
+The fields below have label_source of "placeholder_only" — meaning the only
+accessible name comes from the placeholder attribute. This is a WCAG failure
+(criterion 1.3.1) because:
+- Placeholder text disappears once the user starts typing
+- Placeholder contrast is typically insufficient
+- Screen readers may not reliably announce placeholder as a label
+
+For each field, evaluate:
+- How severe is the impact? (placeholder alone may be acceptable for a simple
+  single-field form like a search box, but is problematic in multi-field forms)
+- Is the placeholder text at least descriptive enough to understand the purpose?
+- What would be an appropriate visible label?
+
+Return a JSON array:
+[
+  {
+    "field_id": "string or null",
+    "field_type": "string",
+    "placeholder": "string",
+    "severity": "critical" | "moderate" | "low",
+    "reason": "string",
+    "suggested_label": "string"
+  }
+]
+
+Data: {payload}
+
+  -------------------------------------
+  3) GROUP LABEL EVALUATION PROMPT
+  -------------------------------------
+
+You are an accessibility auditor evaluating form group labels (fieldset/legend
+elements) for WCAG criterion 1.3.1 Info and Relationships.
+
+When radio buttons or checkboxes are grouped together, the group MUST have a
+label (via legend) that provides the shared context. For example, a group of
+Yes/No radio buttons needs a legend like "Do you consent to email updates?"
+because individual labels like "Yes" and "No" are meaningless without context.
+
+For each group provided, evaluate:
+- Is the legend present?
+- Is the legend text meaningful and sufficient to understand the group's purpose?
+- Do the individual input types (radio/checkbox) make sense in this group context?
+
+Return a JSON array:
+[
+  {
+    "legend": "string or null",
+    "input_types": [],
+    "legend_is_meaningful": true/false,
+    "issues": [],
+    "suggested_improvement": "string or null"
+  }
+]
+
+Data: {payload}
+
+  -------------------------------------------
+  4) REQUIRED FIELD INDICATOR EVALUATION PROMPT
+  -------------------------------------------
+
+You are an accessibility auditor.
+
+Evaluate how required fields are communicated to users. WCAG criterion 3.3.2
+(Labels or Instructions) requires that users know which fields are required
+BEFORE they attempt to submit the form.
+
+For each field marked required: true, evaluate:
+- Does the effective_label mention that the field is required?
+  (e.g. "Email *", "Email (required)")
+- Does the instructions field (aria-describedby text) mention it is required?
+- If neither, the required nature is conveyed only programmatically, which some
+  assistive technologies may not surface clearly
+
+Note: the required HTML attribute IS programmatically set, but best practice
+is to also communicate it visually and verbally in the label or instructions.
+
+Return a JSON array:
+[
+  {
+    "field_id": "string or null",
+    "effective_label": "string or null",
+    "required": true,
+    "requirement_in_label": true/false,
+    "requirement_in_instructions": true/false,
+    "issues": [],
+    "recommendation": "string or null"
+  }
+]
+
+Data: {payload}
+
+  -------------------------------------------
+  5) FORM INSTRUCTIONS EVALUATION PROMPT
+  -------------------------------------------
+
+You are an accessibility auditor.
+
+The fields below have associated instructions linked via aria-describedby.
+Instructions help users understand expected input formats, constraints, or
+context. Evaluate whether each instruction is:
+- Helpful: does it add value beyond the label?
+- Clear: is it written in plain language?
+- Appropriately scoped: does it apply specifically to this field?
+- Not redundant: does it simply repeat information already in the label?
+
+Fields without instructions (instructions: null) are NOT a failure but may
+represent a missed opportunity — note these only if the field type suggests
+instructions would be beneficial (e.g. password, date, phone number).
+
+Return a JSON array:
+[
+  {
+    "field_id": "string or null",
+    "effective_label": "string or null",
+    "instructions": "string or null",
+    "instructions_are_helpful": true/false/null,
+    "issues": [],
+    "recommendation": "string or null"
+  }
+]
+
+Data: {payload}
+
+  -------------------------------------------
+  6) OVERALL FORM ACCESSIBILITY SUMMARY PROMPT
+  -------------------------------------------
+
+You are an accessibility auditor.
+
+Based on the complete form data provided, produce a summary assessment of the
+form's accessibility against WCAG 2.1 checklist 02 (Form Labels, Instructions,
+and Validation).
+
+Identify patterns across all forms (e.g. "all email fields lack visible labels",
+"search forms consistently use placeholder-only labels"). High-level patterns
+are more actionable than individual field findings.
+
+Return JSON:
+{
+  "total_forms": 0,
+  "total_fields": 0,
+  "fields_with_no_label": 0,
+  "fields_placeholder_only": 0,
+  "fields_required": 0,
+  "high_priority_issues": [],
+  "moderate_issues": [],
+  "low_priority_issues": [],
+  "patterns_observed": [],
+  "overall_form_accessibility_score": 0
+}
+
+Score 0-100 where 100 = fully accessible.
+
+Data: {payload}
