@@ -5,11 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "visionaid"
 version = "0.1.0"
-description = "Add your description here"
+description = "LLM vision aid auditing"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    requests>=2.32.2
+    "beautifulsoup4>=4.9.2",
+    "requests>=2.32.2"
 ]
+
 [tool.setuptools]
 packages = ["vision_aid"]
