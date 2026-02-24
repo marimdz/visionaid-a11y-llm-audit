@@ -12,4 +12,4 @@ dependencies = [
     requests>=2.32.2
 ]
 [tool.setuptools]
-packages = ["transformer_studies"]
+packages = ["vision_aid"]
