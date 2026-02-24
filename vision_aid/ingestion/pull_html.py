@@ -23,4 +23,4 @@ def download_html(url:str, filename:Optional[str]):
         return None
 
 if __name__=='__main__':
-    download_html("https://example.com")
+    download_html("https://visionaid.org/")
