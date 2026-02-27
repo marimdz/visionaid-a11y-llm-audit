@@ -1,0 +1,417 @@
+#!/usr/bin/env python3
+"""Run the element-specific accessibility audit pipeline.
+
+This script orchestrates the full pipeline:
+  1. Programmatic checks (free, no API calls)
+  2. Extract structured payloads from HTML
+  3. Slice payloads into targeted prompts
+  4. Call the LLM for each prompt (or save prompts in --dry-run mode)
+  5. Save results as raw JSON
+
+Usage:
+    python scripts/run_pipeline.py --html test_files/home.html
+    python scripts/run_pipeline.py --html test_files/home.html --dry-run
+    python scripts/run_pipeline.py --html test_files/home.html --include-summaries
+"""
+
+import argparse
+import json
+import os
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Ensure project root is on sys.path so we can import prompts/ and processing_scripts/
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from prompts.registry import PROMPT_REGISTRY, PromptSpec
+from prompts.slicers import get_slicer, is_empty_slice
+from prompts.templates import fill_template
+from processing_scripts.llm_preprocessing.semantic_checklist_01 import (
+    extract as cl01_extract,
+)
+from processing_scripts.llm_preprocessing.forms_checklist_02 import (
+    extract as cl02_extract,
+)
+from processing_scripts.llm_preprocessing.nontext_checklist_03 import (
+    extract as cl03_extract,
+)
+from processing_scripts.programmatic.semantic_checklist_01 import analyze_html
+
+
+# Pricing per million tokens: (input, output)
+MODEL_PRICING = {
+    "claude-sonnet-4": (3.00, 15.00),
+    "claude-opus-4": (15.00, 75.00),
+    "claude-haiku-4": (0.80, 4.00),
+    "claude-3-5-sonnet": (3.00, 15.00),
+    "claude-3-5-haiku": (0.80, 4.00),
+}
+
+
+def get_pricing(model: str) -> tuple[float, float] | None:
+    """Look up per-million-token pricing for a model.
+
+    Matches on model prefix so dated model IDs (e.g.
+    claude-sonnet-4-20250514) resolve correctly.
+    Returns (input_cost, output_cost) or None if unknown.
+    """
+    for prefix, pricing in MODEL_PRICING.items():
+        if model.startswith(prefix):
+            return pricing
+    return None
+
+
+def compute_cost(input_tokens: int, output_tokens: int, model: str) -> float | None:
+    """Return the estimated dollar cost for a run, or None if pricing is unknown."""
+    pricing = get_pricing(model)
+    if pricing is None:
+        return None
+    input_cost, output_cost = pricing
+    return (input_tokens * input_cost + output_tokens * output_cost) / 1_000_000
+
+
+def estimate_tokens(text: str) -> int:
+    """Rough token estimate (~4 chars per token for English/HTML)."""
+    return max(1, len(text) // 4)
+
+
+def call_api(prompt: str, api_key: str, model: str, max_tokens: int = 8192) -> dict:
+    """Call the Anthropic API with the given prompt.
+
+    Returns a dict with success status, response text, usage stats, and timing.
+    """
+    import anthropic
+
+    client = anthropic.Anthropic(api_key=api_key)
+    start = time.time()
+
+    try:
+        message = client.messages.create(
+            model=model,
+            max_tokens=max_tokens,
+            temperature=0.1,
+            messages=[{"role": "user", "content": prompt}],
+        )
+
+        response_text = "".join(
+            block.text for block in message.content if block.type == "text"
+        )
+
+        return {
+            "success": True,
+            "response": response_text,
+            "model": message.model,
+            "usage": {
+                "input_tokens": message.usage.input_tokens,
+                "output_tokens": message.usage.output_tokens,
+            },
+            "stop_reason": message.stop_reason,
+            "duration_seconds": round(time.time() - start, 2),
+        }
+
+    except Exception as e:
+        return {
+            "success": False,
+            "error": str(e),
+            "duration_seconds": round(time.time() - start, 2),
+        }
+
+
+def save_json(obj: object, path: Path) -> None:
+    """Write an object as formatted JSON to a file."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def run_pipeline(
+    html_path: str,
+    output_dir: Path,
+    api_key: str | None,
+    model: str,
+    dry_run: bool,
+    include_summaries: bool,
+) -> dict:
+    """Execute the full element-specific accessibility audit pipeline.
+
+    Returns a summary dict with run metadata and per-prompt results.
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+    html_path_str = str(html_path)
+
+    # ── Step 0: Programmatic checks ──────────────────────────────────────────
+    print("Step 0: Running programmatic checks...")
+    programmatic_findings = analyze_html(html_path_str)
+    save_json(programmatic_findings, output_dir / "programmatic_findings.json")
+    print(f"  Found {len(programmatic_findings)} programmatic issues")
+
+    # ── Step 1: Extract structured payloads ──────────────────────────────────
+    print("Step 1: Extracting structured payloads...")
+    cl01_payload = cl01_extract(html_path_str)
+    cl02_payload = cl02_extract(html_path_str)
+    cl03_payload = cl03_extract(html_path_str)
+
+    payloads = {"CL01": cl01_payload, "CL02": cl02_payload, "CL03": cl03_payload}
+
+    # Save payloads for inspection
+    for name, payload in payloads.items():
+        payload_path = output_dir / "payloads" / f"{name.lower()}_payload.json"
+        save_json(payload, payload_path)
+
+    cl01_tokens = estimate_tokens(json.dumps(cl01_payload))
+    cl02_tokens = estimate_tokens(json.dumps(cl02_payload))
+    cl03_tokens = estimate_tokens(json.dumps(cl03_payload))
+    print(
+        f"  CL01: ~{cl01_tokens:,} tokens | "
+        f"CL02: ~{cl02_tokens:,} tokens | "
+        f"CL03: ~{cl03_tokens:,} tokens"
+    )
+
+    # ── Step 2: Slice, fill, and call ────────────────────────────────────────
+    print("Step 2: Processing prompts...")
+
+    results = []
+    skipped = []
+    total_input_tokens = 0
+    total_output_tokens = 0
+
+    for spec in PROMPT_REGISTRY:
+        # Skip summaries unless requested
+        if spec.is_summary and not include_summaries:
+            skipped.append({"name": spec.name, "reason": "summary (not requested)"})
+            continue
+
+        # Slice the payload
+        slicer_fn = get_slicer(spec.payload_slicer)
+        payload_json = slicer_fn(payloads[spec.checklist])
+
+        # Skip if empty
+        if spec.skip_if_empty and is_empty_slice(payload_json):
+            skipped.append({"name": spec.name, "reason": "empty payload"})
+            print(f"  [{spec.name}] SKIPPED (empty payload)")
+            continue
+
+        # Fill the prompt template
+        prompt_text = fill_template(spec, payload_json)
+        prompt_tokens = estimate_tokens(prompt_text)
+
+        result_entry = {
+            "name": spec.name,
+            "checklist": spec.checklist,
+            "wcag_criteria": spec.wcag_criteria,
+            "prompt_tokens_est": prompt_tokens,
+        }
+
+        if dry_run:
+            # Save just the prompt text
+            prompt_dir = output_dir / "prompts"
+            prompt_dir.mkdir(parents=True, exist_ok=True)
+            save_json(
+                {
+                    "prompt_name": spec.name,
+                    "checklist": spec.checklist,
+                    "wcag_criteria": spec.wcag_criteria,
+                    "prompt_index": spec.prompt_index,
+                    "prompt_tokens_est": prompt_tokens,
+                    "prompt_text": prompt_text,
+                    "payload_slice": payload_json,
+                },
+                prompt_dir / f"{spec.name}.json",
+            )
+            result_entry["status"] = "dry_run"
+            print(f"  [{spec.name}] SAVED prompt (~{prompt_tokens:,} tokens)")
+        else:
+            # Call the API
+            print(f"  [{spec.name}] Calling {model} (~{prompt_tokens:,} tokens)...", end="", flush=True)
+            api_result = call_api(prompt_text, api_key, model)
+
+            prompt_dir = output_dir / "prompts"
+            prompt_dir.mkdir(parents=True, exist_ok=True)
+            save_json(
+                {
+                    "prompt_name": spec.name,
+                    "checklist": spec.checklist,
+                    "wcag_criteria": spec.wcag_criteria,
+                    "prompt_index": spec.prompt_index,
+                    "prompt_text": prompt_text,
+                    "payload_slice": payload_json,
+                    "api_result": api_result,
+                },
+                prompt_dir / f"{spec.name}.json",
+            )
+
+            if api_result["success"]:
+                in_tok = api_result["usage"]["input_tokens"]
+                out_tok = api_result["usage"]["output_tokens"]
+                total_input_tokens += in_tok
+                total_output_tokens += out_tok
+                result_entry["status"] = "success"
+                result_entry["input_tokens"] = in_tok
+                result_entry["output_tokens"] = out_tok
+                result_entry["duration_seconds"] = api_result["duration_seconds"]
+                print(
+                    f" OK ({api_result['duration_seconds']}s, "
+                    f"{in_tok:,} in / {out_tok:,} out)"
+                )
+            else:
+                result_entry["status"] = "error"
+                result_entry["error"] = api_result["error"]
+                print(f" FAILED: {api_result['error']}")
+
+        results.append(result_entry)
+
+    # ── Step 3: Write manifest ───────────────────────────────────────────────
+    manifest = {
+        "run_timestamp": datetime.now(timezone.utc).isoformat(),
+        "html_file": str(html_path),
+        "model": model,
+        "dry_run": dry_run,
+        "include_summaries": include_summaries,
+        "programmatic_findings_count": len(programmatic_findings),
+        "prompts_executed": [r for r in results if r.get("status") != "dry_run"],
+        "prompts_dry_run": [r for r in results if r.get("status") == "dry_run"],
+        "prompts_skipped": skipped,
+        "total_input_tokens": total_input_tokens,
+        "total_output_tokens": total_output_tokens,
+        "estimated_cost_usd": compute_cost(total_input_tokens, total_output_tokens, model),
+    }
+    save_json(manifest, output_dir / "manifest.json")
+
+    return manifest
+
+
+def print_summary(manifest: dict, show_cost: bool = False) -> None:
+    """Print a human-readable summary of the pipeline run."""
+    print("\n" + "=" * 60)
+    print("PIPELINE RUN SUMMARY")
+    print("=" * 60)
+
+    executed = manifest.get("prompts_executed", [])
+    dry_run_prompts = manifest.get("prompts_dry_run", [])
+    skipped = manifest.get("prompts_skipped", [])
+
+    if manifest["dry_run"]:
+        print(f"Mode: DRY RUN (no API calls)")
+        print(f"Prompts generated: {len(dry_run_prompts)}")
+    else:
+        success = [r for r in executed if r.get("status") == "success"]
+        failed = [r for r in executed if r.get("status") == "error"]
+        print(f"Prompts executed: {len(executed)}")
+        print(f"  Successful: {len(success)}")
+        print(f"  Failed: {len(failed)}")
+
+        if manifest["total_input_tokens"] > 0:
+            print(f"\nToken usage:")
+            print(f"  Input:  {manifest['total_input_tokens']:,}")
+            print(f"  Output: {manifest['total_output_tokens']:,}")
+
+            if show_cost:
+                model = manifest.get("model", "")
+                cost = compute_cost(
+                    manifest["total_input_tokens"],
+                    manifest["total_output_tokens"],
+                    model,
+                )
+                if cost is not None:
+                    print(f"\nEstimated cost:")
+                    pricing = get_pricing(model)
+                    print(f"  Model: {model}")
+                    print(f"  Rate:  ${pricing[0]:.2f} / 1M input, ${pricing[1]:.2f} / 1M output")
+                    print(f"  Total: ${cost:.4f}")
+                else:
+                    print(f"\nCost: unknown pricing for model '{model}'")
+                    print(f"  Known models: {', '.join(MODEL_PRICING.keys())}")
+
+    print(f"Prompts skipped: {len(skipped)}")
+    for s in skipped:
+        print(f"  - {s['name']}: {s['reason']}")
+
+    print(f"\nProgrammatic findings: {manifest['programmatic_findings_count']}")
+    print(f"Results saved to: {manifest.get('output_dir', 'output/')}")
+
+
+def main():
+    """CLI entry point."""
+    parser = argparse.ArgumentParser(
+        description="Run the element-specific accessibility audit pipeline."
+    )
+    parser.add_argument(
+        "--html", type=str, required=True, help="Path to HTML file to analyze"
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=str,
+        default="./output",
+        help="Directory to save results (default: ./output)",
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="claude-sonnet-4-20250514",
+        help="Model to use (default: claude-sonnet-4-20250514)",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Generate prompts without calling the API",
+    )
+    parser.add_argument(
+        "--include-summaries",
+        action="store_true",
+        help="Include the three summary prompts (CL01-7, CL02-6, CL03-8)",
+    )
+    parser.add_argument(
+        "--show-cost",
+        action="store_true",
+        help="Print estimated dollar cost of the run based on model pricing",
+    )
+    parser.add_argument(
+        "--env-file",
+        type=str,
+        default=".env",
+        help="Path to .env file (default: .env)",
+    )
+    args = parser.parse_args()
+
+    # Load environment
+    load_dotenv(args.env_file)
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+
+    if not api_key and not args.dry_run:
+        print("Error: ANTHROPIC_API_KEY not found in environment.")
+        print(f"Add it to {args.env_file} or set it as an environment variable.")
+        sys.exit(1)
+
+    # Validate HTML path
+    html_path = Path(args.html)
+    if not html_path.exists():
+        print(f"Error: HTML file not found: {html_path}")
+        sys.exit(1)
+
+    output_dir = Path(args.output_dir)
+
+    print(f"HTML file: {html_path}")
+    print(f"Output dir: {output_dir}")
+    print(f"Model: {args.model}")
+    print(f"Dry run: {args.dry_run}")
+    print(f"Include summaries: {args.include_summaries}")
+    print()
+
+    manifest = run_pipeline(
+        html_path=html_path,
+        output_dir=output_dir,
+        api_key=api_key,
+        model=args.model,
+        dry_run=args.dry_run,
+        include_summaries=args.include_summaries,
+    )
+    manifest["output_dir"] = str(output_dir)
+    print_summary(manifest, show_cost=args.show_cost)
+
+
+if __name__ == "__main__":
+    main()
