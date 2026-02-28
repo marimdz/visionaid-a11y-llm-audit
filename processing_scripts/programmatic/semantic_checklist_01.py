@@ -1,3 +1,5 @@
+# Written using the assist of ChatGPT
+
 import sys
 import os
 import re
@@ -9,7 +11,6 @@ from bs4 import BeautifulSoup
 # ==========================================================
 
 LANGUAGE_TAG_REGEX = re.compile(r"^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{2,8})*$")
-
 
 # ==========================================================
 # UTILITY FUNCTIONS
