@@ -501,7 +501,7 @@ if __name__ == "__main__":
 
     results = audit_html_file(file_path)
 
-    print("\n=== ACCESSIBILITY AUDIT RESULTS ===\n")
+    print("\n=== SEMANTIC ACCESSIBILITY AUDIT RESULTS ===\n")
 
     if not results:
         print("No issues found.")
