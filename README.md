@@ -38,29 +38,28 @@ HTML file (e.g. 1.9 MB)
 ## Repository Structure
 
 ```
-├── scripts/                                    # NEW — Pipeline orchestration
-│   ├── run_pipeline.py                         # Main entry point — runs the full pipeline
-│   └── generate_report.py                      # Combines findings into unified CSV report
-│
-├── prompts/                                    # NEW — Modular prompt system
-│   ├── registry.py                             # Maps each evaluation task to its template + slicer
-│   ├── templates.py                            # Parses .txt prompt files, fills {payload} placeholders
-│   └── slicers.py                              # Extracts targeted JSON slices from extractor payloads
+├── entry_points/                                # Pipeline entry points
+│   ├── run_pipeline.py                          # Main entry point — runs the full pipeline
+│   ├── generate_report.py                       # Combines findings into unified CSV report
+│   └── get_visionaid_home.py                    # Downloads visionaid.org homepage
 │
 ├── processing_scripts/
-│   ├── llm_preprocessing/                      # EXISTING — HTML → structured JSON extractors
-│   │   ├── semantic_checklist_01.py            #   Headings, links, landmarks, tables, iframes
-│   │   ├── forms_checklist_02.py               #   Form fields, label associations, groups
-│   │   ├── nontext_checklist_03.py             #   Images, SVGs, icon fonts, media
-│   │   ├── docs/pipeline.md                    #   Detailed pipeline architecture documentation
+│   ├── llm/                                     # Modular prompt system + templates
+│   │   ├── registry.py                          #   Maps each evaluation task to its template + slicer
+│   │   ├── templates.py                         #   Parses .txt prompt files, fills {payload} placeholders
+│   │   ├── slicers.py                           #   Extracts targeted JSON slices from extractor payloads
+│   │   ├── semantic_checklist_01.txt            #   7 prompts for semantic structure
+│   │   ├── forms_checklist_02.txt               #   6 prompts for form accessibility
+│   │   └── nontext_checklist_03.txt             #   8 prompts for non-text content
+│   │
+│   ├── llm_preprocessing/                       # HTML → structured JSON extractors
+│   │   ├── semantic_checklist_01.py             #   Headings, links, landmarks, tables, iframes
+│   │   ├── forms_checklist_02.py                #   Form fields, label associations, groups
+│   │   ├── nontext_checklist_03.py              #   Images, SVGs, icon fonts, media
+│   │   ├── docs/pipeline.md                     #   Detailed pipeline architecture documentation
 │   │   └── semantic_preprocessing_walkthrough.ipynb
 │   │
-│   ├── llm/                                    # EXISTING — Prompt templates (21 total)
-│   │   ├── semantic_checklist_01.txt           #   7 prompts for semantic structure
-│   │   ├── forms_checklist_02.txt              #   6 prompts for form accessibility
-│   │   └── nontext_checklist_03.txt            #   8 prompts for non-text content
-│   │
-│   └── programmatic/                           # EXISTING — Rule-based checks (no LLM needed)
+│   └── programmatic/                            # Rule-based checks (no LLM needed)
 │       └── semantic_checklist_01.py
 │
 ├── test_files/                                 # EXISTING — HTML files to analyze
@@ -106,7 +105,7 @@ These files live in `processing_scripts/llm_preprocessing/` and were authored by
 
 ### Prompt Registry Pattern (new)
 
-The core of the modular system is in `prompts/`:
+The core of the modular system is in `processing_scripts/llm/`:
 
 - **`registry.py`** — Defines 21 `PromptSpec` dataclass entries, each linking a prompt name to its template file, slicer function, WCAG criteria, and output type. This is the single source of truth for what the pipeline evaluates.
 
@@ -116,7 +115,7 @@ The core of the modular system is in `prompts/`:
 
 ### Pipeline Orchestrator (new)
 
-`scripts/run_pipeline.py` ties everything together:
+`entry_points/run_pipeline.py` ties everything together:
 
 1. Runs the three extractors to get structured payloads
 2. Runs programmatic checks on the CL01 payload
@@ -126,7 +125,7 @@ The core of the modular system is in `prompts/`:
 
 ### Report Generator (new)
 
-`scripts/generate_report.py` reads the pipeline output and produces a flat CSV:
+`entry_points/generate_report.py` reads the pipeline output and produces a flat CSV:
 
 1. Loads `manifest.json` for run metadata (date, model)
 2. Normalizes `programmatic_findings.json` (59 rule-based issues) into report rows
@@ -139,19 +138,19 @@ The normalizer registry mirrors the prompt registry — one normalizer function 
 
 ### Adding a new prompt type
 
-1. **Slicer** — Add a function in `prompts/slicers.py` that extracts the relevant data from the extractor payload
+1. **Slicer** — Add a function in `processing_scripts/llm/slicers.py` that extracts the relevant data from the extractor payload
 2. **Template** — Add a new numbered prompt section to the appropriate `.txt` file in `processing_scripts/llm/`
-3. **PromptSpec** — Add an entry in `prompts/registry.py` linking the slicer, template, and WCAG criteria
-4. **Normalizer** — Add a normalizer function in `scripts/generate_report.py` and register it in the `NORMALIZERS` dict
+3. **PromptSpec** — Add an entry in `processing_scripts/llm/registry.py` linking the slicer, template, and WCAG criteria
+4. **Normalizer** — Add a normalizer function in `entry_points/generate_report.py` and register it in the `NORMALIZERS` dict
 
 ### Adding a new extractor/checklist (CL04+)
 
 1. Create a new extractor in `processing_scripts/llm_preprocessing/` with an `extract(file_path)` function
 2. Create corresponding prompt templates in `processing_scripts/llm/`
-3. Add slicer functions in `prompts/slicers.py`
-4. Register new `PromptSpec` entries in `prompts/registry.py`
-5. Add normalizers in `scripts/generate_report.py`
-6. Update `scripts/run_pipeline.py` to call the new extractor
+3. Add slicer functions in `processing_scripts/llm/slicers.py`
+4. Register new `PromptSpec` entries in `processing_scripts/llm/registry.py`
+5. Add normalizers in `entry_points/generate_report.py`
+6. Update `entry_points/run_pipeline.py` to call the new extractor
 
 ## Setup
 
@@ -179,7 +178,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 Generates all prompts and saves them as JSON files so you can inspect them before spending money:
 
 ```bash
-python scripts/run_pipeline.py --html test_files/dat_visionaid_home.html --dry-run
+python entry_points/run_pipeline.py --html test_files/dat_visionaid_home.html --dry-run
 ```
 
 ### Live run
@@ -187,7 +186,7 @@ python scripts/run_pipeline.py --html test_files/dat_visionaid_home.html --dry-r
 Sends prompts to the LLM and saves responses:
 
 ```bash
-python scripts/run_pipeline.py --html test_files/home.html
+python entry_points/run_pipeline.py --html test_files/home.html
 ```
 
 ### Generate report
@@ -195,8 +194,8 @@ python scripts/run_pipeline.py --html test_files/home.html
 After a live run, combine all findings into a single CSV:
 
 ```bash
-python scripts/generate_report.py
-python scripts/generate_report.py --output-dir ./output --report-dir ./test_results/claude/
+python entry_points/generate_report.py
+python entry_points/generate_report.py --output-dir ./output --report-dir ./test_results/claude/
 ```
 
 ### Pipeline options
@@ -275,4 +274,4 @@ The pipeline skips prompts with empty payloads (e.g., no forms on the page = no 
 | ahildebrandt3 | CL01 extractor, programmatic checker, CL01 prompts | `processing_scripts/llm_preprocessing/semantic_checklist_01.py`, `processing_scripts/programmatic/semantic_checklist_01.py` |
 | Andrew Yin | CL02 + CL03 extractors, CL02 + CL03 prompts, pipeline docs | `processing_scripts/llm_preprocessing/forms_checklist_02.py`, `nontext_checklist_03.py`, `processing_scripts/llm/*.txt` |
 | nfulton99 | HTML ingestion, packaging | `vision_aid/ingestion/pull_html.py`, `pyproject.toml` |
-| ColeANiblett | Pipeline orchestration, prompt system, report generator | `prompts/`, `scripts/`, `docs/` |
+| ColeANiblett | Pipeline orchestration, prompt system, report generator | `processing_scripts/llm/{registry,slicers,templates}.py`, `entry_points/`, `docs/` |
