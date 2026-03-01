@@ -12,7 +12,8 @@ dependencies = [
     "anthropic~= 0.84.0",
     "beautifulsoup4>=4.9.2",
     "python-dotenv~=1.2.1",
-    "requests>=2.32.2"
+    "requests>=2.32.2",
+    "lxml>=4.9.0"
 ]
 
 [tool.setuptools]
