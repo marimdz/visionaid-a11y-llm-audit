@@ -52,15 +52,23 @@ HTML file (e.g. 1.9 MB)
 │   │   ├── forms_checklist_02.txt               #   6 prompts for form accessibility
 │   │   └── nontext_checklist_03.txt             #   8 prompts for non-text content
 │   │
+│   ├── llm_client/                              # Standalone Claude API client (Andrew)
+│   │   ├── client.py                            #   API wrapper
+│   │   ├── prompt_loader.py                     #   Prompt loading utilities
+│   │   └── runner.py                            #   End-to-end audit runner
+│   │
 │   ├── llm_preprocessing/                       # HTML → structured JSON extractors
 │   │   ├── semantic_checklist_01.py             #   Headings, links, landmarks, tables, iframes
 │   │   ├── forms_checklist_02.py                #   Form fields, label associations, groups
-│   │   ├── nontext_checklist_03.py              #   Images, SVGs, icon fonts, media
-│   │   ├── docs/pipeline.md                     #   Detailed pipeline architecture documentation
-│   │   └── semantic_preprocessing_walkthrough.ipynb
+│   │   └── nontext_checklist_03.py              #   Images, SVGs, icon fonts, media
 │   │
-│   └── programmatic/                            # Rule-based checks (no LLM needed)
-│       └── semantic_checklist_01.py
+│   ├── programmatic/                            # Rule-based checks (no LLM needed)
+│   │   ├── semantic_checklist_01.py             #   Semantic structure checks
+│   │   ├── forms_checklist_02.py                #   Form accessibility checks
+│   │   └── nontext_checklist_03.py              #   Non-text content checks
+│   │
+│   ├── docs/pipeline.md                         # Pipeline architecture documentation
+│   └── accessibility_audit_walkthrough.ipynb    # Andrew's end-to-end audit notebook
 │
 ├── test_files/                                 # EXISTING — HTML files to analyze
 │   ├── home.html                               #   visionaid.org homepage (~1.9 MB)
@@ -74,12 +82,17 @@ HTML file (e.g. 1.9 MB)
 ├── vision_aid/ingestion/                       # EXISTING — HTML download utility
 │   └── pull_html.py
 │
-├── docs/                                       # NEW — Architecture documentation
+├── pipeline_walkthrough.ipynb                  # Colab-compatible step-by-step pipeline notebook
+│
+├── docs/                                       # Architecture documentation
 │   └── modular-prompts-plan.md                 #   Full architectural plan
 │
+├── reports/                                    # LLM audit result files
+│   └── audit_*.json                            #   Raw JSON output from llm_client runs
+│
 ├── test_results/
-│   ├── chatgpt/                                # EXISTING — Legacy ChatGPT testing results
-│   └── claude/                                 # NEW — Pipeline-generated CSV reports
+│   ├── chatgpt/                                # Legacy ChatGPT testing results
+│   └── claude/                                 # Pipeline-generated CSV reports
 │       └── report_YYYY-MM-DD.csv
 │
 └── output/                                     # Generated at runtime (not committed)
@@ -270,7 +283,7 @@ The pipeline skips prompts with empty payloads (e.g., no forms on the page = no 
 
 | Contributor | What they own | Key files |
 |---|---|---|
-| ahildebrandt3 | CL01 extractor, programmatic checker, CL01 prompts | `processing_scripts/llm_preprocessing/semantic_checklist_01.py`, `processing_scripts/programmatic/semantic_checklist_01.py` |
-| Andrew Yin | CL02 + CL03 extractors, CL02 + CL03 prompts, pipeline docs | `processing_scripts/llm_preprocessing/forms_checklist_02.py`, `nontext_checklist_03.py`, `processing_scripts/llm/*.txt` |
+| ahildebrandt3 | Extractors, programmatic checkers (CL01–CL03), CL01 prompts | `processing_scripts/llm_preprocessing/`, `processing_scripts/programmatic/` |
+| Andrew Yin | CL02 + CL03 extractors, CL02 + CL03 prompts, LLM client, pipeline docs | `processing_scripts/llm_preprocessing/`, `processing_scripts/llm_client/`, `processing_scripts/llm/*.txt` |
 | nfulton99 | HTML ingestion, packaging | `vision_aid/ingestion/pull_html.py`, `pyproject.toml` |
 | ColeANiblett | Pipeline orchestration, prompt system, report generator | `processing_scripts/llm/{registry,slicers,templates}.py`, `entry_points/`, `docs/` |

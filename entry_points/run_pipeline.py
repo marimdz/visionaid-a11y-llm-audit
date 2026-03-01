@@ -40,7 +40,7 @@ from processing_scripts.llm_preprocessing.forms_checklist_02 import (
 from processing_scripts.llm_preprocessing.nontext_checklist_03 import (
     extract as cl03_extract,
 )
-from processing_scripts.programmatic.semantic_checklist_01 import analyze_html
+from processing_scripts.programmatic.semantic_checklist_01 import audit_html_file
 
 
 # Pricing per million tokens: (input, output)
@@ -145,7 +145,7 @@ def run_pipeline(
 
     # ── Step 0: Programmatic checks ──────────────────────────────────────────
     print("Step 0: Running programmatic checks...")
-    programmatic_findings = analyze_html(html_path_str)
+    programmatic_findings = audit_html_file(html_path_str)
     save_json(programmatic_findings, output_dir / "programmatic_findings.json")
     print(f"  Found {len(programmatic_findings)} programmatic issues")
 
