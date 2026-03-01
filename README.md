@@ -161,8 +161,7 @@ python -m venv venv
 source venv/bin/activate        # Linux/macOS
 # or: venv\Scripts\activate     # Windows
 
-pip install -r requirements.txt
-pip install beautifulsoup4 lxml  # Required by the extractors (listed in pyproject.toml)
+pip install -e .
 ```
 
 Create a `.env` file with your Anthropic API key (only needed for live runs, not dry-run):
