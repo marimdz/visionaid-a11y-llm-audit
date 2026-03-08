@@ -124,8 +124,8 @@ if __name__=='__main__':
         sys.exit(1)
 
     form_audit = FormAudit(file_path)
-    form_audit.run_audit()
+    results = form_audit.run_audit()
 
     print("\n=== FORM ACCESSIBILITY AUDIT RESULTS ===\n")
 
-    form_audit.parse_results()
+    form_audit.parse_results(results)

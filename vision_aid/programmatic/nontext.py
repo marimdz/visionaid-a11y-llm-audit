@@ -110,8 +110,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     nontext_audit = NontextAudit(file_path)
-    nontext_audit.run_audit()
+    results = nontext_audit.run_audit()
 
     print("\n=== NON-TEXT ACCESSIBILITY AUDIT RESULTS ===\n")
 
-    nontext_audit.parse_results()
+    nontext_audit.parse_results(results)
