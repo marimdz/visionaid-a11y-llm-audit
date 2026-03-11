@@ -1,0 +1,21 @@
+{
+  "prompt_name": "decorative_verification",
+  "checklist": "CL03",
+  "wcag_criteria": [
+    "1.1.1"
+  ],
+  "prompt_index": 2,
+  "prompt_text": "You are an accessibility auditor.\n\nThe images below have empty alt text (alt=\"\"), indicating they are intended\nto be decorative — meaning they add no informational content and should be\nskipped by screen readers.\n\nEvaluate whether each image is genuinely decorative based on:\n- The image filename (src) — does it suggest informational content?\n- The surrounding text context (surrounding_text) — does the image appear\n  to illustrate or supplement adjacent content in a meaningful way?\n\nDecorative images are CORRECT to have empty alt. Flag images that appear\nto carry informational content despite their empty alt as potential issues.\n\nReturn a JSON array:\n[\n  {\n    \"src\": \"string\",\n    \"surrounding_text\": \"string or null\",\n    \"likely_decorative\": true/false,\n    \"confidence\": \"high\" | \"medium\" | \"low\",\n    \"reason\": \"string\",\n    \"recommendation\": \"string or null\"\n  }\n]\n\nData: [\n  {\n    \"src\": \"Shakuntala-_poster_fb.jpg\",\n    \"alt\": null,\n    \"alt_flags\": [],\n    \"surrounding_text\": \"\"\n  },\n  {\n    \"src\": \"VisionAidBanner-800x600-1.png\",\n    \"alt\": null,\n    \"alt_flags\": [],\n    \"surrounding_text\": \"\"\n  }\n]",
+  "payload_slice": "[\n  {\n    \"src\": \"Shakuntala-_poster_fb.jpg\",\n    \"alt\": null,\n    \"alt_flags\": [],\n    \"surrounding_text\": \"\"\n  },\n  {\n    \"src\": \"VisionAidBanner-800x600-1.png\",\n    \"alt\": null,\n    \"alt_flags\": [],\n    \"surrounding_text\": \"\"\n  }\n]",
+  "api_result": {
+    "success": true,
+    "response": "```json\n[\n  {\n    \"src\": \"Shakuntala-_poster_fb.jpg\",\n    \"surrounding_text\": \"\",\n    \"likely_decorative\": false,\n    \"confidence\": \"medium\",\n    \"reason\": \"The filename 'Shakuntala-_poster_fb.jpg' strongly suggests this is a poster image — likely a movie, play, or event poster for 'Shakuntala.' Posters are inherently informational, conveying details such as the title, visual branding, and promotional content. Even without surrounding text, a poster image carries meaningful content that a screen reader user would miss.\",\n    \"recommendation\": \"Add descriptive alt text that conveys the key information shown on the poster, e.g., the title, event type, and any other prominent text or imagery visible in the poster.\"\n  },\n  {\n    \"src\": \"VisionAidBanner-800x600-1.png\",\n    \"surrounding_text\": \"\",\n    \"likely_decorative\": false,\n    \"confidence\": \"high\",\n    \"reason\": \"The filename 'VisionAidBanner-800x600-1.png' indicates this is a banner image for 'VisionAid,' which appears to be an organization or initiative. Banners typically contain branding, messaging, calls to action, or other informational content that is critical for understanding the page's purpose. The name 'VisionAid' itself suggests an accessibility-related organization, making proper alt text even more important from an inclusivity standpoint.\",\n    \"recommendation\": \"Add alt text that describes the banner's content, including the organization name 'VisionAid,' any tagline, call to action, or key message displayed in the banner image.\"\n  }\n]\n```",
+    "model": "claude-opus-4-6",
+    "usage": {
+      "input_tokens": 329,
+      "output_tokens": 401
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 12.43
+  }
+}

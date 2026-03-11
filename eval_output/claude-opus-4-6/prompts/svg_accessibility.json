@@ -1,0 +1,21 @@
+{
+  "prompt_name": "svg_accessibility",
+  "checklist": "CL03",
+  "wcag_criteria": [
+    "1.1.1"
+  ],
+  "prompt_index": 5,
+  "prompt_text": "You are an accessibility auditor evaluating inline SVG elements for WCAG\ncriterion 1.1.1 (Non-text Content, Level A).\n\nOnly non-decorative SVGs (those without aria-hidden=\"true\") are included.\nFor informative SVGs, the WCAG-compliant pattern is:\n\n  svg role=\"img\" aria-labelledby=\"svg-title-id\"\n    title id=\"svg-title-id\" Descriptive title /title\n    desc Optional longer description /desc\n\nFor each SVG, evaluate:\n- Is role=\"img\" set?\n- Is a title element present?\n- Is aria-labelledby linking to the title?\n- If a title exists, is the title text meaningful and descriptive?\n- Is an aria-label used as an alternative — is it sufficient?\n\nReturn a JSON array:\n[\n  {\n    \"role\": \"string or null\",\n    \"aria_label\": \"string or null\",\n    \"aria_labelledby\": \"string or null\",\n    \"title\": \"string or null\",\n    \"desc\": \"string or null\",\n    \"has_accessible_name\": true/false,\n    \"title_is_meaningful\": true/false/null,\n    \"issues\": [],\n    \"recommendation\": \"string or null\"\n  }\n]\n\nData: [\n  {\n    \"role\": null,\n    \"aria_label\": null,\n    \"aria_labelledby\": null,\n    \"title\": null,\n    \"desc\": null\n  }\n]",
+  "payload_slice": "[\n  {\n    \"role\": null,\n    \"aria_label\": null,\n    \"aria_labelledby\": null,\n    \"title\": null,\n    \"desc\": null\n  }\n]",
+  "api_result": {
+    "success": true,
+    "response": "```json\n[\n  {\n    \"role\": null,\n    \"aria_label\": null,\n    \"aria_labelledby\": null,\n    \"title\": null,\n    \"desc\": null,\n    \"has_accessible_name\": false,\n    \"title_is_meaningful\": null,\n    \"issues\": [\n      \"Missing role=\\\"img\\\" on the SVG element\",\n      \"Missing <title> element to provide a text alternative\",\n      \"Missing aria-labelledby attribute to associate the SVG with a <title>\",\n      \"No aria-label provided as an alternative accessible name\",\n      \"SVG has no accessible name whatsoever, failing WCAG 1.1.1 (Non-text Content, Level A)\"\n    ],\n    \"recommendation\": \"Add role=\\\"img\\\" to the <svg> element. Add a <title> element with a unique id and meaningful, descriptive text as the first child of the <svg>. Then reference that id via aria-labelledby on the <svg>. Optionally, add a <desc> element for a longer description if the graphic conveys complex information. Example: <svg role=\\\"img\\\" aria-labelledby=\\\"svg-title-1\\\"><title id=\\\"svg-title-1\\\">Descriptive title of the graphic</title><desc>Optional longer description</desc>...</svg>. If the SVG is purely decorative, mark it with aria-hidden=\\\"true\\\" and role=\\\"presentation\\\" instead.\"\n  }\n]\n```",
+    "model": "claude-opus-4-6",
+    "usage": {
+      "input_tokens": 360,
+      "output_tokens": 345
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 6.93
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "prompt_name": "landmark_structure",
+  "checklist": "CL01",
+  "wcag_criteria": [
+    "1.3.1"
+  ],
+  "prompt_index": 6,
+  "prompt_text": "You are an accessibility auditor.\n\nEvaluate whether the landmark structure appears appropriate.\n\nCheck: - Excessive landmark count - Missing main content landmark -\nStructural imbalance\n\nReturn JSON: { “structure_appropriate”: true/false, “issues”: [] }\n\nData: [\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"main\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"footer\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"search\",\n    \"role\": \"search\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"div\",\n    \"role\": \"region\",\n    \"aria_label\": \"Slides\"\n  }\n]",
+  "payload_slice": "[\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"main\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"footer\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"search\",\n    \"role\": \"search\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"div\",\n    \"role\": \"region\",\n    \"aria_label\": \"Slides\"\n  }\n]",
+  "api_result": {
+    "success": true,
+    "response": "```json\n{\n  \"structure_appropriate\": false,\n  \"issues\": [\n    {\n      \"type\": \"excessive_landmark_count\",\n      \"detail\": \"There are 4 nav landmarks, which is excessive and may overwhelm assistive technology users navigating by landmarks.\"\n    },\n    {\n      \"type\": \"duplicate_landmark_labels\",\n      \"detail\": \"Two nav landmarks share the identical aria_label 'Menu', making them indistinguishable to screen reader users. Each nav with the same role should have a unique accessible name.\"\n    },\n    {\n      \"type\": \"missing_landmark_labels\",\n      \"detail\": \"Two nav landmarks have no aria_label (null). When multiple nav elements exist, each must have a unique accessible label to differentiate them.\"\n    },\n    {\n      \"type\": \"structural_imbalance\",\n      \"detail\": \"The page is navigation-heavy (4 nav landmarks) relative to content landmarks (1 main, 1 region). This imbalance suggests the landmark structure does not accurately reflect the page's content hierarchy.\"\n    }\n  ]\n}\n```",
+    "model": "claude-opus-4-6",
+    "usage": {
+      "input_tokens": 268,
+      "output_tokens": 260
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 6.44
+  }
+}

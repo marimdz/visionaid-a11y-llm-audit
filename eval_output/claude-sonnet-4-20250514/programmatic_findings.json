@@ -1,0 +1,1283 @@
+[
+  {
+    "rule_id": "LAND_005",
+    "rule_name": "Multiple 'navigation' landmarks without accessible labels",
+    "location": {
+      "tag": "nav",
+      "id": null,
+      "class": [
+        "elementor-nav-menu--dropdown",
+        "elementor-nav-menu__container"
+      ],
+      "css_path": "[document] > html > body > div:nth-of-type(2) > section > div > div:nth-of-type(4) > div > div > div > nav:nth-of-type(2)",
+      "attributes": {
+        "class": [
+          "elementor-nav-menu--dropdown",
+          "elementor-nav-menu__container"
+        ],
+        "aria-hidden": "true",
+        "style": "--menu-height: 0;"
+      },
+      "text_preview": "USAINDIA"
+    },
+    "description": "Multiple 'navigation' landmarks should have distinguishing aria-label or aria-labelledby attributes."
+  },
+  {
+    "rule_id": "LAND_005",
+    "rule_name": "Multiple 'navigation' landmarks without accessible labels",
+    "location": {
+      "tag": "nav",
+      "id": null,
+      "class": [
+        "elementor-nav-menu--dropdown",
+        "elementor-nav-menu__container"
+      ],
+      "css_path": "[document] > html > body > div:nth-of-type(2) > section:nth-of-type(2) > div > div > div > div > div > nav:nth-of-type(2)",
+      "attributes": {
+        "class": [
+          "elementor-nav-menu--dropdown",
+          "elementor-nav-menu__container"
+        ],
+        "aria-hidden": "true",
+        "style": "--menu-height: 0;"
+      },
+      "text_preview": "HomeProgramsEnableFunctional Vision / Early InterventionCortical Visual Impairme"
+    },
+    "description": "Multiple 'navigation' landmarks should have distinguishing aria-label or aria-labelledby attributes."
+  },
+  {
+    "rule_id": "LAND_006",
+    "rule_name": "Content outside landmark regions",
+    "location": {
+      "tag": "div",
+      "id": "locationPopup",
+      "class": null,
+      "css_path": "[document] > html > body > div",
+      "attributes": {
+        "id": "locationPopup",
+        "role": "dialog",
+        "aria-labelledby": "popupHeading",
+        "aria-describedby": "popupDescription",
+        "aria-hidden": "true",
+        "style": "display: none; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; overflow: hidden;"
+      },
+      "text_preview": "Welcome to Vision-Aid!Please select your region to continue to the appropriate w"
+    },
+    "description": "Content found directly under <body> that is not contained within a landmark region."
+  },
+  {
+    "rule_id": "HEAD_001",
+    "rule_name": "Skipped heading level",
+    "location": {
+      "tag": "h3",
+      "id": null,
+      "class": [
+        "elementor-heading-title",
+        "elementor-size-default"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(2) > div > div > div > div > div > h3",
+      "attributes": {
+        "class": [
+          "elementor-heading-title",
+          "elementor-size-default"
+        ]
+      },
+      "text_preview": "What's New"
+    },
+    "description": "Heading level skipped (e.g., h2 to h4)."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > div:nth-of-type(2) > section > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "https://visionaid.org"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(3) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/highlights-from-the-last-quarter/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(4) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/a-journey-of-resilience-and-hope-farhans-success-story/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(5) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/vision-aids-collaboration-with-christian-medical-college-cmc-vellore/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(6) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/six-visually-impaired-candidates-successfully-placed-at-the-blind-cafe-chennai/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(7) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/redefining-possibilities-monikas-journey/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(8) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/anshus-journey-a-new-ray-of-hope/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(9) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/empowering-independence-through-accessible-technology/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(10) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/eye-hospitals/sitapur-eye-hospital/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(11) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/project-chashma/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(12) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/vision-aid-model-showcased-in-aao-conference-in-boston/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(13) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/nagajothis-journey-from-vision-challenges-to-bright-dreams/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(14) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/success-spotlight-harshada-lokhande-from-determined-young-learner-to-aspiring-yoga-champion/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(15) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/aravind-eye-hospital-tirunelveli-rolls-out-first-community-based-low-vision-initiative/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(16) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/anil-kumar-a-journey-of-hope-and-learning/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(17) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/vision-aid-showcases-innovation-in-assistive-technology-at-empower-2025-and-aao-2025/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(18) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/last-quarter-at-a-glance-transforming-lives-across-india/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(19) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/vision-aid-usa-earns-rare-100-100-score-and-4-star-rating-from-charity-navigator/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": [
+        "jet-listing-dynamic-link__link"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(21) > div > div > div > div > div > div > div > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/highlights-from-the-last-quarter/",
+        "class": [
+          "jet-listing-dynamic-link__link"
+        ]
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": [
+        "jet-listing-dynamic-link__link"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(21) > div > div > div > div > div > div > div > div:nth-of-type(2) > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/a-journey-of-resilience-and-hope-farhans-success-story/",
+        "class": [
+          "jet-listing-dynamic-link__link"
+        ]
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": [
+        "jet-listing-dynamic-link__link"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(21) > div > div > div > div > div > div > div > div:nth-of-type(3) > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/vision-aids-collaboration-with-christian-medical-college-cmc-vellore/",
+        "class": [
+          "jet-listing-dynamic-link__link"
+        ]
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/vision-aid-usa-earns-rare-100-100-score-and-4-star-rating-from-charity-navigator/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(2) > div > div > div > div:nth-of-type(3) > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/how-your-donation-helps/donations/",
+        "target": "_blank"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(2) > div > div > div > div:nth-of-type(4) > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/how-your-donation-helps/donations/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(2) > div > div > div > div:nth-of-type(5) > div > div > figure > a",
+      "attributes": {
+        "href": "https://youtu.be/_gZHXscmF9w",
+        "target": "_blank",
+        "tabindex": "-1"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(4) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "https://indianewengland.com/vision-aid-to-celebrate-two-decades-of-enabling-educating-and-empowering-over-100000-visually-impaired-on-july-21/",
+        "target": "_blank"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(5) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "https://www.zeffy.com/en-US/donation-form/87ba40c5-63ff-4bab-85ec-3f9f1ed512cc",
+        "target": "_blank"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(5) > div > div > div > div:nth-of-type(4) > div > div > figure > a",
+      "attributes": {
+        "href": "https://youtu.be/_gZHXscmF9w",
+        "target": "_blank",
+        "tabindex": "-1"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(6) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/event"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(9) > div > div > div > div > div > a",
+      "attributes": {
+        "href": "http://visionaid.org/wp-content/uploads/2022/04/SmartVision-Overview.pdf"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(10) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/news/vision-aid-receives-non-profit-organization-of-the-year-award-for-innovative-work-for-indias-visually-impaired/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(11) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/newsletters"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(12) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "http://visionaid.org/wp-content/uploads/2025/07/VA-Org-Brochure-USA-2.4.pdf"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(13) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "http://visionaid.org/wp-content/uploads/2022/02/Vision-Aid-2021-Course-Brochure.pdf"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(14) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "https://visionaid.org/vision-aid-programs/the-vision-aid-model/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(15) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "https://youtu.be/kQanYstoSTM"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "LINK_001",
+    "rule_name": "Link without accessible name",
+    "location": {
+      "tag": "a",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(16) > div > div > div > div:nth-of-type(2) > div > a",
+      "attributes": {
+        "href": "https://indianewengland.com/harvard-university-awards-derek-bok-public-service-prize-to-vision-aid-founder-ramakrishna-m-raju/"
+      },
+      "text_preview": ""
+    },
+    "description": "Link has no text or aria-label."
+  },
+  {
+    "rule_id": "NAV_003",
+    "rule_name": "Skip link is not first focusable element",
+    "location": {
+      "tag": "button",
+      "id": null,
+      "class": null,
+      "css_path": "[document] > html > body > div > div > div > button",
+      "attributes": {
+        "onclick": "redirectTo('india')",
+        "aria-label": "Select India",
+        "style": "cursor: pointer; background: none; border: none; text-align: center;"
+      },
+      "text_preview": "INDIA"
+    },
+    "description": "The first focusable element on the page is not a skip navigation link."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "menu-image",
+        "menu-image-title-below"
+      ],
+      "css_path": "[document] > html > body > div:nth-of-type(2) > section > div > div:nth-of-type(4) > div > div > div > nav > ul > li > a > img",
+      "attributes": {
+        "width": "48",
+        "height": "48",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/united-states-48x48.png",
+        "class": [
+          "menu-image",
+          "menu-image-title-below"
+        ],
+        "alt": "",
+        "decoding": "async"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "menu-image",
+        "menu-image-title-below"
+      ],
+      "css_path": "[document] > html > body > div:nth-of-type(2) > section > div > div:nth-of-type(4) > div > div > div > nav > ul > li > ul > li > a > img",
+      "attributes": {
+        "width": "48",
+        "height": "48",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/india-1-48x48.png",
+        "class": [
+          "menu-image",
+          "menu-image-title-below"
+        ],
+        "alt": "",
+        "decoding": "async"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "menu-image",
+        "menu-image-title-below"
+      ],
+      "css_path": "[document] > html > body > div:nth-of-type(2) > section > div > div:nth-of-type(4) > div > div > div > nav:nth-of-type(2) > ul > li > a > img",
+      "attributes": {
+        "width": "48",
+        "height": "48",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/united-states-48x48.png",
+        "class": [
+          "menu-image",
+          "menu-image-title-below"
+        ],
+        "alt": "",
+        "decoding": "async"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "menu-image",
+        "menu-image-title-below"
+      ],
+      "css_path": "[document] > html > body > div:nth-of-type(2) > section > div > div:nth-of-type(4) > div > div > div > nav:nth-of-type(2) > ul > li > ul > li > a > img",
+      "attributes": {
+        "width": "48",
+        "height": "48",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/india-1-48x48.png",
+        "class": [
+          "menu-image",
+          "menu-image-title-below"
+        ],
+        "alt": "",
+        "decoding": "async"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-large",
+        "size-large",
+        "wp-image-14390"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(3) > div > div > div > div > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "800",
+        "height": "600",
+        "src": "https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-1024x768.jpg",
+        "class": [
+          "attachment-large",
+          "size-large",
+          "wp-image-14390"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-1024x768.jpg 1024w, https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-300x225.jpg 300w, https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-768x576.jpg 768w, https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-1536x1152.jpg 1536w, https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-2048x1536.jpg 2048w, https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-24x18.jpg 24w, https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-36x27.jpg 36w, https://visionaid.org/wp-content/uploads/2026/02/lvpei-professional-48x36.jpg 48w",
+        "sizes": "(max-width: 800px) 100vw, 800px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-large",
+        "size-large",
+        "wp-image-14098"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div > div > section:nth-of-type(10) > div > div > div > div > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "141",
+        "height": "288",
+        "src": "https://visionaid.org/wp-content/uploads/2025/11/nidhi.jpg",
+        "class": [
+          "attachment-large",
+          "size-large",
+          "wp-image-14098"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2025/11/nidhi.jpg 141w, https://visionaid.org/wp-content/uploads/2025/11/nidhi-12x24.jpg 12w, https://visionaid.org/wp-content/uploads/2025/11/nidhi-18x36.jpg 18w, https://visionaid.org/wp-content/uploads/2025/11/nidhi-24x48.jpg 24w",
+        "sizes": "(max-width: 141px) 100vw, 141px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-13611"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(2) > div > div > div > div:nth-of-type(3) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "1280",
+        "height": "720",
+        "src": "https://visionaid.org/wp-content/uploads/2025/04/poster.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-13611"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2025/04/poster.png 1280w, https://visionaid.org/wp-content/uploads/2025/04/poster-300x169.png 300w, https://visionaid.org/wp-content/uploads/2025/04/poster-1024x576.png 1024w, https://visionaid.org/wp-content/uploads/2025/04/poster-768x432.png 768w, https://visionaid.org/wp-content/uploads/2025/04/poster-24x14.png 24w, https://visionaid.org/wp-content/uploads/2025/04/poster-36x20.png 36w, https://visionaid.org/wp-content/uploads/2025/04/poster-48x27.png 48w",
+        "sizes": "(max-width: 1280px) 100vw, 1280px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-13610"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(2) > div > div > div > div:nth-of-type(4) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "720",
+        "height": "1040",
+        "src": "https://visionaid.org/wp-content/uploads/2025/04/flyer.jpeg",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-13610"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2025/04/flyer.jpeg 720w, https://visionaid.org/wp-content/uploads/2025/04/flyer-208x300.jpeg 208w, https://visionaid.org/wp-content/uploads/2025/04/flyer-709x1024.jpeg 709w, https://visionaid.org/wp-content/uploads/2025/04/flyer-17x24.jpeg 17w, https://visionaid.org/wp-content/uploads/2025/04/flyer-25x36.jpeg 25w, https://visionaid.org/wp-content/uploads/2025/04/flyer-33x48.jpeg 33w",
+        "sizes": "(max-width: 720px) 100vw, 720px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-7199"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(2) > div > div > div > div:nth-of-type(5) > div > div > figure > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "666",
+        "height": "375",
+        "src": "https://visionaid.org/wp-content/uploads/2022/08/aarush-smartphone3_prev_ui.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-7199"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2022/08/aarush-smartphone3_prev_ui.png 666w, https://visionaid.org/wp-content/uploads/2022/08/aarush-smartphone3_prev_ui-300x169.png 300w, https://visionaid.org/wp-content/uploads/2022/08/aarush-smartphone3_prev_ui-24x14.png 24w, https://visionaid.org/wp-content/uploads/2022/08/aarush-smartphone3_prev_ui-36x20.png 36w, https://visionaid.org/wp-content/uploads/2022/08/aarush-smartphone3_prev_ui-48x27.png 48w",
+        "sizes": "(max-width: 666px) 100vw, 666px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-10836"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(4) > div > div > div > div > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "2002",
+        "height": "610",
+        "src": "https://visionaid.org/wp-content/uploads/2024/06/picture0-banner.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-10836"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2024/06/picture0-banner.png 2002w, https://visionaid.org/wp-content/uploads/2024/06/picture0-banner-300x91.png 300w, https://visionaid.org/wp-content/uploads/2024/06/picture0-banner-1024x312.png 1024w, https://visionaid.org/wp-content/uploads/2024/06/picture0-banner-768x234.png 768w, https://visionaid.org/wp-content/uploads/2024/06/picture0-banner-1536x468.png 1536w, https://visionaid.org/wp-content/uploads/2024/06/picture0-banner-24x7.png 24w, https://visionaid.org/wp-content/uploads/2024/06/picture0-banner-36x11.png 36w, https://visionaid.org/wp-content/uploads/2024/06/picture0-banner-48x15.png 48w",
+        "sizes": "(max-width: 2002px) 100vw, 2002px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-575"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(5) > div > div > div > div:nth-of-type(2) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "1280",
+        "height": "720",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/Mobile_Fundraiser_matching_grant2.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-575"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2022/03/Mobile_Fundraiser_matching_grant2.png 1280w, https://visionaid.org/wp-content/uploads/2022/03/Mobile_Fundraiser_matching_grant2-300x169.png 300w, https://visionaid.org/wp-content/uploads/2022/03/Mobile_Fundraiser_matching_grant2-1024x576.png 1024w, https://visionaid.org/wp-content/uploads/2022/03/Mobile_Fundraiser_matching_grant2-768x432.png 768w",
+        "sizes": "(max-width: 1280px) 100vw, 1280px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-11371"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(5) > div > div > div > div:nth-of-type(4) > div > div > figure > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "500",
+        "height": "500",
+        "src": "https://visionaid.org/wp-content/uploads/2024/07/YouTube-Logo2_prev_ui.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-11371"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2024/07/YouTube-Logo2_prev_ui.png 500w, https://visionaid.org/wp-content/uploads/2024/07/YouTube-Logo2_prev_ui-300x300.png 300w, https://visionaid.org/wp-content/uploads/2024/07/YouTube-Logo2_prev_ui-150x150.png 150w, https://visionaid.org/wp-content/uploads/2024/07/YouTube-Logo2_prev_ui-24x24.png 24w, https://visionaid.org/wp-content/uploads/2024/07/YouTube-Logo2_prev_ui-36x36.png 36w, https://visionaid.org/wp-content/uploads/2024/07/YouTube-Logo2_prev_ui-48x48.png 48w",
+        "sizes": "(max-width: 500px) 100vw, 500px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-8464"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(6) > div > div > div > div:nth-of-type(2) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "2048",
+        "height": "1152",
+        "src": "https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n.jpg",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-8464"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n.jpg 2048w, https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n-300x169.jpg 300w, https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n-1024x576.jpg 1024w, https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n-768x432.jpg 768w, https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n-1536x864.jpg 1536w, https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n-24x14.jpg 24w, https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n-36x20.jpg 36w, https://visionaid.org/wp-content/uploads/2023/03/328132373_878095486849757_8847506174035582329_n-48x27.jpg 48w",
+        "sizes": "(max-width: 2048px) 100vw, 2048px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-1023"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(9) > div > div > div > div > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "674",
+        "height": "607",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/SmartVision.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-1023"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2022/03/SmartVision.png 674w, https://visionaid.org/wp-content/uploads/2022/03/SmartVision-300x270.png 300w",
+        "sizes": "(max-width: 674px) 100vw, 674px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-9417"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(11) > div > div > div > div:nth-of-type(2) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "709",
+        "height": "237",
+        "src": "https://visionaid.org/wp-content/uploads/2023/07/Group-28.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-9417"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2023/07/Group-28.png 709w, https://visionaid.org/wp-content/uploads/2023/07/Group-28-300x100.png 300w, https://visionaid.org/wp-content/uploads/2023/07/Group-28-24x8.png 24w, https://visionaid.org/wp-content/uploads/2023/07/Group-28-36x12.png 36w, https://visionaid.org/wp-content/uploads/2023/07/Group-28-48x16.png 48w",
+        "sizes": "(max-width: 709px) 100vw, 709px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-571"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(12) > div > div > div > div:nth-of-type(2) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "827",
+        "height": "677",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/brochure-download-image.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-571"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2022/03/brochure-download-image.png 827w, https://visionaid.org/wp-content/uploads/2022/03/brochure-download-image-300x246.png 300w, https://visionaid.org/wp-content/uploads/2022/03/brochure-download-image-768x629.png 768w",
+        "sizes": "(max-width: 827px) 100vw, 827px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-582"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(13) > div > div > div > div:nth-of-type(2) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "751",
+        "height": "427",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/course-catalog.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-582"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2022/03/course-catalog.png 751w, https://visionaid.org/wp-content/uploads/2022/03/course-catalog-300x171.png 300w",
+        "sizes": "(max-width: 751px) 100vw, 751px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-586"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(14) > div > div > div > div:nth-of-type(2) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "1280",
+        "height": "1280",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/VisionAidModel.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-586"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2022/03/VisionAidModel.png 1280w, https://visionaid.org/wp-content/uploads/2022/03/VisionAidModel-300x300.png 300w, https://visionaid.org/wp-content/uploads/2022/03/VisionAidModel-1024x1024.png 1024w, https://visionaid.org/wp-content/uploads/2022/03/VisionAidModel-150x150.png 150w, https://visionaid.org/wp-content/uploads/2022/03/VisionAidModel-768x768.png 768w",
+        "sizes": "(max-width: 1280px) 100vw, 1280px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-11637"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(15) > div > div > div > div:nth-of-type(2) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "640",
+        "height": "480",
+        "src": "https://visionaid.org/wp-content/uploads/2024/07/sddefault-1.jpg",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-11637"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2024/07/sddefault-1.jpg 640w, https://visionaid.org/wp-content/uploads/2024/07/sddefault-1-300x225.jpg 300w, https://visionaid.org/wp-content/uploads/2024/07/sddefault-1-24x18.jpg 24w, https://visionaid.org/wp-content/uploads/2024/07/sddefault-1-36x27.jpg 36w, https://visionaid.org/wp-content/uploads/2024/07/sddefault-1-48x36.jpg 48w",
+        "sizes": "(max-width: 640px) 100vw, 640px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  },
+  {
+    "rule_id": "NON_TEXT_002",
+    "rule_name": "Actionable image missing alt text",
+    "location": {
+      "tag": "img",
+      "id": null,
+      "class": [
+        "attachment-full",
+        "size-full",
+        "wp-image-592"
+      ],
+      "css_path": "[document] > html > body > main > div > div > section > div > div:nth-of-type(2) > div > div > div > div > div > section > div > div > div > section:nth-of-type(16) > div > div > div > div:nth-of-type(2) > div > a > img",
+      "attributes": {
+        "loading": "lazy",
+        "decoding": "async",
+        "width": "720",
+        "height": "684",
+        "src": "https://visionaid.org/wp-content/uploads/2022/03/Vision-Aid-Ram-e1559962834212.png",
+        "class": [
+          "attachment-full",
+          "size-full",
+          "wp-image-592"
+        ],
+        "alt": "",
+        "srcset": "https://visionaid.org/wp-content/uploads/2022/03/Vision-Aid-Ram-e1559962834212.png 720w, https://visionaid.org/wp-content/uploads/2022/03/Vision-Aid-Ram-e1559962834212-300x285.png 300w",
+        "sizes": "(max-width: 720px) 100vw, 720px"
+      },
+      "text_preview": ""
+    },
+    "description": "Image inside a link must have non-empty alt text."
+  }
+]

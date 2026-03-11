@@ -1,0 +1,21 @@
+{
+  "prompt_name": "page_title",
+  "checklist": "CL01",
+  "wcag_criteria": [
+    "2.4.2"
+  ],
+  "prompt_index": 1,
+  "prompt_text": "You are an accessibility auditor.\n\nEvaluate the page title.\n\nCheck: - Is it descriptive? - Does it align with the H1? - Is it vague\nor generic? - Does it clearly describe page purpose without relying on\ncontext?\n\nReturn JSON: { “is_descriptive”: true/false, “matches_h1”: true/false,\n“issues”: [], “improved_example”: “string” }\n\nData: {\n  \"title\": \"Vision Aid: #1Low Vision Support Organization\",\n  \"h1\": \"Welcome to Vision-Aid\"\n}",
+  "payload_slice": "{\n  \"title\": \"Vision Aid: #1Low Vision Support Organization\",\n  \"h1\": \"Welcome to Vision-Aid\"\n}",
+  "api_result": {
+    "success": true,
+    "response": "```json\n{\n  \"is_descriptive\": false,\n  \"matches_h1\": false,\n  \"issues\": [\n    \"Title contains '#1' ranking claim which is promotional/marketing language, not descriptive of page purpose\",\n    \"Title uses inconsistent formatting with 'Low Vision' concatenated after '#1' without spacing, suggesting a formatting error ('#1Low')\",\n    \"H1 says 'Welcome to Vision-Aid' while title says 'Vision Aid' — hyphenation is inconsistent between title and H1\",\n    \"H1 uses generic welcome greeting which adds no descriptive value about the organization or page purpose\",\n    \"Neither the title nor H1 clearly communicates what the organization actually does or who it serves\",\n    \"Title does not describe the page purpose (e.g., homepage, about, services) without relying on external context\",\n    \"Colon usage in title is unnecessary and disrupts readability for screen readers\"\n  ],\n  \"improved_example\": \"Vision-Aid | Low Vision Support Services & Resources\"\n}\n```\n\n### Summary of Key Concerns\n\n| Issue | Severity |\n|---|---|\n| `#1Low` formatting error | 🔴 High |\n| Promotional `#1` ranking claim | 🟡 Medium |\n| H1/Title mismatch | 🟡 Medium |\n| Generic H1 welcome text | 🟡 Medium |\n| Unclear page purpose | 🔴 High |\n\n> **Recommendation:** Align the H1 with the title, remove promotional language, fix the formatting error, and ensure both clearly communicate the organization's purpose to users — especially those relying on assistive technology who depend on titles for page identification and navigation.",
+    "model": "claude-sonnet-4-6",
+    "usage": {
+      "input_tokens": 136,
+      "output_tokens": 401
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 9.15
+  }
+}

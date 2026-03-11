@@ -53,11 +53,16 @@ from processing_scripts.programmatic.nontext_checklist_03 import audit_nontext
 
 # Pricing per million tokens: (input, output)
 MODEL_PRICING = {
+    "claude-sonnet-4-6": (3.00, 15.00),
+    "claude-opus-4-6": (5.00, 25.00),
+    "claude-haiku-4-5": (1.00, 5.00),
+    "claude-sonnet-4-5": (3.00, 15.00),
+    "claude-opus-4-5": (5.00, 25.00),
     "claude-sonnet-4": (3.00, 15.00),
     "claude-opus-4": (15.00, 75.00),
-    "claude-haiku-4": (0.80, 4.00),
+    "claude-haiku-4": (1.00, 5.00),
     "claude-3-5-sonnet": (3.00, 15.00),
-    "claude-3-5-haiku": (0.80, 4.00),
+    "claude-3-5-haiku": (1.00, 5.00),
     "gpt-4o": (2.50, 10.00),
     "gpt-4o-mini": (0.15, 0.60),
     "gpt-4.1": (2.00, 8.00),

@@ -1,0 +1,21 @@
+{
+  "prompt_name": "landmark_structure",
+  "checklist": "CL01",
+  "wcag_criteria": [
+    "1.3.1"
+  ],
+  "prompt_index": 6,
+  "prompt_text": "You are an accessibility auditor.\n\nEvaluate whether the landmark structure appears appropriate.\n\nCheck: - Excessive landmark count - Missing main content landmark -\nStructural imbalance\n\nReturn JSON: { “structure_appropriate”: true/false, “issues”: [] }\n\nData: [\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"main\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"footer\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"search\",\n    \"role\": \"search\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"div\",\n    \"role\": \"region\",\n    \"aria_label\": \"Slides\"\n  }\n]",
+  "payload_slice": "[\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"main\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"footer\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"search\",\n    \"role\": \"search\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"div\",\n    \"role\": \"region\",\n    \"aria_label\": \"Slides\"\n  }\n]",
+  "api_result": {
+    "success": true,
+    "response": "```json\n{\n  \"structure_appropriate\": false,\n  \"issues\": [\n    \"Excessive landmark count: 4 nav landmarks detected (recommended: 1-2). Multiple navigation landmarks should be distinguished with unique aria-labels.\",\n    \"Missing aria-labels: 2 nav landmarks lack aria-labels, making them indistinguishable to screen reader users.\",\n    \"Unlabeled search landmark: The search landmark should have an aria-label for clarity.\",\n    \"Structural imbalance: 4 nav landmarks + 1 main + 1 footer + 1 search + 1 region creates navigation-heavy structure. Consider consolidating nav elements or ensuring each serves a distinct purpose.\"\n  ]\n}\n```\n\n**Recommendations:**\n1. Consolidate redundant `<nav>` elements or clearly differentiate them (e.g., \"Primary Navigation\", \"Secondary Navigation\", \"Footer Navigation\")\n2. Add descriptive `aria-label` attributes to all unlabeled landmarks\n3. Ensure the `<search>` landmark has an `aria-label` (e.g., \"Site search\")\n4. Verify the `<div role=\"region\">` is necessary; consider if it should be a `<section>` with `aria-labelledby`",
+    "model": "claude-haiku-4-5-20251001",
+    "usage": {
+      "input_tokens": 268,
+      "output_tokens": 291
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 3.17
+  }
+}

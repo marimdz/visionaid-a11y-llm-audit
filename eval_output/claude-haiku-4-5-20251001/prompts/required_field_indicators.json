@@ -1,0 +1,21 @@
+{
+  "prompt_name": "required_field_indicators",
+  "checklist": "CL02",
+  "wcag_criteria": [
+    "3.3.2"
+  ],
+  "prompt_index": 4,
+  "prompt_text": "You are an accessibility auditor.\n\nEvaluate how required fields are communicated to users. WCAG criterion 3.3.2\n(Labels or Instructions) requires that users know which fields are required\nBEFORE they attempt to submit the form.\n\nFor each field marked required: true, evaluate:\n- Does the effective_label mention that the field is required?\n  (e.g. \"Email *\", \"Email (required)\")\n- Does the instructions field (aria-describedby text) mention it is required?\n- If neither, the required nature is conveyed only programmatically, which some\n  assistive technologies may not surface clearly\n\nNote: the required HTML attribute IS programmatically set, but best practice\nis to also communicate it visually and verbally in the label or instructions.\n\nReturn a JSON array:\n[\n  {\n    \"field_id\": \"string or null\",\n    \"effective_label\": \"string or null\",\n    \"required\": true,\n    \"requirement_in_label\": true/false,\n    \"requirement_in_instructions\": true/false,\n    \"issues\": [],\n    \"recommendation\": \"string or null\"\n  }\n]\n\nData: [\n  {\n    \"type\": \"email\",\n    \"id\": \"form-field-email\",\n    \"name\": \"form_fields[email]\",\n    \"label\": \"Subscribe to our mailing list\",\n    \"aria_label\": null,\n    \"aria_labelledby_text\": null,\n    \"title\": null,\n    \"effective_label\": \"Subscribe to our mailing list\",\n    \"label_source\": \"label_for\",\n    \"placeholder\": \"Email\",\n    \"instructions\": null,\n    \"required\": true,\n    \"group_label\": null\n  }\n]",
+  "payload_slice": "[\n  {\n    \"type\": \"email\",\n    \"id\": \"form-field-email\",\n    \"name\": \"form_fields[email]\",\n    \"label\": \"Subscribe to our mailing list\",\n    \"aria_label\": null,\n    \"aria_labelledby_text\": null,\n    \"title\": null,\n    \"effective_label\": \"Subscribe to our mailing list\",\n    \"label_source\": \"label_for\",\n    \"placeholder\": \"Email\",\n    \"instructions\": null,\n    \"required\": true,\n    \"group_label\": null\n  }\n]",
+  "api_result": {
+    "success": true,
+    "response": "```json\n[\n  {\n    \"field_id\": \"form-field-email\",\n    \"effective_label\": \"Subscribe to our mailing list\",\n    \"required\": true,\n    \"requirement_in_label\": false,\n    \"requirement_in_instructions\": false,\n    \"issues\": [\n      \"Required field status is not communicated in the visible label text\",\n      \"No instructions or aria-describedby text to convey required status\",\n      \"Required attribute is set programmatically, but not surfaced to users visually or verbally\",\n      \"Users may not realize this field is mandatory before attempting to submit\"\n    ],\n    \"recommendation\": \"Update the label text to include a required indicator, such as 'Subscribe to our mailing list *' or 'Subscribe to our mailing list (required)'. Alternatively, add aria-describedby text that states 'This field is required.' This ensures all users, including those using assistive technologies, understand the field is mandatory before submission.\"\n  }\n]\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "usage": {
+      "input_tokens": 413,
+      "output_tokens": 237
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 2.67
+  }
+}

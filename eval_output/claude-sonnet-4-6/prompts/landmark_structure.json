@@ -1,0 +1,21 @@
+{
+  "prompt_name": "landmark_structure",
+  "checklist": "CL01",
+  "wcag_criteria": [
+    "1.3.1"
+  ],
+  "prompt_index": 6,
+  "prompt_text": "You are an accessibility auditor.\n\nEvaluate whether the landmark structure appears appropriate.\n\nCheck: - Excessive landmark count - Missing main content landmark -\nStructural imbalance\n\nReturn JSON: { “structure_appropriate”: true/false, “issues”: [] }\n\nData: [\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"main\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"footer\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"search\",\n    \"role\": \"search\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"div\",\n    \"role\": \"region\",\n    \"aria_label\": \"Slides\"\n  }\n]",
+  "payload_slice": "[\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": \"Menu\"\n  },\n  {\n    \"tag\": \"nav\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"main\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"footer\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"search\",\n    \"role\": \"search\",\n    \"aria_label\": null\n  },\n  {\n    \"tag\": \"div\",\n    \"role\": \"region\",\n    \"aria_label\": \"Slides\"\n  }\n]",
+  "api_result": {
+    "success": true,
+    "response": "```json\n{\n  \"structure_appropriate\": false,\n  \"issues\": [\n    {\n      \"issue\": \"Excessive and duplicate nav landmarks\",\n      \"detail\": \"4 nav landmarks are present. Two share the same aria_label 'Menu' making them indistinguishable to assistive technology users, and two have no aria_label at all, leaving their purpose unclear.\",\n      \"severity\": \"high\"\n    },\n    {\n      \"issue\": \"Unlabelled nav landmarks\",\n      \"detail\": \"2 of the 4 nav elements have no aria_label or aria_labelledby attribute. When multiple nav landmarks exist, each must have a unique, descriptive label so screen reader users can differentiate them.\",\n      \"severity\": \"high\"\n    },\n    {\n      \"issue\": \"Duplicate aria_label on nav landmarks\",\n      \"detail\": \"Two separate nav elements both carry aria_label='Menu'. Identical labels on distinct landmarks cause confusion because assistive technologies will announce two landmarks with the same name.\",\n      \"severity\": \"high\"\n    },\n    {\n      \"issue\": \"Unlabelled search landmark\",\n      \"detail\": \"The search landmark has no aria_label. While a single search landmark may be acceptable without a label, adding one improves clarity, especially alongside other unlabelled landmarks.\",\n      \"severity\": \"low\"\n    },\n    {\n      \"issue\": \"Structural imbalance — no header landmark\",\n      \"detail\": \"A footer landmark is present but there is no corresponding header landmark. This asymmetry is unusual and may indicate a missing page header region.\",\n      \"severity\": \"medium\"\n    }\n  ]\n}\n```",
+    "model": "claude-sonnet-4-6",
+    "usage": {
+      "input_tokens": 268,
+      "output_tokens": 387
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 9.31
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "forms": [
+    {
+      "action": "https://visionaid.org",
+      "aria_label": null,
+      "aria_labelledby_text": null,
+      "fields": [
+        {
+          "type": "search",
+          "id": "elementor-search-form-082e558",
+          "name": "s",
+          "label": "Search",
+          "aria_label": null,
+          "aria_labelledby_text": null,
+          "title": null,
+          "effective_label": "Search",
+          "label_source": "label_for",
+          "placeholder": "Search...",
+          "instructions": null,
+          "required": false,
+          "group_label": null
+        }
+      ],
+      "groups": []
+    },
+    {
+      "action": null,
+      "aria_label": null,
+      "aria_labelledby_text": null,
+      "fields": [
+        {
+          "type": "email",
+          "id": "form-field-email",
+          "name": "form_fields[email]",
+          "label": "Subscribe to our mailing list",
+          "aria_label": null,
+          "aria_labelledby_text": null,
+          "title": null,
+          "effective_label": "Subscribe to our mailing list",
+          "label_source": "label_for",
+          "placeholder": "Email",
+          "instructions": null,
+          "required": true,
+          "group_label": null
+        }
+      ],
+      "groups": []
+    }
+  ],
+  "orphan_labels": []
+}

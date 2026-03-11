@@ -1,0 +1,207 @@
+{
+  "run_timestamp": "2026-03-11T20:17:17.411609+00:00",
+  "html_file": "test_files\\home.html",
+  "model": "claude-opus-4-6",
+  "dry_run": false,
+  "include_summaries": false,
+  "programmatic_findings_count": 62,
+  "programmatic_findings_by_checker": {
+    "CL01_semantic": 42,
+    "CL02_forms": 0,
+    "CL03_nontext": 20
+  },
+  "pass1_filters_active": [
+    "ntext_action_fired"
+  ],
+  "prompts_executed": [
+    {
+      "name": "page_title",
+      "checklist": "CL01",
+      "wcag_criteria": [
+        "2.4.2"
+      ],
+      "prompt_tokens_est": 107,
+      "status": "success",
+      "input_tokens": 136,
+      "output_tokens": 224,
+      "duration_seconds": 6.64
+    },
+    {
+      "name": "heading_structure",
+      "checklist": "CL01",
+      "wcag_criteria": [
+        "1.3.1",
+        "2.4.6"
+      ],
+      "prompt_tokens_est": 1539,
+      "status": "success",
+      "input_tokens": 2072,
+      "output_tokens": 903,
+      "duration_seconds": 17.35
+    },
+    {
+      "name": "link_clarity",
+      "checklist": "CL01",
+      "wcag_criteria": [
+        "2.4.4"
+      ],
+      "prompt_tokens_est": 1209,
+      "status": "success",
+      "input_tokens": 1922,
+      "output_tokens": 4478,
+      "duration_seconds": 50.88
+    },
+    {
+      "name": "iframe_titles",
+      "checklist": "CL01",
+      "wcag_criteria": [
+        "4.1.2"
+      ],
+      "prompt_tokens_est": 213,
+      "status": "success",
+      "input_tokens": 326,
+      "output_tokens": 416,
+      "duration_seconds": 7.09
+    },
+    {
+      "name": "landmark_structure",
+      "checklist": "CL01",
+      "wcag_criteria": [
+        "1.3.1"
+      ],
+      "prompt_tokens_est": 180,
+      "status": "success",
+      "input_tokens": 268,
+      "output_tokens": 260,
+      "duration_seconds": 6.44
+    },
+    {
+      "name": "label_quality",
+      "checklist": "CL02",
+      "wcag_criteria": [
+        "1.3.1",
+        "2.4.6"
+      ],
+      "prompt_tokens_est": 446,
+      "status": "success",
+      "input_tokens": 545,
+      "output_tokens": 378,
+      "duration_seconds": 8.29
+    },
+    {
+      "name": "required_field_indicators",
+      "checklist": "CL02",
+      "wcag_criteria": [
+        "3.3.2"
+      ],
+      "prompt_tokens_est": 358,
+      "status": "success",
+      "input_tokens": 413,
+      "output_tokens": 394,
+      "duration_seconds": 9.21
+    },
+    {
+      "name": "informative_alt_quality",
+      "checklist": "CL03",
+      "wcag_criteria": [
+        "1.1.1"
+      ],
+      "prompt_tokens_est": 546,
+      "status": "success",
+      "input_tokens": 814,
+      "output_tokens": 1482,
+      "duration_seconds": 20.43
+    },
+    {
+      "name": "decorative_verification",
+      "checklist": "CL03",
+      "wcag_criteria": [
+        "1.1.1"
+      ],
+      "prompt_tokens_est": 279,
+      "status": "success",
+      "input_tokens": 329,
+      "output_tokens": 401,
+      "duration_seconds": 12.43
+    },
+    {
+      "name": "actionable_image_alt",
+      "checklist": "CL03",
+      "wcag_criteria": [
+        "1.1.1",
+        "2.4.4"
+      ],
+      "prompt_tokens_est": 1639,
+      "status": "success",
+      "input_tokens": 2455,
+      "output_tokens": 4085,
+      "duration_seconds": 39.53
+    },
+    {
+      "name": "svg_accessibility",
+      "checklist": "CL03",
+      "wcag_criteria": [
+        "1.1.1"
+      ],
+      "prompt_tokens_est": 276,
+      "status": "success",
+      "input_tokens": 360,
+      "output_tokens": 345,
+      "duration_seconds": 6.93
+    },
+    {
+      "name": "icon_font_accessibility",
+      "checklist": "CL03",
+      "wcag_criteria": [
+        "1.1.1"
+      ],
+      "prompt_tokens_est": 932,
+      "status": "success",
+      "input_tokens": 1231,
+      "output_tokens": 1573,
+      "duration_seconds": 18.9
+    }
+  ],
+  "prompts_dry_run": [],
+  "prompts_skipped": [
+    {
+      "name": "table_semantics",
+      "reason": "empty payload"
+    },
+    {
+      "name": "semantic_summary",
+      "reason": "summary (not requested)"
+    },
+    {
+      "name": "placeholder_as_label",
+      "reason": "empty payload"
+    },
+    {
+      "name": "group_labels",
+      "reason": "empty payload"
+    },
+    {
+      "name": "form_instructions",
+      "reason": "empty payload"
+    },
+    {
+      "name": "form_summary",
+      "reason": "summary (not requested)"
+    },
+    {
+      "name": "complex_descriptions",
+      "reason": "empty payload"
+    },
+    {
+      "name": "media_captions",
+      "reason": "empty payload"
+    },
+    {
+      "name": "nontext_summary",
+      "reason": "summary (not requested)"
+    }
+  ],
+  "total_input_tokens": 10871,
+  "total_output_tokens": 14939,
+  "estimated_cost_usd": 0.42783
+}

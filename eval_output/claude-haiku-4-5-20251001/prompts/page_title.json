@@ -1,0 +1,21 @@
+{
+  "prompt_name": "page_title",
+  "checklist": "CL01",
+  "wcag_criteria": [
+    "2.4.2"
+  ],
+  "prompt_index": 1,
+  "prompt_text": "You are an accessibility auditor.\n\nEvaluate the page title.\n\nCheck: - Is it descriptive? - Does it align with the H1? - Is it vague\nor generic? - Does it clearly describe page purpose without relying on\ncontext?\n\nReturn JSON: { “is_descriptive”: true/false, “matches_h1”: true/false,\n“issues”: [], “improved_example”: “string” }\n\nData: {\n  \"title\": \"Vision Aid: #1Low Vision Support Organization\",\n  \"h1\": \"Welcome to Vision-Aid\"\n}",
+  "payload_slice": "{\n  \"title\": \"Vision Aid: #1Low Vision Support Organization\",\n  \"h1\": \"Welcome to Vision-Aid\"\n}",
+  "api_result": {
+    "success": true,
+    "response": "```json\n{\n  \"is_descriptive\": true,\n  \"matches_h1\": false,\n  \"issues\": [\n    \"Title and H1 do not align - title emphasizes 'Low Vision Support Organization' while H1 is generic 'Welcome to Vision-Aid'\",\n    \"Title contains formatting error: '#1Low' appears to be a typo or malformed ranking claim\",\n    \"Title is longer and more descriptive than H1, creating inconsistency\",\n    \"H1 is vague and doesn't convey page purpose - 'Welcome to' is generic boilerplate\"\n  ],\n  \"improved_example\": \"Vision Aid: Low Vision Support Organization - Accessibility Resources & Services\"\n}\n```\n\n**Recommendations:**\n1. **Fix the title**: Remove the '#1' formatting error and clarify the claim\n2. **Align H1 with title**: Change H1 to match the descriptive nature of the title\n3. **Better H1 option**: \"Low Vision Support & Accessibility Services\" or \"Vision Aid: Low Vision Support Organization\"\n4. **Avoid generic welcomes**: H1 should describe purpose, not just greet users",
+    "model": "claude-haiku-4-5-20251001",
+    "usage": {
+      "input_tokens": 136,
+      "output_tokens": 271
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 3.3
+  }
+}

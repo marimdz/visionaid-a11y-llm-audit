@@ -1,0 +1,21 @@
+{
+  "prompt_name": "iframe_titles",
+  "checklist": "CL01",
+  "wcag_criteria": [
+    "4.1.2"
+  ],
+  "prompt_index": 5,
+  "prompt_text": "You are an accessibility auditor.\n\nEvaluate whether each iframe title clearly describes the iframe’s\npurpose.\n\nReturn JSON array: [ { “title”: “…”, “is_descriptive”: true/false,\n“reason”: “short explanation”, “suggested_improvement”: “string or null”\n}]\n\nData: [\n  {\n    \"title\": \"Enabling, Educating and Empowering the Visually Impaired (Vision-Aid's 2025 Signature Film)\",\n    \"src\": \"https://www.youtube.com/embed/RjRqGI_03gM?controls=1&rel=0&playsinline=0&cc_load\"\n  },\n  {\n    \"title\": \"Smart Vision Glasses 2.0 Program by Vision-Aid\",\n    \"src\": \"https://www.youtube.com/embed/Yiwbe3SfZ5A?controls=1&rel=0&playsinline=0&cc_load\"\n  },\n  {\n    \"title\": \"Revathy Ramakrishna, Woman of the Year 2019, Shares her Vision-Aid Journey on Chai with Manju\",\n    \"src\": \"https://www.youtube.com/embed/VYEa76LEK58?controls=1&rel=0&playsinline=0&cc_load\"\n  }\n]",
+  "payload_slice": "[\n  {\n    \"title\": \"Enabling, Educating and Empowering the Visually Impaired (Vision-Aid's 2025 Signature Film)\",\n    \"src\": \"https://www.youtube.com/embed/RjRqGI_03gM?controls=1&rel=0&playsinline=0&cc_load\"\n  },\n  {\n    \"title\": \"Smart Vision Glasses 2.0 Program by Vision-Aid\",\n    \"src\": \"https://www.youtube.com/embed/Yiwbe3SfZ5A?controls=1&rel=0&playsinline=0&cc_load\"\n  },\n  {\n    \"title\": \"Revathy Ramakrishna, Woman of the Year 2019, Shares her Vision-Aid Journey on Chai with Manju\",\n    \"src\": \"https://www.youtube.com/embed/VYEa76LEK58?controls=1&rel=0&playsinline=0&cc_load\"\n  }\n]",
+  "api_result": {
+    "success": true,
+    "response": "```json\n[\n  {\n    \"title\": \"Enabling, Educating and Empowering the Visually Impaired (Vision-Aid's 2025 Signature Film)\",\n    \"is_descriptive\": true,\n    \"reason\": \"Title clearly describes the iframe content as Vision-Aid's signature film about their mission for visually impaired individuals.\",\n    \"suggested_improvement\": null\n  },\n  {\n    \"title\": \"Smart Vision Glasses 2.0 Program by Vision-Aid\",\n    \"is_descriptive\": true,\n    \"reason\": \"Title explicitly states the iframe contains information about Vision-Aid's Smart Vision Glasses 2.0 Program.\",\n    \"suggested_improvement\": null\n  },\n  {\n    \"title\": \"Revathy Ramakrishna, Woman of the Year 2019, Shares her Vision-Aid Journey on Chai with Manju\",\n    \"is_descriptive\": true,\n    \"reason\": \"Title clearly identifies the video content, guest, show name, and topic, providing comprehensive context about the iframe's purpose.\",\n    \"suggested_improvement\": null\n  }\n]\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "usage": {
+      "input_tokens": 326,
+      "output_tokens": 267
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 1.87
+  }
+}

@@ -1,0 +1,1685 @@
+{
+  "model": "claude-opus-4-6",
+  "html_file": "test_files\\home.html",
+  "baseline_count": 16,
+  "pipeline_count": 163,
+  "scores": {
+    "true_positives": 38,
+    "weak_matches": 64,
+    "false_positives": 61,
+    "false_negatives": 6,
+    "precision": 0.2331,
+    "recall": 2.375,
+    "f1": 0.4246
+  },
+  "matches": [
+    {
+      "pipeline_id": 1,
+      "pipeline_issue": "LAND_005: Multiple 'navigation' landmarks without accessible labels",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.2393,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 2,
+      "pipeline_issue": "LAND_005: Multiple 'navigation' landmarks without accessible labels",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.2393,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 3,
+      "pipeline_issue": "LAND_006: Content outside landmark regions",
+      "pipeline_wcag": "",
+      "baseline_id": 3,
+      "baseline_issue": "On home page - header and footer regions are not marked up semantically.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.3766,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 4,
+      "pipeline_issue": "HEAD_001: Skipped heading level",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.2426,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 5,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 6,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 7,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 8,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 9,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 10,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 11,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 12,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 13,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 14,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 15,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 16,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 17,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 18,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 19,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 20,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 21,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 22,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 23,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1074,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 24,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1074,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 25,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1074,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 26,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 27,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 28,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 29,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 30,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 31,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 32,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 33,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 34,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 35,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 36,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 37,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 38,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 39,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 40,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 41,
+      "pipeline_issue": "LINK_001: Link without accessible name",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1406,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 42,
+      "pipeline_issue": "NAV_003: Skip link is not first focusable element",
+      "pipeline_wcag": "",
+      "baseline_id": 8,
+      "baseline_issue": "On home page - 'Single link broken into multiple links unnecessarily.",
+      "baseline_wcag": "2.4.3-focus order; 2.4.4-link purpose (in context)",
+      "similarity": 0.368,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 43,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1835,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 44,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1835,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 45,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1835,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 46,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1835,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 47,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 48,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 49,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 50,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 51,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 52,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 53,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 54,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 55,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 56,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 57,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 58,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 59,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 60,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 61,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 62,
+      "pipeline_issue": "NON_TEXT_002: Actionable image missing alt text",
+      "pipeline_wcag": "",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.136,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 63,
+      "pipeline_issue": "Page Title: Title contains a formatting error: '#1Low' appears to be missing a space and should read '#1 Low Vision Support Organization' or similar.",
+      "pipeline_wcag": "2.4.2",
+      "baseline_id": 1,
+      "baseline_issue": "On home page - Page title is not descriptive enough to convey its purpose.",
+      "baseline_wcag": "2.4.2 - page titled",
+      "similarity": 0.5002,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 64,
+      "pipeline_issue": "Page Title: Title and H1 do not align well: the title emphasizes '#1 Low Vision Support Organization' while the H1 uses a generic 'Welcome to Vision-Aid' greeting.",
+      "pipeline_wcag": "2.4.2",
+      "baseline_id": 1,
+      "baseline_issue": "On home page - Page title is not descriptive enough to convey its purpose.",
+      "baseline_wcag": "2.4.2 - page titled",
+      "similarity": 0.4982,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 65,
+      "pipeline_issue": "Page Title: H1 uses a vague 'Welcome to' prefix which does not clearly describe the page purpose.",
+      "pipeline_wcag": "2.4.2",
+      "baseline_id": 1,
+      "baseline_issue": "On home page - Page title is not descriptive enough to convey its purpose.",
+      "baseline_wcag": "2.4.2 - page titled",
+      "similarity": 0.5175,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 66,
+      "pipeline_issue": "Page Title: The '#1' claim in the title is a marketing/ranking assertion that does not aid accessibility or describe page content meaningfully.",
+      "pipeline_wcag": "2.4.2",
+      "baseline_id": 1,
+      "baseline_issue": "On home page - Page title is not descriptive enough to convey its purpose.",
+      "baseline_wcag": "2.4.2 - page titled",
+      "similarity": 0.6428,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 67,
+      "pipeline_issue": "Page Title: Title includes a colon after 'Vision Aid' but the H1 uses a hyphen ('Vision-Aid'), creating inconsistent branding between the two.",
+      "pipeline_wcag": "2.4.2",
+      "baseline_id": 1,
+      "baseline_issue": "On home page - Page title is not descriptive enough to convey its purpose.",
+      "baseline_wcag": "2.4.2 - page titled",
+      "similarity": 0.4974,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 68,
+      "pipeline_issue": "Heading Structure: {'issue': 'Duplicate H1 and H2 with nearly identical text', 'detail': \"Both an H1 ('Welcome to Vision-Aid') and an H2 ('Welcome to Vision-Aid!') exist with essentially the same text, creating redundancy and confusion about the page's primary heading.\"}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 6,
+      "baseline_issue": "On home page, 'Primary heading is marked ups with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4619,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 69,
+      "pipeline_issue": "Heading Structure: {'issue': 'Multiple duplicate headings', 'detail': \"'Highlights from the last quarter' appears three times as an H2, and 'A Journey of Resilience and Hope: Farhan's Success Story' and 'Vision-Aid's collaboration with Christian Medical College (CMC), Vellore' each appear twice. This makes it impossible for assistive technology users to distinguish between these sections.\"}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 10,
+      "baseline_issue": "On home page - 'Sub-sections present under \"Why Customers trust Vision-Aid\" section are marked up with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4517,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 70,
+      "pipeline_issue": "Heading Structure: {'issue': 'Flat, non-hierarchical structure for content that should be grouped', 'detail': \"The page presents a long flat list of H2 headings (success stories, news items, quarterly highlights) without any grouping or parent sections. These items logically belong under categories (e.g., 'Success Stories', 'News & Events', 'Quarterly Updates') but are all siblings at the same level, making the outline overwhelming and hard to navigate.\"}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 10,
+      "baseline_issue": "On home page - 'Sub-sections present under \"Why Customers trust Vision-Aid\" section are marked up with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.6347,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 71,
+      "pipeline_issue": "Heading Structure: {'issue': \"Heading 'For more details click here' is vague and non-descriptive\", 'detail': 'This H2 heading describes an action rather than the content of the section. It provides no meaningful information about what the section contains.'}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 9,
+      "baseline_issue": "On home page, - 'We facilitate the creation of an inclusive digital ecosystem for persons with disabilities' is marked up as h2 unnecessarily",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.3878,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 72,
+      "pipeline_issue": "Heading Structure: {'issue': 'Heading used for a call-to-action / instructional text rather than a section label', 'detail': \"'Any gift of Smart Assistive Technology will be doubled by a generous matching grant.' and 'Note:- Email is the preferred and recommended way to contact us.' are full sentences used as headings. They function as body content or notes, not as section labels.\"}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 9,
+      "baseline_issue": "On home page, - 'We facilitate the creation of an inclusive digital ecosystem for persons with disabilities' is marked up as h2 unnecessarily",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.3905,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 73,
+      "pipeline_issue": "Heading Structure: {'issue': 'Heading used for promotional paragraph text', 'detail': \"'Please contribute to our Smart Phone and Smart Vision program \u2013 every donation will be quadrupled via matching grants from other donors! A signle donation will impact 4 lives!' is a lengthy promotional sentence (with a typo) used as an H3 heading. This is body content, not a heading.\"}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 9,
+      "baseline_issue": "On home page, - 'We facilitate the creation of an inclusive digital ecosystem for persons with disabilities' is marked up as h2 unnecessarily",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4514,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 74,
+      "pipeline_issue": "Heading Structure: {'issue': \"Vague heading 'What's New'\", 'detail': \"While common, this heading is vague in context because the entire page appears to be a stream of news items and updates, making it unclear what specifically falls under 'What's New' versus the many other news-like H2 headings.\"}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 9,
+      "baseline_issue": "On home page, - 'We facilitate the creation of an inclusive digital ecosystem for persons with disabilities' is marked up as h2 unnecessarily",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4539,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 75,
+      "pipeline_issue": "Heading Structure: {'issue': 'No logical progression or clear content outline', 'detail': 'The heading structure does not form a coherent document outline. It mixes welcome content, news updates, success stories, donation appeals, event promotions, organizational awards, and contact information in a seemingly random order with no clear sectional grouping.'}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 9,
+      "baseline_issue": "On home page, - 'We facilitate the creation of an inclusive digital ecosystem for persons with disabilities' is marked up as h2 unnecessarily",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.3862,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 76,
+      "pipeline_issue": "Heading Structure: {'issue': 'Duplicate H3 headings', 'detail': \"'See how the visually impaired benefit from your gift of a Smart Phone' appears twice as an H3, making it indistinguishable for screen reader users navigating by headings.\"}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 6,
+      "baseline_issue": "On home page, 'Primary heading is marked ups with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.647,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 77,
+      "pipeline_issue": "Heading Structure: {'issue': 'Sponsors heading contains instructional text', 'detail': \"'Sponsors Welcome for the VISION-AID 2023 ANNUAL EVENT . For more details, please click here' combines a section label with a call-to-action, making it unclear and overly long as a heading.\"}",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 9,
+      "baseline_issue": "On home page, - 'We facilitate the creation of an inclusive digital ecosystem for persons with disabilities' is marked up as h2 unnecessarily",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.3904,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 78,
+      "pipeline_issue": "Vague heading: \"What's New\"",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 6,
+      "baseline_issue": "On home page, 'Primary heading is marked ups with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4386,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 79,
+      "pipeline_issue": "Vague heading: \"For more details click here\"",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 6,
+      "baseline_issue": "On home page, 'Primary heading is marked ups with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4382,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 80,
+      "pipeline_issue": "Vague heading: \"Donate\"",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 6,
+      "baseline_issue": "On home page, 'Primary heading is marked ups with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4375,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 81,
+      "pipeline_issue": "Vague heading: \"Contact\"",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 6,
+      "baseline_issue": "On home page, 'Primary heading is marked ups with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4375,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 82,
+      "pipeline_issue": "Vague heading: \"Follow Us\"",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 10,
+      "baseline_issue": "On home page - 'Sub-sections present under \"Why Customers trust Vision-Aid\" section are marked up with incorrect heading mark-up'.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4406,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 83,
+      "pipeline_issue": "Unclear link: \"(no text)\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.397,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 84,
+      "pipeline_issue": "Unclear link: \"X-twitter\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4436,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 85,
+      "pipeline_issue": "Unclear link: \"USA\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4563,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 86,
+      "pipeline_issue": "Unclear link: \"INDIA\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4612,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 87,
+      "pipeline_issue": "Unclear link: \"Enable\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4618,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 88,
+      "pipeline_issue": "Unclear link: \"Educate\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.456,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 89,
+      "pipeline_issue": "Unclear link: \"Mobile Technology\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3975,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 90,
+      "pipeline_issue": "Unclear link: \"Microsoft Excel\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3919,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 91,
+      "pipeline_issue": "Unclear link: \"Python Programming\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4603,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 92,
+      "pipeline_issue": "Unclear link: \"SQL\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4426,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 93,
+      "pipeline_issue": "Unclear link: \"ChatGPT\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3898,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 94,
+      "pipeline_issue": "Unclear link: \"Recruitment Process\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3813,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 95,
+      "pipeline_issue": "Unclear link: \"Basic Braille\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3935,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 96,
+      "pipeline_issue": "Unclear link: \"Empower\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4565,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 97,
+      "pipeline_issue": "Unclear link: \"Innovations\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4495,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 98,
+      "pipeline_issue": "Unclear link: \"Academy\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4495,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 99,
+      "pipeline_issue": "Unclear link: \"Books\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4405,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 100,
+      "pipeline_issue": "Unclear link: \"Videos\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3927,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 101,
+      "pipeline_issue": "Unclear link: \"RELATED SITES\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3837,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 102,
+      "pipeline_issue": "Unclear link: \"2026\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4546,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 103,
+      "pipeline_issue": "Unclear link: \"2025\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4575,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 104,
+      "pipeline_issue": "Unclear link: \"2024\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4587,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 105,
+      "pipeline_issue": "Unclear link: \"Amal Balachundhar\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4477,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 106,
+      "pipeline_issue": "Unclear link: \"Shreya Kalavur\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4501,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 107,
+      "pipeline_issue": "Unclear link: \"Dyuthi Prashanth\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4496,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 108,
+      "pipeline_issue": "Unclear link: \"Prisha Mishra\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4499,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 109,
+      "pipeline_issue": "Unclear link: \"Siddhi Talekar\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4491,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 110,
+      "pipeline_issue": "Unclear link: \"2023\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4575,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 111,
+      "pipeline_issue": "Unclear link: \"Naatu Naatu\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3619,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 112,
+      "pipeline_issue": "Unclear link: \"2022\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4575,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 113,
+      "pipeline_issue": "Unclear link: \"India\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4596,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 114,
+      "pipeline_issue": "Unclear link: \"online programs\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4481,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 115,
+      "pipeline_issue": "Unclear link: \"services\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4435,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 116,
+      "pipeline_issue": "Unclear link: \"innovative programs\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4516,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 117,
+      "pipeline_issue": "Unclear link: \"international awards\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4562,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 118,
+      "pipeline_issue": "Unclear link: \"short video\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3914,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 119,
+      "pipeline_issue": "Unclear link: \"our work\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4474,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 120,
+      "pipeline_issue": "Unclear link: \"Continue Reading\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4588,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 121,
+      "pipeline_issue": "Unclear link: \"http://www.VisionAid.org\"",
+      "pipeline_wcag": "2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.4663,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 122,
+      "pipeline_issue": "Landmark issue: {'type': 'excessive_landmark_count', 'detail': 'There are 4 nav landmarks, which is excessive and may overwhelm assistive technology users navigating by landmarks.'}",
+      "pipeline_wcag": "1.3.1",
+      "baseline_id": 3,
+      "baseline_issue": "On home page - header and footer regions are not marked up semantically.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.635,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 123,
+      "pipeline_issue": "Landmark issue: {'type': 'duplicate_landmark_labels', 'detail': \"Two nav landmarks share the identical aria_label 'Menu', making them indistinguishable to screen reader users. Each nav with the same role should have a unique accessible name.\"}",
+      "pipeline_wcag": "1.3.1",
+      "baseline_id": 3,
+      "baseline_issue": "On home page - header and footer regions are not marked up semantically.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.453,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 124,
+      "pipeline_issue": "Landmark issue: {'type': 'missing_landmark_labels', 'detail': 'Two nav landmarks have no aria_label (null). When multiple nav elements exist, each must have a unique accessible label to differentiate them.'}",
+      "pipeline_wcag": "1.3.1",
+      "baseline_id": 3,
+      "baseline_issue": "On home page - header and footer regions are not marked up semantically.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.4413,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 125,
+      "pipeline_issue": "Landmark issue: {'type': 'structural_imbalance', 'detail': \"The page is navigation-heavy (4 nav landmarks) relative to content landmarks (1 main, 1 region). This imbalance suggests the landmark structure does not accurately reflect the page's content hierarchy.\"}",
+      "pipeline_wcag": "1.3.1",
+      "baseline_id": 3,
+      "baseline_issue": "On home page - header and footer regions are not marked up semantically.",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.6362,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 126,
+      "pipeline_issue": "Poor label quality: \"Subscribe to our mailing list\"",
+      "pipeline_wcag": "1.3.1, 2.4.6",
+      "baseline_id": 9,
+      "baseline_issue": "On home page, - 'We facilitate the creation of an inclusive digital ecosystem for persons with disabilities' is marked up as h2 unnecessarily",
+      "baseline_wcag": "1.3.1 - info and relationships",
+      "similarity": 0.3912,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 127,
+      "pipeline_issue": "Required field not clearly indicated: \"Subscribe to our mailing list\"",
+      "pipeline_wcag": "3.3.2",
+      "baseline_id": null,
+      "baseline_issue": null,
+      "baseline_wcag": null,
+      "similarity": 0.1285,
+      "match_type": "none"
+    },
+    {
+      "pipeline_id": 128,
+      "pipeline_issue": "Poor alt text quality (acceptable): \"Highlights from the last quarter\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.3649,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 129,
+      "pipeline_issue": "Poor alt text quality (acceptable): \"Mast. Muhamad Farhan\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 16,
+      "baseline_issue": "Incorrect alternative text for the content present in slides.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.3844,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 130,
+      "pipeline_issue": "Poor alt text quality (poor): \"With CMC Vellore\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.366,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 131,
+      "pipeline_issue": "Poor alt text quality (poor): \"A girl\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 16,
+      "baseline_issue": "Incorrect alternative text for the content present in slides.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.3889,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 132,
+      "pipeline_issue": "Poor alt text quality (poor): \"Mohan Raj's\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.5073,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 133,
+      "pipeline_issue": "Poor alt text quality (poor): \"A girl\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 16,
+      "baseline_issue": "Incorrect alternative text for the content present in slides.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.3827,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 134,
+      "pipeline_issue": "Poor alt text quality (poor): \"A boy\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.3826,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 135,
+      "pipeline_issue": "Poor alt text quality (poor): \"collage\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.4981,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 136,
+      "pipeline_issue": "Poor alt text quality (acceptable): \"A girl using laptop\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.377,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 137,
+      "pipeline_issue": "Poor alt text quality (poor): \"VA Partners 2.8\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.513,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 138,
+      "pipeline_issue": "Poor alt text quality (acceptable): \"A man using a laptop\"",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.3811,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 139,
+      "pipeline_issue": "Possibly mis-marked as decorative: Shakuntala-_poster_fb.jpg",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.415,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 140,
+      "pipeline_issue": "Possibly mis-marked as decorative: VisionAidBanner-800x600-1.png",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.6211,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 141,
+      "pipeline_issue": "Actionable image alt issue: \"Map of India\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.4946,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 142,
+      "pipeline_issue": "Actionable image alt issue: \"Map of the USA\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.4948,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 143,
+      "pipeline_issue": "Actionable image alt issue: \"Vision-Aid Logo\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.4578,
+      "match_type": "strong"
+    },
+    {
+      "pipeline_id": 144,
+      "pipeline_issue": "Actionable image alt issue: \"Mast. Muhamad Farhan\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3973,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 145,
+      "pipeline_issue": "Actionable image alt issue: \"With CMC Vellore\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3909,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 146,
+      "pipeline_issue": "Actionable image alt issue: \"Group of People\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3946,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 147,
+      "pipeline_issue": "Actionable image alt issue: \"Monika\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3892,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 148,
+      "pipeline_issue": "Actionable image alt issue: \"Anshu's\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3887,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 149,
+      "pipeline_issue": "Actionable image alt issue: \"Mr. Yogendra Singh\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.388,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 150,
+      "pipeline_issue": "Actionable image alt issue: \"Group of students\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3881,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 151,
+      "pipeline_issue": "Actionable image alt issue: \"Girl standing\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3859,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 152,
+      "pipeline_issue": "Actionable image alt issue: \"Two women standing next to each other\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3856,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 153,
+      "pipeline_issue": "Actionable image alt issue: \"Harshada Lokhande\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3879,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 154,
+      "pipeline_issue": "Actionable image alt issue: \"beneficiary-undergoing-vision-check--scaled\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 2,
+      "baseline_issue": "Link text is not descriptive enough for skip link.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3848,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 155,
+      "pipeline_issue": "Actionable image alt issue: \"A man using laptop\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3877,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 156,
+      "pipeline_issue": "Actionable image alt issue: \"A man standing on podium\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3868,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 157,
+      "pipeline_issue": "Actionable image alt issue: \"Computer Training\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.4491,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 158,
+      "pipeline_issue": "Actionable image alt issue: \"CN rating\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3881,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 159,
+      "pipeline_issue": "Actionable image alt issue: \"CN rating\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3912,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 160,
+      "pipeline_issue": "Actionable image alt issue: \"Group of people\"",
+      "pipeline_wcag": "1.1.1, 2.4.4",
+      "baseline_id": 12,
+      "baseline_issue": "On home page - 'read more  link text is not descriptive enough to understand its purpose'.",
+      "baseline_wcag": "2.4.4 - link purpose (in context)",
+      "similarity": 0.3853,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 161,
+      "pipeline_issue": "SVG accessibility issue: (unlabeled)",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.408,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 162,
+      "pipeline_issue": "Icon font issue (unlabeled_control): fas fa-search",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.3628,
+      "match_type": "weak"
+    },
+    {
+      "pipeline_id": 163,
+      "pipeline_issue": "Icon font issue (missing_label): fas fa-caret-down",
+      "pipeline_wcag": "1.1.1",
+      "baseline_id": 4,
+      "baseline_issue": "On home page - 'Logo image is hidden from screen reader'.",
+      "baseline_wcag": "1.1.1 - Non-text content",
+      "similarity": 0.3938,
+      "match_type": "weak"
+    }
+  ],
+  "unmatched_baseline": [
+    {
+      "baseline_id": 5,
+      "issue_title": "On home page - 'va.dat' text under header region marked up as h2 unnecessarily.",
+      "wcag_sc": "1.3.1 - info and relationships",
+      "element_name": "Paragraph"
+    },
+    {
+      "baseline_id": 7,
+      "issue_title": "On home page - Multiple links are marked up as heading unnecessarily.",
+      "wcag_sc": "1.3.1 - info and relationships",
+      "element_name": "Links"
+    },
+    {
+      "baseline_id": 11,
+      "issue_title": "On home page - 'Sub-sections of \"A lasting impact through services' are marked up with incorrect heading mark-up semantically.",
+      "wcag_sc": "1.3.1 - info and relationships",
+      "element_name": "Heading"
+    },
+    {
+      "baseline_id": 13,
+      "issue_title": "On home page - 'DAT Business Approach Process link is present above its section-head.",
+      "wcag_sc": "Usable",
+      "element_name": "Links"
+    },
+    {
+      "baseline_id": 14,
+      "issue_title": "On home page, 'No mechanism present to control auto-moving content on page.",
+      "wcag_sc": "2.2.2 - pause, stop, hide",
+      "element_name": "Auto-moving content"
+    },
+    {
+      "baseline_id": 15,
+      "issue_title": "On home page, 'missing dynamic announcement for updated content on activating previous/next buttons.",
+      "wcag_sc": "4.1.3 - status messages",
+      "element_name": "Dynamic Announcement"
+    }
+  ]
+}

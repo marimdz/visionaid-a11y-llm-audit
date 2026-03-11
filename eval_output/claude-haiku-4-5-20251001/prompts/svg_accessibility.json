@@ -1,0 +1,21 @@
+{
+  "prompt_name": "svg_accessibility",
+  "checklist": "CL03",
+  "wcag_criteria": [
+    "1.1.1"
+  ],
+  "prompt_index": 5,
+  "prompt_text": "You are an accessibility auditor evaluating inline SVG elements for WCAG\ncriterion 1.1.1 (Non-text Content, Level A).\n\nOnly non-decorative SVGs (those without aria-hidden=\"true\") are included.\nFor informative SVGs, the WCAG-compliant pattern is:\n\n  svg role=\"img\" aria-labelledby=\"svg-title-id\"\n    title id=\"svg-title-id\" Descriptive title /title\n    desc Optional longer description /desc\n\nFor each SVG, evaluate:\n- Is role=\"img\" set?\n- Is a title element present?\n- Is aria-labelledby linking to the title?\n- If a title exists, is the title text meaningful and descriptive?\n- Is an aria-label used as an alternative — is it sufficient?\n\nReturn a JSON array:\n[\n  {\n    \"role\": \"string or null\",\n    \"aria_label\": \"string or null\",\n    \"aria_labelledby\": \"string or null\",\n    \"title\": \"string or null\",\n    \"desc\": \"string or null\",\n    \"has_accessible_name\": true/false,\n    \"title_is_meaningful\": true/false/null,\n    \"issues\": [],\n    \"recommendation\": \"string or null\"\n  }\n]\n\nData: [\n  {\n    \"role\": null,\n    \"aria_label\": null,\n    \"aria_labelledby\": null,\n    \"title\": null,\n    \"desc\": null\n  }\n]",
+  "payload_slice": "[\n  {\n    \"role\": null,\n    \"aria_label\": null,\n    \"aria_labelledby\": null,\n    \"title\": null,\n    \"desc\": null\n  }\n]",
+  "api_result": {
+    "success": true,
+    "response": "```json\n[\n  {\n    \"role\": null,\n    \"aria_label\": null,\n    \"aria_labelledby\": null,\n    \"title\": null,\n    \"desc\": null,\n    \"has_accessible_name\": false,\n    \"title_is_meaningful\": null,\n    \"issues\": [\n      \"Missing role=\\\"img\\\" — SVG is not identified as an image to assistive technologies\",\n      \"No title element — no accessible name provided\",\n      \"No aria-label — no fallback text alternative\",\n      \"No aria-labelledby — no reference to a title ID\",\n      \"SVG has no accessible name and will be skipped by screen readers\"\n    ],\n    \"recommendation\": \"Add role=\\\"img\\\" and either: (1) include a <title id=\\\"unique-id\\\"> element with descriptive text and set aria-labelledby=\\\"unique-id\\\", or (2) add aria-label=\\\"descriptive text\\\". Example: <svg role=\\\"img\\\" aria-labelledby=\\\"svg-title\\\"><title id=\\\"svg-title\\\">Descriptive title</title>...</svg>\"\n  }\n]\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "usage": {
+      "input_tokens": 360,
+      "output_tokens": 269
+    },
+    "stop_reason": "end_turn",
+    "duration_seconds": 2.21
+  }
+}

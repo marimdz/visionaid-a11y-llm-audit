@@ -1,0 +1,549 @@
+{
+  "images": {
+    "informative": [
+      {
+        "src": "VisionAidLogo150.png",
+        "alt": "Vision-Aid Logo",
+        "alt_flags": []
+      },
+      {
+        "src": "lvpei-professional-scaled.jpg",
+        "alt": "Highlights from the last quarter",
+        "alt_flags": []
+      },
+      {
+        "src": "image.jpeg",
+        "alt": "Mast. Muhamad Farhan",
+        "alt_flags": []
+      },
+      {
+        "src": "image-3.jpg",
+        "alt": "With CMC Vellore",
+        "alt_flags": []
+      },
+      {
+        "src": "p1.jpg",
+        "alt": "A girl",
+        "alt_flags": []
+      },
+      {
+        "src": "WhatsApp-Image-2025-08-28-at-4.09.32-PM-e1756902345272.jpeg",
+        "alt": "Mohan Raj’s",
+        "alt_flags": []
+      },
+      {
+        "src": "p12.jpg",
+        "alt": "A girl",
+        "alt_flags": []
+      },
+      {
+        "src": "new-img.jpg",
+        "alt": "A boy",
+        "alt_flags": []
+      },
+      {
+        "src": "va-ldrshp-team-full-2025-2026.jpeg",
+        "alt": "collage",
+        "alt_flags": []
+      },
+      {
+        "src": "thumbnail_Swati-Ingole.jpg",
+        "alt": "A girl using laptop",
+        "alt_flags": []
+      },
+      {
+        "src": "location-new.jpg",
+        "alt": "VA Partners 2.8",
+        "alt_flags": []
+      },
+      {
+        "src": "Picture6.jpg",
+        "alt": "A man using a laptop",
+        "alt_flags": []
+      }
+    ],
+    "decorative": [
+      {
+        "src": "Shakuntala-_poster_fb.jpg",
+        "alt": null,
+        "alt_flags": [],
+        "surrounding_text": ""
+      },
+      {
+        "src": "VisionAidBanner-800x600-1.png",
+        "alt": null,
+        "alt_flags": [],
+        "surrounding_text": ""
+      }
+    ],
+    "actionable": [
+      {
+        "src": "0e768a8b-eb42-49c8-8e42-59b484d52a51as-1.webp",
+        "alt": "Map of India",
+        "alt_flags": [],
+        "context": "in_button",
+        "button_text": "INDIA",
+        "button_aria_label": "Select India"
+      },
+      {
+        "src": "0e768a8b-eb42-49c8-8e42-59b484d52a51as-2.webp",
+        "alt": "Map of the USA",
+        "alt_flags": [],
+        "context": "in_button",
+        "button_text": "USA",
+        "button_aria_label": "Select USA"
+      },
+      {
+        "src": "VisionAidLogo150.png",
+        "alt": "Vision-Aid Logo",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org"
+      },
+      {
+        "src": "united-states-48x48.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": "USA",
+        "link_href": "https://visionaid.org"
+      },
+      {
+        "src": "india-1-48x48.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": "INDIA",
+        "link_href": "https://www.visionaidindia.org"
+      },
+      {
+        "src": "united-states-48x48.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": "USA",
+        "link_href": "https://visionaid.org"
+      },
+      {
+        "src": "india-1-48x48.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": "INDIA",
+        "link_href": "https://www.visionaidindia.org"
+      },
+      {
+        "src": "lvpei-professional-1024x768.jpg",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/highlights-from-the-last-quarter/"
+      },
+      {
+        "src": "image.jpeg",
+        "alt": "Mast. Muhamad Farhan",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/a-journey-of-resilience-and-hope-farhans-success-stor"
+      },
+      {
+        "src": "image-3-1024x768.jpg",
+        "alt": "With CMC Vellore",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/vision-aids-collaboration-with-christian-medical-coll"
+      },
+      {
+        "src": "new112-1024x867.png",
+        "alt": "Group of People",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/six-visually-impaired-candidates-successfully-placed-"
+      },
+      {
+        "src": "image65.jpg",
+        "alt": "Monika",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/redefining-possibilities-monikas-journey/"
+      },
+      {
+        "src": "new2-1024x425.jpg",
+        "alt": "Anshu’s",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/anshus-journey-a-new-ray-of-hope/"
+      },
+      {
+        "src": "new1.jpg",
+        "alt": "Mr. Yogendra Singh",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/empowering-independence-through-accessible-technology"
+      },
+      {
+        "src": "nidhi.jpg",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/eye-hospitals/sitapur-eye-hospital/"
+      },
+      {
+        "src": "image11112-1024x576.jpg",
+        "alt": "Group of students",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/project-chashma/"
+      },
+      {
+        "src": "image11-1024x458.png",
+        "alt": "Girl standing",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/vision-aid-model-showcased-in-aao-conference-in-bosto"
+      },
+      {
+        "src": "Picture131-235x300.png",
+        "alt": "Two women standing next to each other",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/nagajothis-journey-from-vision-challenges-to-bright-d"
+      },
+      {
+        "src": "Picture312-226x300.jpg",
+        "alt": "Harshada Lokhande",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/success-spotlight-harshada-lokhande-from-determined-y"
+      },
+      {
+        "src": "beneficiary-undergoing-vision-check--225x300.jpg",
+        "alt": "beneficiary-undergoing-vision-check--scaled",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/aravind-eye-hospital-tirunelveli-rolls-out-first-comm"
+      },
+      {
+        "src": "Picture192.jpg",
+        "alt": "A man using laptop",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/anil-kumar-a-journey-of-hope-and-learning/"
+      },
+      {
+        "src": "unnamed-edited.jpg",
+        "alt": "A man standing on podium",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/vision-aid-showcases-innovation-in-assistive-technolo"
+      },
+      {
+        "src": "Computer-training.jpg",
+        "alt": "Computer Training",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/last-quarter-at-a-glance-transforming-lives-across-in"
+      },
+      {
+        "src": "cn.png",
+        "alt": "CN rating",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/vision-aid-usa-earns-rare-100-100-score-and-4-star-ra"
+      },
+      {
+        "src": "cn.png",
+        "alt": "CN rating",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/vision-aid-usa-earns-rare-100-100-score-and-4-star-ra"
+      },
+      {
+        "src": "poster.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/how-your-donation-helps/donations/"
+      },
+      {
+        "src": "flyer.jpeg",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/how-your-donation-helps/donations/"
+      },
+      {
+        "src": "aarush-smartphone3_prev_ui.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://youtu.be/_gZHXscmF9w"
+      },
+      {
+        "src": "picture0-banner.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://indianewengland.com/vision-aid-to-celebrate-two-decades-of-enabling-educ"
+      },
+      {
+        "src": "Mobile_Fundraiser_matching_grant2.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://www.zeffy.com/en-US/donation-form/87ba40c5-63ff-4bab-85ec-3f9f1ed512cc"
+      },
+      {
+        "src": "YouTube-Logo2_prev_ui.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://youtu.be/_gZHXscmF9w"
+      },
+      {
+        "src": "328132373_878095486849757_8847506174035582329_n.jpg",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/event"
+      },
+      {
+        "src": "SmartVision.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "http://visionaid.org/wp-content/uploads/2022/04/SmartVision-Overview.pdf"
+      },
+      {
+        "src": "additionalphoto-scaled.webp",
+        "alt": "Group of people",
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/news/vision-aid-receives-non-profit-organization-of-the-ye"
+      },
+      {
+        "src": "Group-28.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/newsletters"
+      },
+      {
+        "src": "brochure-download-image.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "http://visionaid.org/wp-content/uploads/2025/07/VA-Org-Brochure-USA-2.4.pdf"
+      },
+      {
+        "src": "course-catalog.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "http://visionaid.org/wp-content/uploads/2022/02/Vision-Aid-2021-Course-Brochure."
+      },
+      {
+        "src": "VisionAidModel.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://visionaid.org/vision-aid-programs/the-vision-aid-model/"
+      },
+      {
+        "src": "sddefault-1.jpg",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://youtu.be/kQanYstoSTM"
+      },
+      {
+        "src": "Vision-Aid-Ram-e1559962834212.png",
+        "alt": null,
+        "alt_flags": [],
+        "context": "in_link",
+        "link_aria_label": null,
+        "link_text": null,
+        "link_href": "https://indianewengland.com/harvard-university-awards-derek-bok-public-service-p"
+      }
+    ],
+    "complex": []
+  },
+  "svgs": [
+    {
+      "role": null,
+      "aria_label": null,
+      "aria_labelledby": null,
+      "title": null,
+      "desc": null
+    }
+  ],
+  "icon_fonts": [
+    {
+      "classes": "fas fa-search",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": true
+    },
+    {
+      "classes": "fab fa-facebook",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "Facebook",
+      "sole_content": false
+    },
+    {
+      "classes": "fab fa-x-twitter",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "X-twitter",
+      "sole_content": false
+    },
+    {
+      "classes": "fab fa-youtube",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "Youtube",
+      "sole_content": false
+    },
+    {
+      "classes": "fas fa-caret-down",
+      "aria_hidden": false,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": false
+    },
+    {
+      "classes": "eicon-chevron-left",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": false
+    },
+    {
+      "classes": "eicon-chevron-right",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": false
+    },
+    {
+      "classes": "far fa-building",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": false
+    },
+    {
+      "classes": "fas fa-envelope",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": false
+    },
+    {
+      "classes": "fas fa-phone-alt",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": false
+    },
+    {
+      "classes": "fas fa-home",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": false
+    },
+    {
+      "classes": "fab fa-facebook-square",
+      "aria_hidden": true,
+      "aria_label": null,
+      "visible_text": null,
+      "sibling_text": "",
+      "sole_content": false
+    }
+  ],
+  "media": []
+}

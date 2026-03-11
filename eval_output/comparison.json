@@ -1,0 +1,34 @@
+{
+  "models": [
+    {
+      "model": "claude-sonnet-4-6",
+      "true_positives": 41,
+      "weak_matches": 66,
+      "false_positives": 62,
+      "false_negatives": 5,
+      "precision": 0.2426,
+      "recall": 2.5625,
+      "f1": 0.4432
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "true_positives": 36,
+      "weak_matches": 53,
+      "false_positives": 62,
+      "false_negatives": 5,
+      "precision": 0.2384,
+      "recall": 2.25,
+      "f1": 0.4311
+    },
+    {
+      "model": "claude-opus-4-6",
+      "true_positives": 38,
+      "weak_matches": 64,
+      "false_positives": 61,
+      "false_negatives": 6,
+      "precision": 0.2331,
+      "recall": 2.375,
+      "f1": 0.4246
+    }
+  ]
+}
