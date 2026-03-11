@@ -89,6 +89,54 @@ python entry_points/generate_report.py
 - Do not install new dependencies without team agreement
 - Do not modify test_files/ or any HTML input files
 
+## Evaluation Harness
+
+`entry_points/evaluate.py` compares pipeline output against a human-expert baseline spreadsheet (xlsx with a "Baseline" sheet). It supports single-report evaluation and multi-model comparison runs.
+
+```bash
+# Evaluate an existing CSV report against baseline
+python entry_points/evaluate.py --baseline Results_02222026.xlsx --report test_results/claude/report.csv
+
+# Run pipeline + evaluate across multiple models
+python entry_points/evaluate.py --baseline Results_02222026.xlsx --html test_files/home.html --model claude-sonnet-4-6 claude-haiku-4-5-20251001
+```
+
+Baseline file (`Results_02222026.xlsx`) is in project root but NOT committed to git. It contains 16 human-expert issues from Varsha Rani (Vision Aid DAT team) for `dat.visionaid.org` home page.
+
+## Prompt Engineering Plan (feat/prompt-engineering branch)
+
+### Current state (baseline established 2026-03-11)
+
+- 3-model comparison complete: Sonnet 4.6, Haiku 4.5, Opus 4.6
+- All three models perform similarly (~24% precision, 5-6 false negatives)
+- Model choice has minimal impact — prompt quality is the bottleneck
+- 62 programmatic findings dominate false positives (real issues, not in baseline)
+
+### Evaluation fixes needed (do first)
+
+1. Fix many-to-one scoring: multiple pipeline issues match the same baseline issue, inflating recall >100%. Deduplicate by counting unique baseline issues matched.
+2. Separate programmatic findings from LLM findings in scoring — programmatic issues are valid but weren't in the human baseline, so they skew FP count.
+
+### Prompt improvement targets (by false negative analysis)
+
+These baseline issues are consistently missed across all models:
+
+| Baseline Issue | WCAG | Why Missed |
+|---|---|---|
+| Carousel has no pause/stop control | 2.2.2 | No prompt covers auto-moving content |
+| Missing dynamic announcement for carousel | 4.1.3 | No prompt covers aria-live/status messages |
+| Links marked up as headings | 1.3.1 | Heading prompt doesn't check if headings are actually links |
+| DAT Business link above its section head | Usable | No prompt covers reading/focus order |
+| va.dat text incorrectly marked as h2 | 1.3.1 | Heading prompt flags hierarchy but not misuse of heading tags on non-heading content |
+
+### Approach for prompt improvements
+
+1. Fix evaluation scoring (many-to-one, programmatic separation)
+2. Address false negatives by either extending existing prompts or adding new ones
+3. Test each change against baseline with `evaluate.py`
+4. Compare before/after F1 scores to measure improvement
+5. Once prompts are tuned, re-run multi-model comparison to confirm model choice
+
 ## Common Issues
 
 - HTML test files can be enormous (500K+ tokens) — do not try to read them fully into context
