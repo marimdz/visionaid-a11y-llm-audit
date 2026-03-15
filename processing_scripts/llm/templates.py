@@ -9,10 +9,10 @@ from .registry import PromptSpec
 # Shared preamble injected into every prompt before the payload.
 # Centralised here so prompt .txt files stay focused on task-specific instructions.
 _JUDGEMENT_PREAMBLE = (
-    "Prefer issues requiring human judgement over issues detectable by automated "
-    "markup checks (missing attributes, missing elements, structural violations). "
-    "However, if an element's semantic meaning is being misused (e.g., heading "
-    "tags used for visual styling rather than document structure), report it."
+    "Focus only on issues requiring human judgement. Do not report issues "
+    "that can be detected by automated markup checks such as missing attributes, "
+    "missing elements, or structural violations. Focus only on semantic clarity, "
+    "wording quality, and usability."
 )
 
 # Project root (three levels up: llm/ → processing_scripts/ → project-root/).
