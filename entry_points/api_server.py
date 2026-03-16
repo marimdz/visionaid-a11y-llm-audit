@@ -11,8 +11,11 @@ Usage:
 
 Then open http://localhost:8000 in your browser.
 
-The ANTHROPIC_API_KEY can be supplied per-request in the POST body, or set in
-the .env file / environment. Per-request keys take priority.
+API keys can be supplied per-request in the POST body, or set in the .env
+file / environment.  Per-request keys take priority.
+
+  Anthropic models → field ``api_key``        / env ``ANTHROPIC_API_KEY``
+  OpenAI models    → field ``openai_api_key`` / env ``OPENAI_API_KEY``
 """
 
 import json
@@ -33,8 +36,29 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from entry_points.run_pipeline import run_pipeline  # noqa: E402
 from entry_points.generate_report import generate_report  # noqa: E402
 from vision_aid.ingestion.file_crawler import fetch_page, fetch_pages_nested  # noqa: E402
+from processing_scripts.llm_client.client import is_openai_model  # noqa: E402
 
 STATIC_DIR = PROJECT_ROOT  # index.html and styles.css live at the repo root
+
+
+# ── Key resolution ────────────────────────────────────────────────────────────
+
+def _resolve_api_key(data: dict, model: str) -> str:
+    """Return the appropriate API key for *model* from the request body or env.
+
+    OpenAI models use the ``openai_api_key`` field / ``OPENAI_API_KEY`` env.
+    Anthropic models use the ``api_key`` field / ``ANTHROPIC_API_KEY`` env.
+    Per-request keys take priority over environment variables.
+    """
+    if is_openai_model(model):
+        return (
+            data.get("openai_api_key", "").strip()
+            or os.getenv("OPENAI_API_KEY", "")
+        )
+    return (
+        data.get("api_key", "").strip()
+        or os.getenv("ANTHROPIC_API_KEY", "")
+    )
 
 
 # ── Audit logic ───────────────────────────────────────────────────────────────
@@ -212,12 +236,8 @@ class AuditHandler(BaseHTTPRequestHandler):
             )
             return
 
-        # Per-request key takes priority; fall back to environment
-        api_key = (
-            data.get("api_key", "").strip()
-            or os.getenv("ANTHROPIC_API_KEY", "")
-        )
         model = data.get("model", "claude-haiku-4-5-20251001")
+        api_key = _resolve_api_key(data, model)
 
         print(
             f"  Audit request: {len(html_content):,} chars, "
@@ -243,11 +263,8 @@ class AuditHandler(BaseHTTPRequestHandler):
             self._send_json({"success": False, "error": "url is required"}, 400)
             return
 
-        api_key = (
-            data.get("api_key", "").strip()
-            or os.getenv("ANTHROPIC_API_KEY", "")
-        )
         model = data.get("model", "claude-haiku-4-5-20251001")
+        api_key = _resolve_api_key(data, model)
 
         print(
             f"  URL audit request ({'nested' if nested else 'single'}): {url}, "

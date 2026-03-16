@@ -422,22 +422,48 @@
                   aria-describedby="apiKeyHint"
                 />
                 <p class="field-hint" id="apiKeyHint">
-                  Without a key, only programmatic checks run. Your key is never
-                  stored or logged.
+                  Required when using a Claude model. Without a key, only
+                  programmatic checks run. Never stored or logged.
                 </p>
               </div>
 
               <div class="form-group">
                 <label for="modelSelect">Model</label>
                 <select id="modelSelect" name="model">
-                  <option value="claude-haiku-4-5-20251001">
-                    Claude Haiku 4.5 — faster, cheaper
-                  </option>
-                  <option value="claude-sonnet-4-20250514">
-                    Claude Sonnet 4 — higher quality
-                  </option>
+                  <optgroup label="Claude (Anthropic)">
+                    <option value="claude-haiku-4-5-20251001">
+                      Claude Haiku 4.5 — faster, cheaper
+                    </option>
+                    <option value="claude-sonnet-4-20250514">
+                      Claude Sonnet 4 — higher quality
+                    </option>
+                  </optgroup>
+                  <optgroup label="OpenAI">
+                    <option value="gpt-4o-mini">GPT-4o mini — faster, cheaper</option>
+                    <option value="gpt-4o">GPT-4o — higher quality</option>
+                    <option value="gpt-4.1-mini">GPT-4.1 mini — faster, cheaper</option>
+                    <option value="gpt-4.1">GPT-4.1 — higher quality</option>
+                  </optgroup>
                 </select>
               </div>
+            </div>
+
+            <div class="form-group">
+              <label for="openaiKeyInput">
+                OpenAI API Key
+                <span class="optional-mark">(optional)</span>
+              </label>
+              <input
+                type="password"
+                id="openaiKeyInput"
+                name="openai_api_key"
+                placeholder="sk-…"
+                autocomplete="off"
+                aria-describedby="openaiKeyHint"
+              />
+              <p class="field-hint" id="openaiKeyHint">
+                Required when using an OpenAI model. Your key is never stored or logged.
+              </p>
             </div>
 
             <button type="submit" class="audit-btn" id="auditSubmitBtn">
@@ -616,6 +642,7 @@
 
           const mode = getAuditMode();
           const apiKey = document.getElementById("apiKeyInput").value.trim();
+          const openaiKey = document.getElementById("openaiKeyInput").value.trim();
           const model = document.getElementById("modelSelect").value;
 
           let endpoint, requestBody;
@@ -631,7 +658,7 @@
               return;
             }
             endpoint = "/api/audit";
-            requestBody = { html_content: htmlContent, api_key: apiKey, model };
+            requestBody = { html_content: htmlContent, api_key: apiKey, openai_api_key: openaiKey, model };
           } else {
             const urlVal = document.getElementById("urlInput").value.trim();
             if (!urlVal) {
@@ -642,7 +669,7 @@
             }
             endpoint =
               mode === "url-nested" ? "/api/audit/url/nested" : "/api/audit/url";
-            requestBody = { url: urlVal, api_key: apiKey, model };
+            requestBody = { url: urlVal, api_key: apiKey, openai_api_key: openaiKey, model };
           }
 
           const submitBtn = document.getElementById("auditSubmitBtn");
