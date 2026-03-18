@@ -191,6 +191,32 @@ a:hover {
   font-weight: 500;
 }
 
+.survey-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.survey-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #D4A017;
+  color: #FFFFFF;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.survey-btn:hover {
+  background: #b8890f;
+}
+
+.survey-btn:focus-visible {
+  outline: 2px solid #0D7377;
+  outline-offset: 2px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -292,9 +318,18 @@ section:nth-child(even) {
   margin-bottom: 4px;
 }
 
-.team-card p {
+.team-card .team-role {
   font-size: 0.875rem;
+  color: #0D7377;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.team-card .team-desc {
+  font-size: 0.8125rem;
   color: #595959;
+  line-height: 1.5;
+  text-align: left;
   margin-bottom: 0;
 }
 
