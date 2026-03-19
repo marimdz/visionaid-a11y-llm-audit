@@ -38,6 +38,30 @@ from entry_points.generate_report import generate_report  # noqa: E402
 from vision_aid.ingestion.file_crawler import fetch_page, fetch_pages_nested  # noqa: E402
 from processing_scripts.llm_client.client import is_openai_model  # noqa: E402
 
+
+# ── Multi-page splitting ─────────────────────────────────────────────────────
+
+_PAGE_MARKER = re.compile(r"<!--\s*PAGE:\s*(.*?)\s*-->")
+
+
+def split_pages(html: str) -> list[tuple[str, str]]:
+    """Split concatenated HTML from ``fetch_pages_nested`` into per-page chunks.
+
+    Returns a list of ``(url, html)`` tuples.  If no PAGE markers are found
+    the entire string is returned as a single page with url ``"unknown"``.
+    """
+    markers = list(_PAGE_MARKER.finditer(html))
+    if not markers:
+        return [("unknown", html)]
+
+    pages: list[tuple[str, str]] = []
+    for i, m in enumerate(markers):
+        url = m.group(1)
+        start = m.end()
+        end = markers[i + 1].start() if i + 1 < len(markers) else len(html)
+        pages.append((url, html[start:end].strip()))
+    return pages
+
 STATIC_DIR = PROJECT_ROOT  # index.html and styles.css live at the repo root
 
 
@@ -277,8 +301,89 @@ class AuditHandler(BaseHTTPRequestHandler):
             self._send_json({"success": False, "error": f"Failed to fetch URL: {exc}"}, 502)
             return
 
-        result = run_audit(html_content, api_key, model)
-        self._send_json(result)
+        if not nested:
+            result = run_audit(html_content, api_key, model)
+            self._send_json(result)
+            return
+
+        # ── Multi-page: run the pipeline once per page, then merge ────────
+        pages = split_pages(html_content)
+        print(f"  Split into {len(pages)} page(s)")
+
+        per_page_results: list[dict] = []
+        merged = {
+            "success": True,
+            "programmatic_findings": [],
+            "llm_results": {},
+            "csv_report": None,
+            "skipped_prompts": [],
+            "pages_audited": [],
+            "summary": {
+                "programmatic_count": 0,
+                "programmatic_by_checker": {},
+                "llm_prompts_run": 0,
+                "llm_prompts_skipped": 0,
+                "total_input_tokens": 0,
+                "total_output_tokens": 0,
+                "estimated_cost_usd": None,
+                "model": model,
+                "dry_run": not api_key,
+                "pages": len(pages),
+            },
+        }
+
+        total_cost = 0.0
+        for page_url, page_html in pages:
+            print(f"  Auditing: {page_url}")
+            page_result = run_audit(page_html, api_key, model)
+
+            if not page_result.get("success"):
+                print(f"    FAILED: {page_result.get('error')}")
+                continue
+
+            merged["pages_audited"].append(page_url)
+
+            # Tag programmatic findings with source URL
+            for finding in page_result.get("programmatic_findings", []):
+                finding["page_url"] = page_url
+            merged["programmatic_findings"].extend(
+                page_result.get("programmatic_findings", [])
+            )
+
+            # Tag LLM results with source URL (namespace by page)
+            for name, result_data in page_result.get("llm_results", {}).items():
+                result_data["page_url"] = page_url
+                key = f"{name}|{page_url}"
+                merged["llm_results"][key] = result_data
+
+            merged["skipped_prompts"].extend(
+                page_result.get("skipped_prompts", [])
+            )
+
+            # Accumulate summary stats
+            page_summary = page_result.get("summary", {})
+            merged["summary"]["programmatic_count"] += page_summary.get(
+                "programmatic_count", 0
+            )
+            merged["summary"]["llm_prompts_run"] += page_summary.get(
+                "llm_prompts_run", 0
+            )
+            merged["summary"]["llm_prompts_skipped"] += page_summary.get(
+                "llm_prompts_skipped", 0
+            )
+            merged["summary"]["total_input_tokens"] += page_summary.get(
+                "total_input_tokens", 0
+            )
+            merged["summary"]["total_output_tokens"] += page_summary.get(
+                "total_output_tokens", 0
+            )
+            if page_summary.get("estimated_cost_usd") is not None:
+                total_cost += page_summary["estimated_cost_usd"]
+
+        if total_cost > 0:
+            merged["summary"]["estimated_cost_usd"] = round(total_cost, 6)
+
+        self._send_json(merged)
 
     def _send_json(self, obj: dict, status: int = 200):
         body = json.dumps(obj, indent=2, ensure_ascii=False).encode("utf-8")
