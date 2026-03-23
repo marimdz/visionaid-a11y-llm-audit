@@ -105,19 +105,38 @@ def extract_links(html_content: str, base_url: str) -> Set[str]:
     href_pattern = r'href=["\'](.*?)["\']'
     matches = re.findall(href_pattern, html_content, re.IGNORECASE)
     
+    # Extensions and path patterns that are not HTML pages
+    _SKIP_EXT = (
+        '.css', '.js', '.json', '.xml', '.rss', '.atom',
+        '.pdf', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp',
+        '.zip', '.gz', '.tar', '.woff', '.woff2', '.ttf', '.eot',
+    )
+    _SKIP_PATH = ('/feed/', '/feed', '/wp-json/', '/xmlrpc.php', '/comments/feed')
+
     for match in matches:
         # Skip empty links, javascript, mailto, etc.
-        if (match and not match.startswith('#') and 
-            not match.startswith('javascript:') and 
-            not match.startswith('mailto:') and
-            not match.endswith(('.pdf', '.jpg', '.png', '.gif', '.zip'))):
-            
+        if (match and not match.startswith('#') and
+            not match.startswith('javascript:') and
+            not match.startswith('mailto:')):
+
             # Convert to absolute URL
             absolute_url = urljoin(base_url, match)
-            
+
             # Only include http(s) URLs
-            if absolute_url.startswith(('http://', 'https://')):
-                links.add(absolute_url)
+            if not absolute_url.startswith(('http://', 'https://')):
+                continue
+
+            # Skip non-page resources
+            parsed_path = urlparse(absolute_url).path.lower()
+            query = urlparse(absolute_url).query
+            if any(parsed_path.endswith(ext) for ext in _SKIP_EXT):
+                continue
+            if any(seg in parsed_path for seg in _SKIP_PATH):
+                continue
+            if 'wp-json' in query or 'wp-content' in parsed_path:
+                continue
+
+            links.add(absolute_url)
     
     return links
 
@@ -128,6 +147,18 @@ def fetch_page(url: str, timeout: int = 30) -> str:
     return response.text
 
 
+def _normalize_url(url: str) -> str:
+    """Normalize a URL so that trailing-slash variants are treated as identical."""
+    parsed = urlparse(url)
+    path = parsed.path
+    if not path or path == "/":
+        path = "/"
+    elif not path.endswith("/") and "." not in path.rsplit("/", 1)[-1]:
+        # Add trailing slash to directory-like paths (no file extension)
+        path += "/"
+    return parsed._replace(path=path, fragment="").geturl()
+
+
 def fetch_pages_nested(url: str, max_depth: int = 1,
                        max_links_per_page: int = 10, timeout: int = 30) -> str:
     """Fetch HTML from *url* and its in-domain links up to *max_depth* levels.
@@ -135,11 +166,13 @@ def fetch_pages_nested(url: str, max_depth: int = 1,
     All pages are concatenated with HTML comment separators and returned as a
     single string, suitable for passing directly to the audit pipeline.
     """
+    url = _normalize_url(url)
     base_domain = urlparse(url).netloc
     visited: Set[str] = set()
     parts: List[str] = []
 
     def _crawl(current_url: str, depth: int) -> None:
+        current_url = _normalize_url(current_url)
         if current_url in visited or depth < 0:
             return
         visited.add(current_url)
