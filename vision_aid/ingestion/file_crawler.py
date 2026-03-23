@@ -105,19 +105,38 @@ def extract_links(html_content: str, base_url: str) -> Set[str]:
     href_pattern = r'href=["\'](.*?)["\']'
     matches = re.findall(href_pattern, html_content, re.IGNORECASE)
     
+    # Extensions and path patterns that are not HTML pages
+    _SKIP_EXT = (
+        '.css', '.js', '.json', '.xml', '.rss', '.atom',
+        '.pdf', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp',
+        '.zip', '.gz', '.tar', '.woff', '.woff2', '.ttf', '.eot',
+    )
+    _SKIP_PATH = ('/feed/', '/feed', '/wp-json/', '/xmlrpc.php', '/comments/feed')
+
     for match in matches:
         # Skip empty links, javascript, mailto, etc.
-        if (match and not match.startswith('#') and 
-            not match.startswith('javascript:') and 
-            not match.startswith('mailto:') and
-            not match.endswith(('.pdf', '.jpg', '.png', '.gif', '.zip'))):
-            
+        if (match and not match.startswith('#') and
+            not match.startswith('javascript:') and
+            not match.startswith('mailto:')):
+
             # Convert to absolute URL
             absolute_url = urljoin(base_url, match)
-            
+
             # Only include http(s) URLs
-            if absolute_url.startswith(('http://', 'https://')):
-                links.add(absolute_url)
+            if not absolute_url.startswith(('http://', 'https://')):
+                continue
+
+            # Skip non-page resources
+            parsed_path = urlparse(absolute_url).path.lower()
+            query = urlparse(absolute_url).query
+            if any(parsed_path.endswith(ext) for ext in _SKIP_EXT):
+                continue
+            if any(seg in parsed_path for seg in _SKIP_PATH):
+                continue
+            if 'wp-json' in query or 'wp-content' in parsed_path:
+                continue
+
+            links.add(absolute_url)
     
     return links
 
