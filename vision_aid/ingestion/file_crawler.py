@@ -154,6 +154,21 @@ def fetch_page(url: str, timeout: int = 30) -> str:
     html = response.text
     print(f"[fetch_page] HTML chars: {len(html):,}")
     print(f"[fetch_page] First 500 chars:\n{html[:500]}")
+
+    # Detect bot protection / captcha pages before returning
+    _CAPTCHA_SIGNALS = ('sgcaptcha', 'cf-challenge', 'captcha', 'ddos-guard', '__cf_chl')
+    html_lower = html.lower()
+    is_tiny = len(html) < 1000
+    has_meta_refresh = 'http-equiv="refresh"' in html_lower or "http-equiv='refresh'" in html_lower
+    has_captcha_marker = any(signal in html_lower for signal in _CAPTCHA_SIGNALS)
+
+    if is_tiny and (has_meta_refresh or has_captcha_marker):
+        raise RuntimeError(
+            f"Bot protection detected on {url} — the server's IP is being blocked by a captcha "
+            f"(e.g. SGCaptcha, Cloudflare). Automated fetch is not possible from this host. "
+            f"To audit this page, download the HTML manually and upload it as a file instead."
+        )
+
     return html
 
 
