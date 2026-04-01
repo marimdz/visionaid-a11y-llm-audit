@@ -62,6 +62,8 @@ def _repair_json(text: str) -> str:
       "value": "some text" or similar alternative text
     by truncating at the first unquoted `or` after a closing quote.
     """
+    # Fix: "string value" or alternative text  →  "string value"
+    # This matches a quoted string followed by unquoted text before a comma/bracket.
     text = re.sub(
         r'("(?:[^"\\]|\\.)*")\s+or\s+[^,\]\}]+',
         r'\1',
@@ -154,13 +156,27 @@ def _load_html_for_filtering(output_dir: Path) -> BeautifulSoup | None:
         html_path = Path(html_path)
         if not html_path.exists():
             return None
-        with open(html_path, "r", encoding="utf-8") as f:
+        with open(html_path, "r", encoding="utf-8", errors="replace") as f:
             return BeautifulSoup(f.read(), "lxml")
     except Exception:
         return None
 
 
-def _is_link_fp(row: ReportRow, soup: BeautifulSoup | None) -> bool:
+def _build_link_nav_index(soup: BeautifulSoup) -> set[str]:
+    """Build a set of lowercased link texts that are inside <nav> or <footer>.
+
+    Called once and reused across all link findings to avoid repeated DOM walks.
+    """
+    nav_link_texts: set[str] = set()
+    for a in soup.find_all("a"):
+        if a.find_parent("nav") or a.find_parent("footer"):
+            text = a.get_text(strip=True).lower()
+            if text:
+                nav_link_texts.add(text)
+    return nav_link_texts
+
+
+def _is_link_fp(row: ReportRow, nav_link_texts: set[str]) -> bool:
     """Return True if a link clarity finding is a likely false positive."""
     issue = row.issue_title
     match = re.search(r'Unclear link: "(.+?)"', issue)
@@ -177,13 +193,9 @@ def _is_link_fp(row: ReportRow, soup: BeautifulSoup | None) -> bool:
     if re.match(r"^[\d\-\+\(\)\s]+$", link_text):
         return True
 
-    # If we have the HTML, check if the link is inside a <nav> or <footer>
-    if soup:
-        for a in soup.find_all("a"):
-            if a.get_text(strip=True).lower() == link_text.lower():
-                if a.find_parent("nav") or a.find_parent("footer"):
-                    return True
-                break
+    # Links inside <nav> or <footer> are clear in context
+    if link_text.lower() in nav_link_texts:
+        return True
 
     return False
 
@@ -197,14 +209,16 @@ def _is_decorative_img_fp(row: ReportRow, soup: BeautifulSoup | None) -> bool:
 
     src = match.group(1).strip()
 
-    # SVG/icon files next to headings are typically decorative —
-    # the heading text already conveys the information
+    # SVG/icon files nxt to headings are typically decorative —
+    # the heading text already conveys the info
     is_icon = src.endswith(".svg") or "icon" in src.lower()
 
     if is_icon and soup:
         for img in soup.find_all("img"):
             img_src = img.get("src", "")
-            if src in img_src:
+            # Use endswith for full-path comparison to avoid partial matches
+            # (e.g. "old-logo.svg" won't match when looking for "logo.svg")
+            if img_src.endswith(src) or img_src == src:
                 parent = img.parent
                 if parent:
                     # Check if there's a heading sibling
@@ -231,17 +245,33 @@ def _is_svg_fp(row: ReportRow, soup: BeautifulSoup | None) -> bool:
     if not soup:
         return False
 
-    # Check if any visible SVGs are inside elements with text
+    # Find a specific unlabeled SVG that matches this finding, then check
+    # if it's inside a parent element with text. Uses decompose() to consume
+    # matched SVGs so each finding maps to one SVG, not all of them.
     for svg in soup.find_all("svg"):
         if svg.get("aria-hidden") == "true":
+            continue
+
+        # Skip SVGs that already have an accessible name — they aren't
+        # the unlabeled one this finding is about
+        has_name = (
+            svg.get("aria-label")
+            or svg.get("aria-labelledby")
+            or svg.find("title")
+        )
+        if has_name:
             continue
 
         parent_link = svg.find_parent("a")
         parent_button = svg.find_parent("button")
 
         if parent_link and parent_link.get_text(strip=True):
+            # This SVG is decorative — remove from soup so the next
+            # finding doesn't match it again
+            svg.decompose()
             return True
         if parent_button and parent_button.get_text(strip=True):
+            svg.decompose()
             return True
 
     return False
@@ -263,13 +293,18 @@ def filter_false_positives(
     kept = []
     suppressed = []
 
+    # Pre-build link index once instead of per-finding
+    nav_link_texts: set[str] = set()
+    if soup:
+        nav_link_texts = _build_link_nav_index(soup)
+
     for row in rows:
         category = row.category
         is_fp = False
 
         # Check link clarity false positives
         if "Links" in category and "Unclear link" in row.issue_title:
-            is_fp = _is_link_fp(row, soup)
+            is_fp = _is_link_fp(row, nav_link_texts)
 
         # Check decorative image false positives
         elif "Decorative" in category and "mis-marked" in row.issue_title:
