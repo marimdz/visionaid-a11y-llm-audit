@@ -209,15 +209,14 @@ def _is_decorative_img_fp(row: ReportRow, soup: BeautifulSoup | None) -> bool:
 
     src = match.group(1).strip()
 
-    # SVG/icon files nxt to headings are typically decorative —
     # the heading text already conveys the info
     is_icon = src.endswith(".svg") or "icon" in src.lower()
 
     if is_icon and soup:
         for img in soup.find_all("img"):
             img_src = img.get("src", "")
-            # Use endswith for full-path comparison to avoid partial matches
-            # (e.g. "old-logo.svg" won't match when looking for "logo.svg")
+            # endswith for full-path comparison to avoid partial matches
+            # ex: "old-logo.svg" won't match when looking for "logo.svg"
             if img_src.endswith(src) or img_src == src:
                 parent = img.parent
                 if parent:
