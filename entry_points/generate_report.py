@@ -4,6 +4,9 @@ Reads output/manifest.json, output/programmatic_findings.json, and
 output/prompts/*.json, normalizes all findings into flat CSV rows, and
 writes to test_results/claude/report_YYYY-MM-DD.csv.
 
+Includes built-in false positive filtering that automatically suppresses
+common false positives based on HTML context analysis.
+
 Usage:
     python entry_points/generate_report.py
     python entry_points/generate_report.py --output-dir ./output --report-dir ./test_results/claude/
@@ -17,6 +20,7 @@ import json
 import re
 from dataclasses import dataclass, fields
 from pathlib import Path
+from bs4 import BeautifulSoup
 
 
 # ── CSV schema ──────────────────────────────────────────────────────────────
@@ -113,6 +117,208 @@ def _get_recommendation(item: dict) -> str:
         or item.get("fix")
         or ""
     )
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# FALSE POSITIVE FILTERING
+# Runs automatically on every audit to suppress common false positives.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Standard navigation terms that are clear in context — flagging these as
+# "unclear links" is a false positive when they appear in nav/header/footer.
+_NAV_TERMS = {
+    "about", "about us", "home", "contact", "contact us", "products",
+    "services", "careers", "media", "blog", "news", "faq", "help",
+    "support", "login", "log in", "sign in", "sign up", "register",
+    "search", "menu", "close", "back", "next", "previous", "submit",
+    "apply", "download", "upload", "share", "print", "save",
+    "investors", "investor", "customers", "reports", "reach us",
+    "privacy", "terms", "legal", "partners", "team", "our team",
+    "privacy policy", "terms of use", "cookie policy",
+}
+
+
+def _load_html_for_filtering(output_dir: Path) -> BeautifulSoup | None:
+    """Try to load the audited HTML for false-positive checking.
+
+    Looks for the HTML path in the manifest, then tries to read it.
+    Returns None if the HTML is not available (filtering will be skipped).
+    """
+    manifest_path = output_dir / "manifest.json"
+    if not manifest_path.exists():
+        return None
+    try:
+        with open(manifest_path, encoding="utf-8") as f:
+            manifest = json.load(f)
+        html_path = manifest.get("html_file")
+        if not html_path:
+            return None
+        html_path = Path(html_path)
+        if not html_path.exists():
+            return None
+        with open(html_path, "r", encoding="utf-8", errors="replace") as f:
+            return BeautifulSoup(f.read(), "lxml")
+    except Exception:
+        return None
+
+
+def _build_link_nav_index(soup: BeautifulSoup) -> set[str]:
+    """Build a set of lowercased link texts that are inside <nav> or <footer>.
+
+    Called once and reused across all link findings to avoid repeated DOM walks.
+    """
+    nav_link_texts: set[str] = set()
+    for a in soup.find_all("a"):
+        if a.find_parent("nav") or a.find_parent("footer"):
+            text = a.get_text(strip=True).lower()
+            if text:
+                nav_link_texts.add(text)
+    return nav_link_texts
+
+
+def _is_link_fp(row: ReportRow, nav_link_texts: set[str]) -> bool:
+    """Return True if a link clarity finding is a likely false positive."""
+    issue = row.issue_title
+    match = re.search(r'Unclear link: "(.+?)"', issue)
+    if not match:
+        return False
+
+    link_text = match.group(1).strip()
+
+    # Standard nav terms are clear in context
+    if link_text.lower() in _NAV_TERMS:
+        return True
+
+    # Phone numbers with digits are clear (especially with tel: href)
+    if re.match(r"^[\d\-\+\(\)\s]+$", link_text):
+        return True
+
+    # Links inside <nav> or <footer> are clear in context
+    if link_text.lower() in nav_link_texts:
+        return True
+
+    return False
+
+
+def _is_decorative_img_fp(row: ReportRow, soup: BeautifulSoup | None) -> bool:
+    """Return True if a 'mis-marked as decorative' finding is a likely false positive."""
+    issue = row.issue_title
+    match = re.search(r"mis-marked as decorative: (.+)", issue)
+    if not match:
+        return False
+
+    src = match.group(1).strip()
+
+    # the heading text already conveys the info
+    is_icon = src.endswith(".svg") or "icon" in src.lower()
+
+    if is_icon and soup:
+        for img in soup.find_all("img"):
+            img_src = img.get("src", "")
+            # endswith for full-path comparison to avoid partial matches
+            # ex: "old-logo.svg" won't match when looking for "logo.svg"
+            if img_src.endswith(src) or img_src == src:
+                parent = img.parent
+                if parent:
+                    # Check if there's a heading sibling
+                    heading = parent.find(re.compile(r"^h[1-6]$"))
+                    if heading and heading.get_text(strip=True):
+                        return True
+                    # Also check parent's parent
+                    if parent.parent:
+                        heading = parent.parent.find(re.compile(r"^h[1-6]$"))
+                        if heading and heading.get_text(strip=True):
+                            return True
+                break
+
+    return False
+
+
+def _is_svg_fp(row: ReportRow, soup: BeautifulSoup | None) -> bool:
+    """Return True if an SVG accessibility finding is a likely false positive.
+
+    SVGs inside links or buttons that already have visible text are decorative
+    and don't need an accessible name — they just need aria-hidden='true'.
+    This is a different fix than what the report suggests.
+    """
+    if not soup:
+        return False
+
+    # Find a specific unlabeled SVG that matches this finding, then check
+    # if it's inside a parent element with text. Uses decompose() to consume
+    # matched SVGs so each finding maps to one SVG, not all of them.
+    for svg in soup.find_all("svg"):
+        if svg.get("aria-hidden") == "true":
+            continue
+
+        # Skip SVGs that already have an accessible name — they aren't
+        # the unlabeled one this finding is about
+        has_name = (
+            svg.get("aria-label")
+            or svg.get("aria-labelledby")
+            or svg.find("title")
+        )
+        if has_name:
+            continue
+
+        parent_link = svg.find_parent("a")
+        parent_button = svg.find_parent("button")
+
+        if parent_link and parent_link.get_text(strip=True):
+            # This SVG is decorative — remove from soup so the next
+            # finding doesn't match it again
+            svg.decompose()
+            return True
+        if parent_button and parent_button.get_text(strip=True):
+            svg.decompose()
+            return True
+
+    return False
+
+
+def filter_false_positives(
+    rows: list[ReportRow],
+    soup: BeautifulSoup | None,
+) -> tuple[list[ReportRow], list[ReportRow]]:
+    """Split rows into kept findings and suppressed false positives.
+
+    Args:
+        rows: All report rows (programmatic + LLM).
+        soup: Parsed HTML of the audited page, or None if unavailable.
+
+    Returns:
+        (kept, suppressed) — two lists of ReportRow.
+    """
+    kept = []
+    suppressed = []
+
+    # Pre-build link index once instead of per-finding
+    nav_link_texts: set[str] = set()
+    if soup:
+        nav_link_texts = _build_link_nav_index(soup)
+
+    for row in rows:
+        category = row.category
+        is_fp = False
+
+        # Check link clarity false positives
+        if "Links" in category and "Unclear link" in row.issue_title:
+            is_fp = _is_link_fp(row, nav_link_texts)
+
+        # Check decorative image false positives
+        elif "Decorative" in category and "mis-marked" in row.issue_title:
+            is_fp = _is_decorative_img_fp(row, soup)
+
+        # Check SVG false positives
+        elif "SVG" in category:
+            is_fp = _is_svg_fp(row, soup)
+
+        if is_fp:
+            suppressed.append(row)
+        else:
+            kept.append(row)
+
+    return kept, suppressed
 
 
 # ── Programmatic findings normalizer ───────────────────────────────────────
@@ -520,26 +726,42 @@ def generate_report(output_dir: Path, report_dir: Path) -> Path:
 
         llm_findings.extend(new_rows)
 
-    # 5. Combine and assign sequential IDs
+    # 5. Combine all findings
     all_rows = prog_findings + llm_findings
-    for i, row in enumerate(all_rows, start=1):
+
+    # 6. Filter false positives using the source HTML
+    soup = _load_html_for_filtering(output_dir)
+    kept, suppressed = filter_false_positives(all_rows, soup)
+
+    if suppressed:
+        print(f"  False positives suppressed: {len(suppressed)}")
+        # Group by category for visibility
+        fp_cats: dict[str, int] = {}
+        for row in suppressed:
+            fp_cats[row.category] = fp_cats.get(row.category, 0) + 1
+        for cat, count in sorted(fp_cats.items(), key=lambda x: -x[1]):
+            print(f"    {cat}: {count}")
+
+    # 7. Assign sequential IDs
+    for i, row in enumerate(kept, start=1):
         row.ID = i
 
-    # 6. Write CSV
+    # 8. Write CSV
     report_dir.mkdir(parents=True, exist_ok=True)
     report_path = report_dir / f"report_{log_date}.csv"
 
     with open(report_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         writer.writeheader()
-        for row in all_rows:
+        for row in kept:
             writer.writerow({col: getattr(row, col) for col in CSV_COLUMNS})
 
-    # 7. Print summary
+    # 9. Print summary
     print(f"Report generated: {report_path}")
     print(f"  Programmatic findings: {len(prog_findings)}")
     print(f"  LLM findings:         {len(llm_findings)}")
-    print(f"  Total rows:           {len(all_rows)}")
+    print(f"  False positives removed: {len(suppressed)}")
+    print(f"  Final rows:           {len(kept)}")
     print(f"  Log date:             {log_date}")
     print(f"  Model:                {model}")
 
