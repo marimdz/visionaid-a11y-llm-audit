@@ -31,7 +31,18 @@
         <a href="#hero" class="navbar-brand" id="projectBrandLink"
           >P5: Digital Accessibility</a
         >
-        <ul class="nav-links">
+        <button
+          class="hamburger"
+          id="hamburgerBtn"
+          aria-controls="navLinks"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
           <li><a href="#about" class="project-nav-link">About</a></li>
           <li><a href="#team" class="project-nav-link">Team</a></li>
           <li>
@@ -1105,6 +1116,28 @@
 
         return html;
       }
+    </script>
+
+    <!-- Hamburger menu toggle -->
+    <script>
+      (function () {
+        var btn = document.getElementById('hamburgerBtn');
+        var menu = document.getElementById('navLinks');
+        btn.addEventListener('click', function () {
+          var open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          btn.setAttribute('aria-label', open ? 'Open navigation menu' : 'Close navigation menu');
+          menu.classList.toggle('nav-open', !open);
+        });
+        // Close menu when a link is clicked
+        menu.addEventListener('click', function (e) {
+          if (e.target.tagName === 'A' || e.target.closest('a')) {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-label', 'Open navigation menu');
+            menu.classList.remove('nav-open');
+          }
+        });
+      })();
     </script>
   </body>
 </html>
