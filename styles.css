@@ -524,8 +524,8 @@ section:nth-child(even) {
   }
 }
 
-/* Hamburger: 640px and below */
-@media (max-width: 640px) {
+/* Hamburger: 680px and below */
+@media (max-width: 680px) {
   .hamburger {
     display: flex;
   }
