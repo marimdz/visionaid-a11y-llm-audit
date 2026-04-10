@@ -712,13 +712,14 @@
           const initialMsg = isNested ? "Crawling pages\u2026" : "Starting audit\u2026";
           resultsSection.style.display = "block";
           content.innerHTML = `
-            <div class="audit-progress" role="status" aria-live="polite">
+            <div class="audit-progress" aria-hidden="true">
               <p class="progress-message" id="progressMessage">${initialMsg}</p>
               <div class="progress-bar-track" aria-hidden="true">
                 <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
               </div>
               <p class="progress-detail" id="progressDetail"></p>
-            </div>`;
+            </div>
+            <p class="sr-only" id="progressStatus" role="status" aria-live="polite" aria-atomic="true"></p>`;
 
           try {
             const res = await fetch(endpoint, {
@@ -732,6 +733,18 @@
             const decoder = new TextDecoder();
             let buffer = "";
             let data = null;
+
+            // Milestone tracking for screen reader announcements
+            let llmAnnouncedStart = false;
+            let llmAnnouncedHalf  = false;
+
+            function announceToSR(text) {
+              const el = document.getElementById("progressStatus");
+              if (!el) return;
+              // Momentarily clear so identical consecutive messages re-trigger
+              el.textContent = "";
+              requestAnimationFrame(() => { el.textContent = text; });
+            }
 
             while (true) {
               const { done, value } = await reader.read();
@@ -747,18 +760,26 @@
                     const msgEl = document.getElementById("progressMessage");
                     const detEl = document.getElementById("progressDetail");
                     const fillEl = document.getElementById("progressFill");
-                    if (msgEl) msgEl.textContent = evt.message;
-                    if (detEl) detEl.textContent = evt.page_url || evt.prompt_name || "";
 
+                    // ── Visual update (aria-hidden, updates freely) ──────────
+                    if (evt.stage === "llm_progress") {
+                      if (msgEl) msgEl.textContent = "LLM Analysis";
+                      if (detEl) detEl.textContent = evt.prompt_name
+                        ? `${evt.prompt_name} (${evt.completed}/${evt.total})`
+                        : "";
+                    } else {
+                      if (msgEl) msgEl.textContent = evt.message;
+                      if (detEl) detEl.textContent = evt.page_url || "";
+                    }
+
+                    // ── Progress bar fill ────────────────────────────────────
                     if (fillEl) {
                       if (isNested && evt.page && evt.total_pages) {
-                        // Multi-page: fill based on page position
                         const pct = evt.stage === "page_complete"
                           ? Math.round((evt.page / evt.total_pages) * 100)
                           : Math.round(((evt.page - 0.5) / evt.total_pages) * 100);
                         fillEl.style.width = pct + "%";
                       } else if (!isNested) {
-                        // Single-page: fill based on pipeline stage
                         const stagePct = {
                           starting:              2,
                           fetching:              2,
@@ -775,6 +796,27 @@
                           fillEl.style.width = pct + "%";
                         }
                       }
+                    }
+
+                    // ── Screen reader milestone announcements ────────────────
+                    // Only announce at key milestones — not every visual update.
+                    if (evt.stage === "llm_progress") {
+                      if (!llmAnnouncedStart) {
+                        llmAnnouncedStart = true;
+                        announceToSR("Running LLM analysis");
+                      } else if (!llmAnnouncedHalf && evt.total > 0
+                                  && evt.completed >= Math.ceil(evt.total / 2)) {
+                        llmAnnouncedHalf = true;
+                        announceToSR("LLM analysis halfway complete");
+                      }
+                    } else if (evt.stage === "programmatic_complete") {
+                      announceToSR(evt.message);
+                    } else if (evt.stage === "report_generating") {
+                      announceToSR("Generating report");
+                    } else if (evt.stage === "crawl_complete") {
+                      announceToSR(evt.message);
+                    } else if (evt.stage === "auditing_page" && evt.page && evt.total_pages) {
+                      announceToSR(`Auditing page ${evt.page} of ${evt.total_pages}`);
                     }
                   } else if (evt.type === "result") {
                     data = evt;
