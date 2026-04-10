@@ -87,7 +87,7 @@ def _resolve_api_key(data: dict, model: str) -> str:
 
 # ── Audit logic ───────────────────────────────────────────────────────────────
 
-def run_audit(html_content: str, api_key: str, model: str) -> dict:
+def run_audit(html_content: str, api_key: str, model: str, progress_callback=None) -> dict:
     """Write *html_content* to a temp file, run the pipeline, return results.
 
     If *api_key* is empty, the pipeline runs in dry-run mode (programmatic
@@ -107,6 +107,7 @@ def run_audit(html_content: str, api_key: str, model: str) -> dict:
             model=model,
             dry_run=dry_run,
             include_summaries=False,
+            progress_callback=progress_callback,
         )
 
         # Read programmatic findings
@@ -143,9 +144,21 @@ def run_audit(html_content: str, api_key: str, model: str) -> dict:
         csv_content = None
         if not dry_run:
             try:
+                if progress_callback:
+                    progress_callback({
+                        "type": "progress",
+                        "stage": "report_generating",
+                        "message": "Generating report…",
+                    })
                 report_dir = Path(tmp_dir) / "reports"
                 report_path = generate_report(output_dir, report_dir)
                 csv_content = report_path.read_text(encoding="utf-8")
+                if progress_callback:
+                    progress_callback({
+                        "type": "progress",
+                        "stage": "report_complete",
+                        "message": "Report ready",
+                    })
             except Exception as csv_err:
                 print(f"  Warning: CSV generation failed: {csv_err}")
 
@@ -243,6 +256,20 @@ class AuditHandler(BaseHTTPRequestHandler):
         else:
             self.send_error(404, "Not Found")
 
+    def _start_ndjson_stream(self):
+        """Send NDJSON response headers and return a send_event callable."""
+        self.send_response(200)
+        self.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
+        self._cors_headers()
+        self.end_headers()
+
+        def send_event(obj: dict) -> None:
+            line = json.dumps(obj, ensure_ascii=False) + "\n"
+            self.wfile.write(line.encode("utf-8"))
+            self.wfile.flush()
+
+        return send_event
+
     def _handle_audit(self):
         length = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(length)
@@ -268,8 +295,15 @@ class AuditHandler(BaseHTTPRequestHandler):
             f"model={model}, api_key={'set' if api_key else 'not set'}"
         )
 
-        result = run_audit(html_content, api_key, model)
-        self._send_json(result)
+        send_event = self._start_ndjson_stream()
+        send_event({
+            "type": "progress",
+            "stage": "starting",
+            "message": "Starting audit…",
+        })
+        result = run_audit(html_content, api_key, model, progress_callback=send_event)
+        result["type"] = "result"
+        send_event(result)
 
     def _handle_url_audit(self, nested: bool):
         """Fetch HTML from a URL (and optionally its nested links) then audit."""
@@ -295,43 +329,47 @@ class AuditHandler(BaseHTTPRequestHandler):
             f"model={model}, api_key={'set' if api_key else 'not set'}"
         )
 
-        try:
-            if nested:
-                html_content, crawl_tree = fetch_pages_nested(url)
-            else:
-                html_content = fetch_page(url)
-                crawl_tree = {}
-        except Exception as exc:
-            self._send_json({"success": False, "error": f"Failed to fetch URL: {exc}"}, 502)
-            return
-
         if not nested:
+            send_event = self._start_ndjson_stream()
+            send_event({
+                "type": "progress",
+                "stage": "fetching",
+                "message": f"Fetching {url}…",
+            })
+            try:
+                html_content = fetch_page(url)
+            except Exception as exc:
+                result = {"type": "result", "success": False, "error": f"Failed to fetch URL: {exc}"}
+                send_event(result)
+                return
             print(f"  [url_audit] Fetched {len(html_content):,} chars from {url}")
-            # Detect bot-challenge pages (Cloudflare, etc.)
             lower = html_content[:2000].lower()
             if any(marker in lower for marker in ("just a moment", "cf-browser-verification", "ray id", "enable javascript and cookies")):
                 print("  [url_audit] WARNING: response looks like a bot-challenge page, not real content")
             title_match = re.search(r"<title[^>]*>(.*?)</title>", html_content[:4000], re.IGNORECASE | re.DOTALL)
             print(f"  [url_audit] <title>: {title_match.group(1).strip() if title_match else '(not found)'}")
-            result = run_audit(html_content, api_key, model)
-            self._send_json(result)
+            send_event({
+                "type": "progress",
+                "stage": "fetch_complete",
+                "message": "Page fetched — starting analysis…",
+            })
+            result = run_audit(html_content, api_key, model, progress_callback=send_event)
+            result["type"] = "result"
+            send_event(result)
             return
 
         # ── Multi-page: stream progress, run pipeline per page, merge ─────
+        try:
+            html_content, crawl_tree = fetch_pages_nested(url)
+        except Exception as exc:
+            self._send_json({"success": False, "error": f"Failed to fetch URL: {exc}"}, 502)
+            return
+
         pages = split_pages(html_content)
         total_pages = len(pages)
         print(f"  Split into {total_pages} page(s)")
 
-        # Start streaming NDJSON so the client gets progress updates
-        self.send_response(200)
-        self.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
-        self._cors_headers()
-        self.end_headers()
-
-        def _send_event(obj: dict) -> None:
-            line = json.dumps(obj, ensure_ascii=False) + "\n"
-            self.wfile.write(line.encode("utf-8"))
-            self.wfile.flush()
+        _send_event = self._start_ndjson_stream()
 
         _send_event({
             "type": "progress",
@@ -376,7 +414,7 @@ class AuditHandler(BaseHTTPRequestHandler):
             })
 
             print(f"  Auditing: {page_url}")
-            page_result = run_audit(page_html, api_key, model)
+            page_result = run_audit(page_html, api_key, model, progress_callback=_send_event)
 
             if not page_result.get("success"):
                 print(f"    FAILED: {page_result.get('error')}")
