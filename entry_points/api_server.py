@@ -144,7 +144,9 @@ def run_audit(html_content: str, api_key: str, model: str) -> dict:
         if not dry_run:
             try:
                 report_dir = Path(tmp_dir) / "reports"
-                report_path = generate_report(output_dir, report_dir)
+                report_path = generate_report(
+                    output_dir, report_dir, api_key=api_key, model=model
+                )
                 csv_content = report_path.read_text(encoding="utf-8")
             except Exception as csv_err:
                 print(f"  Warning: CSV generation failed: {csv_err}")
