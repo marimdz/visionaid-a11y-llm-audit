@@ -197,6 +197,7 @@ def run_pipeline(
     model: str,
     dry_run: bool,
     include_summaries: bool,
+    progress_callback=None,
 ) -> dict:
     """Execute the full element-specific accessibility audit pipeline.
 
@@ -216,6 +217,12 @@ def run_pipeline(
         f"  CL01: {len(sem_findings)} | CL02: {len(form_findings)} | "
         f"CL03: {len(ntext_findings)} | Total: {len(programmatic_findings)}"
     )
+    if progress_callback:
+        progress_callback({
+            "type": "progress",
+            "stage": "programmatic_complete",
+            "message": f"Programmatic checks complete — {len(programmatic_findings)} issue(s) found",
+        })
 
     # ── Step 1: Extract structured payloads ──────────────────────────────────
     print("Step 1: Extracting structured payloads...")
@@ -251,6 +258,12 @@ def run_pipeline(
     print(f"  Active filters: {active_filters or '(none)'}")
     if filter_flags["skip_prompts"]:
         print(f"  Prompts skipped by filter: {filter_flags['skip_prompts']}")
+    if progress_callback:
+        progress_callback({
+            "type": "progress",
+            "stage": "extraction_complete",
+            "message": "Content extracted and filtered",
+        })
 
     # ── Step 2: Slice, fill, and call ────────────────────────────────────────
     print("Step 2: Processing prompts...")
@@ -259,6 +272,14 @@ def run_pipeline(
     skipped = []
     total_input_tokens = 0
     total_output_tokens = 0
+
+    # Count prompts expected to run (for progress reporting)
+    total_llm_prompts = sum(
+        1 for s in PROMPT_REGISTRY
+        if not (s.is_summary and not include_summaries)
+        and s.name not in filter_flags["skip_prompts"]
+    )
+    llm_completed = 0
 
     # Initialise client once (only needed for live runs)
     client = None
@@ -286,6 +307,8 @@ def run_pipeline(
             skipped.append({"name": spec.name, "reason": "empty payload"})
             print(f"  [{spec.name}] SKIPPED (empty payload)")
             continue
+
+        llm_completed += 1
 
         # Fill the prompt template
         prompt_text = fill_template(spec, payload_json)
@@ -355,6 +378,15 @@ def run_pipeline(
                 print(f" FAILED: {api_result['error']}")
 
         results.append(result_entry)
+        if progress_callback:
+            progress_callback({
+                "type": "progress",
+                "stage": "llm_progress",
+                "completed": llm_completed,
+                "total": total_llm_prompts,
+                "prompt_name": spec.name,
+                "message": f"LLM analysis: {spec.name} ({llm_completed}/{total_llm_prompts})",
+            })
 
     # ── Step 3: Write manifest ───────────────────────────────────────────────
     manifest = {
