@@ -119,6 +119,92 @@ def _get_recommendation(item: dict) -> str:
     )
 
 
+# ── LLM-powered programmatic recommendations ──────────────────────────────────
+
+_RECOMMENDATIONS_PROMPT = """\
+You are a web accessibility expert reviewing programmatic audit findings.
+For each finding below, write a concise, actionable recommendation (1-3 sentences) \
+that tells a developer exactly what to change in the code.
+
+Respond with ONLY a JSON array — no markdown fences, no extra text:
+[
+  {{"rule_id": "<same rule_id as input>", "recommendation": "<your fix>"}},
+  ...
+]
+
+Return one object per finding in the same order as the input.
+
+Findings:
+{findings_json}"""
+
+
+def _fetch_programmatic_recommendations(
+    findings: list[dict],
+    api_key: str,
+    model: str,
+) -> dict[str, str]:
+    """Make a single batched LLM call to get recommendations for all programmatic findings.
+
+    Args:
+        findings: Raw programmatic findings dicts from programmatic_findings.json.
+        api_key: API key for the LLM provider.
+        model: Model ID (used to select Anthropic vs OpenAI client).
+
+    Returns:
+        Mapping of rule_id → recommendation string. Empty dict on any failure.
+    """
+    if not findings or not api_key:
+        return {}
+
+    payload = [
+        {
+            "rule_id": f.get("rule_id") or f.get("issue_code", ""),
+            "rule_name": f.get("rule_name") or f.get("checklist_item", ""),
+            "description": f.get("description", ""),
+        }
+        for f in findings
+    ]
+    prompt = _RECOMMENDATIONS_PROMPT.format(findings_json=json.dumps(payload, indent=2))
+
+    try:
+        from processing_scripts.llm_client.client import is_openai_model  # local import
+        if is_openai_model(model):
+            import openai
+            client = openai.OpenAI(api_key=api_key)
+            resp = client.chat.completions.create(
+                model=model,
+                max_tokens=2048,
+                temperature=0.1,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            raw = resp.choices[0].message.content.strip()
+        else:
+            import anthropic
+            client = anthropic.Anthropic(api_key=api_key)
+            msg = client.messages.create(
+                model=model,
+                max_tokens=2048,
+                temperature=0.1,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            raw = msg.content[0].text.strip()
+
+        parsed = safe_parse_json(raw)
+        if not isinstance(parsed, list):
+            print("  Warning: LLM recommendations response was not a list, skipping")
+            return {}
+
+        return {
+            item["rule_id"]: item["recommendation"]
+            for item in parsed
+            if item.get("rule_id") and item.get("recommendation")
+        }
+
+    except Exception as exc:
+        print(f"  Warning: LLM recommendation fetch failed: {exc}")
+        return {}
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 # FALSE POSITIVE FILTERING
 # Runs automatically on every audit to suppress common false positives.
@@ -377,7 +463,8 @@ def normalize_programmatic(findings: list[dict], page_title: str,
             steps_to_reproduce=f"Inspect element: {snippet[:200]}",
             actual_result=actual,
             expected_result=expected,
-            recommendation=description or rule_name,
+            recommendation=description or rule_name, # TODO: Suggestions
+            # _get_recommendation(item),
             wcag_sc=criterion,
             category=category,
             log_date=log_date,
@@ -650,7 +737,7 @@ NORMALIZERS: dict[str, callable] = {
 
 # ── Main report generation ─────────────────────────────────────────────────
 
-def generate_report(output_dir: Path, report_dir: Path) -> Path:
+def generate_report(output_dir: Path, report_dir: Path, api_key: str = "") -> Path:
     """Generate a unified CSV report from pipeline output.
 
     Args:
@@ -681,11 +768,26 @@ def generate_report(output_dir: Path, report_dir: Path) -> Path:
 
     # 3. Normalize programmatic findings
     prog_path = output_dir / "programmatic_findings.json"
+    prog_raw: list[dict] = []
     prog_findings = []
     if prog_path.exists():
         with open(prog_path, encoding="utf-8") as f:
             prog_raw = json.load(f)
         prog_findings = normalize_programmatic(prog_raw, page_title, log_date)
+
+    # Enrich programmatic recommendations via a single batched LLM call when a key is present
+    if api_key and prog_raw:
+        print("  Fetching LLM recommendations for programmatic findings...")
+        recs = _fetch_programmatic_recommendations(prog_raw, api_key, model)
+        enriched = 0
+        for row in prog_findings:
+            # issue_title is formatted as "<rule_id>: <rule_name>" or just "<rule_name>"
+            rule_id = row.issue_title.split(":")[0].strip()
+            if rule_id in recs:
+                row.recommendation = recs[rule_id]
+                enriched += 1
+        if enriched:
+            print(f"  Recommendations enriched: {enriched}/{len(prog_findings)} findings")
 
     # 4. Normalize LLM prompt results
     llm_findings: list[ReportRow] = []
