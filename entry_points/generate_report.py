@@ -193,12 +193,22 @@ def _fetch_programmatic_recommendations(
 
     in_tok = api_result["usage"]["input_tokens"]
     out_tok = api_result["usage"]["output_tokens"]
+
+    # Anthropic returns "max_tokens"; OpenAI returns "length" for truncation.
+    stop_reason = api_result.get("stop_reason", "")
+    if stop_reason in ("max_tokens", "length"):
+        print(
+            f" TRUNCATED — response cut off at {out_tok:,} tokens "
+            f"(stop_reason={stop_reason!r}). Increase max_tokens in PipelineClient."
+        )
+        return {}
+
     print(f" OK ({api_result['duration_seconds']}s, {in_tok:,} in / {out_tok:,} out)")
 
     try:
         parsed = safe_parse_json(api_result["response"])
     except (json.JSONDecodeError, ValueError) as exc:
-        print(f"  Warning: LLM recommendation fetch failed: {exc}")
+        print(f"  Warning: LLM recommendation parse failed: {exc}")
         return {}
 
     if not isinstance(parsed, list):
@@ -470,8 +480,7 @@ def normalize_programmatic(findings: list[dict], page_title: str,
             steps_to_reproduce=f"Inspect element: {snippet[:200]}",
             actual_result=actual,
             expected_result=expected,
-            recommendation=description or rule_name, # TODO: Suggestions
-            # _get_recommendation(item),
+            recommendation=description or rule_name,
             wcag_sc=criterion,
             category=category,
             log_date=log_date,
