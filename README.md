@@ -207,24 +207,33 @@ Run an audit on raw HTML submitted in the request body.
 
 ```json
 {
-  "html": "<html>...</html>",
+  "html_content": "<html>...</html>",
   "model": "claude-sonnet-4-20250514",
   "api_key": "sk-ant-...",
   "openai_api_key": "sk-proj-..."
 }
 ```
 
-All fields except `html` are optional. API keys in the request body take priority over the `.env` file. If no API key is provided, the server runs programmatic checks only (no LLM calls).
+All fields except `html_content` are optional. API keys in the request body take priority over the `.env` file. If no API key is provided, the server runs programmatic checks only (no LLM calls).
 
 **Response (JSON):**
 
 ```json
 {
   "success": true,
-  "report_path": "test_results/claude/report_2026-04-18.csv",
-  "findings": [...],
-  "usage": {"input_tokens": 18000, "output_tokens": 4200},
-  "cost_usd": 0.12
+  "programmatic_findings": [...],
+  "llm_results": {"prompt_name": {"status": "success", "parsed": {...}, ...}},
+  "csv_report": "ID,element_name,...\n1,...",
+  "skipped_prompts": [],
+  "summary": {
+    "programmatic_count": 12,
+    "llm_prompts_run": 18,
+    "total_input_tokens": 18000,
+    "total_output_tokens": 4200,
+    "estimated_cost_usd": 0.12,
+    "model": "claude-sonnet-4-20250514",
+    "dry_run": false
+  }
 }
 ```
 
@@ -238,8 +247,7 @@ Crawl a URL (and optional subpages) and run an audit. Streams NDJSON progress ev
 {
   "url": "https://example.com",
   "model": "claude-sonnet-4-20250514",
-  "api_key": "sk-ant-...",
-  "depth": 1
+  "api_key": "sk-ant-..."
 }
 ```
 
@@ -293,8 +301,8 @@ Each checker returns a list of finding dicts. Rules fire independently of the LL
 | Checker | Rules | Sample rule IDs |
 |---------|-------|----------------|
 | `semantic_checklist_01.py` | 18 | `HEAD_001` missing page title, `HEAD_004` skipped heading levels, `LINK_001` empty link text, `DUP_001` duplicate IDs |
-| `forms_checklist_02.py` | 7 | `FORM_001` unlabeled input, `FORM_003` missing fieldset/legend |
-| `nontext_checklist_03.py` | 7 | `IMG_001` missing alt attribute, `SVG_001` SVG without title |
+| `forms_checklist_02.py` | 7 | `FORM_LABEL_001` unlabeled input, `FORM_GROUP_001` missing fieldset/legend |
+| `nontext_checklist_03.py` | 7 | `NON_TEXT_001` missing alt attribute, `NON_TEXT_002` missing alt on actionable image |
 
 ### Prompt Registry Pattern (new)
 
