@@ -77,14 +77,18 @@ def safe_parse_json(text: str):
     """Parse JSON from an LLM response, stripping code fences first.
 
     Falls back to a repair pass if initial parsing fails due to common
-    LLM malformations like inline alternative text.
+    LLM malformations like inline alternative text.  As a final fallback,
+    parses with strict=False to tolerate literal newlines inside strings.
     """
     cleaned = strip_code_fence(text)
     try:
         return json.loads(cleaned)
     except json.JSONDecodeError:
         repaired = _repair_json(cleaned)
-        return json.loads(repaired)
+        try:
+            return json.loads(repaired)
+        except json.JSONDecodeError:
+            return json.JSONDecoder(strict=False).decode(repaired)
 
 
 def load_prompt_file(path: Path) -> dict | None:
@@ -180,6 +184,105 @@ _GENERIC_FIXES: dict[str, str] = {
     "FORM_ERROR_001": "Add aria-describedby to the invalid control pointing to the error message element. Example: <input aria-invalid=\"true\" aria-describedby=\"error-msg\"> <p id=\"error-msg\">Please enter a valid email.</p>.",
     "FORM_CUSTOM_001": "Add an appropriate role attribute to this interactive element. Example: <div onclick=\"...\" role=\"button\" tabindex=\"0\">.",
 }
+
+
+# ── LLM-powered programmatic recommendations ──────────────────────────────────
+
+_RECOMMENDATIONS_PROMPT = """\
+You are a web accessibility expert reviewing programmatic audit findings.
+For each finding, write a concise actionable fix that tells a developer exactly \
+what to change in the code. Keep each recommendation on a single line — no newlines \
+or line breaks inside the string.
+
+Respond with ONLY a JSON array — no markdown fences, no extra text:
+[
+  {{"rule_id": "<same rule_id as input>", "recommendation": "<your single-line fix>"}},
+  ...
+]
+
+Findings:
+{findings_json}"""
+
+
+def _fetch_programmatic_recommendations(
+    findings: list[dict],
+    api_key: str,
+    model: str,
+) -> dict[str, str]:
+    """Make a single batched LLM call to get recommendations for all programmatic findings.
+
+    Args:
+        findings: Raw programmatic findings dicts from programmatic_findings.json.
+        api_key: API key for the LLM provider.
+        model: Model ID (used to select Anthropic vs OpenAI client).
+
+    Returns:
+        Mapping of rule_id → recommendation string. Empty dict on any failure.
+    """
+    if not findings or not api_key:
+        return {}
+
+    # Deduplicate by rule_id — many findings share the same rule (e.g. 20x missing alt).
+    # One recommendation per unique rule_id is sufficient; the caller maps by rule_id anyway.
+    seen: dict[str, dict] = {}
+    for f in findings:
+        rule_id = f.get("rule_id") or f.get("issue_code", "")
+        if rule_id and rule_id not in seen:
+            seen[rule_id] = {
+                "rule_id": rule_id,
+                "rule_name": f.get("rule_name") or f.get("checklist_item", ""),
+                "description": f.get("description", ""),
+            }
+    payload = list(seen.values())
+    if not payload:
+        return {}
+
+    from entry_points.run_pipeline import PipelineClient, estimate_tokens  # local import
+
+    prompt = _RECOMMENDATIONS_PROMPT.format(findings_json=json.dumps(payload, indent=2))
+    prompt_tokens = estimate_tokens(prompt)
+
+    client = PipelineClient(api_key=api_key, model=model)
+    print(
+        f"  [programmatic_recommendations] Calling {model} (~{prompt_tokens:,} tokens)...",
+        end="",
+        flush=True,
+    )
+    api_result = client.call(prompt)
+
+    if not api_result["success"]:
+        print(f" FAILED: {api_result['error']}")
+        return {}
+
+    in_tok = api_result["usage"]["input_tokens"]
+    out_tok = api_result["usage"]["output_tokens"]
+
+    # Anthropic returns "max_tokens"; OpenAI returns "length" for truncation.
+    stop_reason = api_result.get("stop_reason", "")
+    if stop_reason in ("max_tokens", "length"):
+        print(
+            f" TRUNCATED — response cut off at {out_tok:,} tokens "
+            f"(stop_reason={stop_reason!r}). Increase max_tokens in PipelineClient."
+        )
+        return {}
+
+    print(f" OK ({api_result['duration_seconds']}s, {in_tok:,} in / {out_tok:,} out)")
+
+    try:
+        parsed = safe_parse_json(api_result["response"])
+    except (json.JSONDecodeError, ValueError) as exc:
+        print(f"  Warning: LLM recommendation parse failed: {exc}")
+        return {}
+
+    if not isinstance(parsed, list):
+        print("  Warning: LLM recommendations response was not a list, skipping")
+        return {}
+
+    return {
+        item["rule_id"]: item["recommendation"]
+        for item in parsed
+        if item.get("rule_id") and item.get("recommendation")
+    }
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -807,7 +910,7 @@ NORMALIZERS: dict[str, callable] = {
 
 # ── Main report generation ─────────────────────────────────────────────────
 
-def generate_report(output_dir: Path, report_dir: Path) -> Path:
+def generate_report(output_dir: Path, report_dir: Path, api_key: str = "") -> Path:
     """Generate a unified CSV report from pipeline output.
 
     Args:
@@ -838,11 +941,26 @@ def generate_report(output_dir: Path, report_dir: Path) -> Path:
 
     # 3. Normalize programmatic findings
     prog_path = output_dir / "programmatic_findings.json"
+    prog_raw: list[dict] = []
     prog_findings = []
     if prog_path.exists():
         with open(prog_path, encoding="utf-8") as f:
             prog_raw = json.load(f)
         prog_findings = normalize_programmatic(prog_raw, page_title, log_date)
+
+    # Enrich programmatic recommendations via a single batched LLM call when a key is present
+    if api_key and prog_raw:
+        print("  Fetching LLM recommendations for programmatic findings...")
+        recs = _fetch_programmatic_recommendations(prog_raw, api_key, model)
+        enriched = 0
+        for row in prog_findings:
+            # issue_title is formatted as "<rule_id>: <rule_name>" or just "<rule_name>"
+            rule_id = row.issue_title.split(":")[0].strip()
+            if rule_id in recs:
+                row.recommendation = recs[rule_id]
+                enriched += 1
+        if enriched:
+            print(f"  Recommendations enriched: {enriched}/{len(prog_findings)} findings")
 
     # 4. Normalize LLM prompt results
     llm_findings: list[ReportRow] = []
